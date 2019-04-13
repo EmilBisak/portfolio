@@ -902,8 +902,6 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     width: 50px;
     height: 50px;
     z-index: 2;
-    opacity: 0;
-    transform: rotateY(60deg);
     left: -10px;
 }
 
@@ -960,6 +958,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
     .project:hover {
         border-bottom: 1px solid rgb(0, 0, 0);
+        /* transition: border 1s; */
     }
 
     .project.start .project-details {
