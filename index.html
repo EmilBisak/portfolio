@@ -48,7 +48,7 @@
     <script src="https://code.iconify.design/1/1.0.0-rc7/iconify.min.js"></script>
 </head>
 
-<body onmouseover="" id="top">
+<body onmouseover="" id="top" class="custom_scroll_bar">
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -84,8 +84,13 @@
         <header id="home">
             <div class="header-content">
                 <!-- <img class="header-image" src="assets/emilBisak.jpg" alt="Emil Bisak portret" /> -->
-                <h1>Emil Bisak</h1>
-                <h2>Front End Web Developer</h2>
+                <div class="header-title">
+                    <h1>Emil Bisak</h1>
+                    <h2>Front End Web Developer</h2>
+                </div>
+                <div class="loading-holder">
+                    <img src="assets/loading.jpg" alt="" class="loading">
+                </div>
             </div>
         </header>
 
@@ -94,8 +99,10 @@
                 <h2>Who Am I?</h2>
                 <div class="about-text">
                     <p>As you can probably guess, my name is Emil Bisak, and I’m a Front End Web Developer.</p>
-                    <p>I'm highly motivated and passionate person, always striving to improve and create the best positive experience for myself and those
-                        surrounding me. Currently available for both part-time and full-time work.</p>
+                    <p>I'm highly motivated and passionate person, always striving to improve and create the best
+                        positive experience for myself and those
+                        surrounding me. I am currently working as a Frontend Developer at <a
+                            href="https://umz2.unimaze.com/" target="_blank">Unimaze Software</a>.</p>
                 </div>
             </div>
             <div class="section-content">
@@ -128,13 +135,17 @@
                         <h3>Krojačeva Škola</h3>
                         <h5>Front End Course</h5>
                         <p>December 2017 - March 2018</p>
-                        <p>The course is designed to teach front end technologies with focus on UI and learning how to develop eye for details.</p>
+                        <p>The course is designed to teach front end technologies with focus on UI and learning how to
+                            develop eye for details.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="skillset" class="projects-bg">
+            <div class="loading-holder">
+                <img src="assets/loading.jpg" alt="" class="loading">
+            </div>
             <div class="section-content">
                 <h2>Skillset</h2>
                 <div class="about-text">
@@ -460,6 +471,9 @@
 
 
         <section id="contact" class="projects-bg">
+            <div class="loading-holder">
+                <img src="assets/loading.jpg" alt="" class="loading">
+            </div>
             <div class="section-content">
                 <h2 class="contact-title">Contact Me</h2>
                 <p class="section-title-description contact-description">
@@ -504,7 +518,7 @@
 
                     <div class="contact-wrapper contact-github">
                         <div class="contact-hex hexagon-wrapper">
-                            <a href="skype:profile_name?action" target="_blank">
+                            <a href="https://github.com/emilbisak" target="_blank">
                                 <div class="hexagon color2">
                                     <span class="iconify" data-icon="fa-brands:github" data-inline="false"></span>
                                     <h4>GitHub</h4>
@@ -533,10 +547,12 @@
 
         <footer class="dark-bg-color">
             <div class="footer-content">
-                <span>Emil Bisak</span>
+                <a href="#about" onclick="app.nav.onNavClick()" class="navigation-link author-name">E<span
+                        class="hide-letters">mil </span>B<span class="hide-letters">isak</span>
+                </a>
                 <ul>
                     <li><a href="#home" onclick="app.nav.onNavClick()" class="navigation-link">Home</a></li>
-                    <li><a href="#about" onclick="app.nav.onNavClick()" class="navigation-link">About</a></li>
+                    <li><a href="#about" onclick="app.nav.onNavClick()" class="navigation-link">Who am I</a></li>
                     <li><a href="#skillset" onclick="app.nav.onNavClick()" class="navigation-link">Skillset</a></li>
                     <li><a href="#portfolio" onclick="app.nav.onNavClick()" class="navigation-link">Portfolio</a></li>
                     <li><a href="#contact" onclick="app.nav.onNavClick()" class="navigation-link">Contact</a></li>

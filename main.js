@@ -79,6 +79,7 @@ app.nav = (function () {
 
   function onNavClick() {
     event && event.preventDefault();
+    event && event.stopPropagation();
     const linksSelection = document.querySelectorAll('.navigation-link');
     const links = [...linksSelection];
 
@@ -87,6 +88,9 @@ app.nav = (function () {
         if (event.target.tagName === "A") {
           const href = event.target.getAttribute('href') || event.target.dataset.href;
 
+          navigateSmooth(href);
+        } else if (event.target.parentNode.tagName === "A") {
+          const href = event.target.parentNode.getAttribute('href') || event.target.parentNode.dataset.href;
           navigateSmooth(href);
         } else {
           navigateSmooth("#home");
@@ -210,6 +214,32 @@ document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
 
 window.onload = app.nav.onNavClick();
 
+const backgroungImageObject = new Image();
+backgroungImageObject.src = 'assets/background.jpg';
+backgroungImageObject.onload = function () {
+  const header = document.querySelector("header");
+  const title = document.querySelector(".header-title");
+  const skillsetContent = document.querySelector("#skillset .section-content");
+  const contactContent = document.querySelector("#contact .section-content");
+  const loading = document.querySelectorAll(".loading-holder");
+  const projectBg = document.querySelectorAll(".projects-bg");
+
+  header.style.backgroundImage = "url('assets/background.jpg')";
+  title.style.display = "block";
+  skillsetContent.style.display = "block";
+  contactContent.style.display = "block";
+
+  projectBg.forEach(node => {
+    node.style.backgroundImage = "url('assets/background.jpg')";
+  });
+  
+  loading.forEach(node => {
+    node.style.display = "none";
+  });
+
+  console.log("UCITANA");
+
+}
 
 
 

@@ -3,7 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Cambay:700');
 
 
-* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 html,
 body,
@@ -236,7 +238,10 @@ section:nth-child(5) {
 /*** HEADER SECTION ***/
 
 header {
-    background-image: url(assets/background.jpg);
+    background-color: #958f91;
+    /* background-image: url(assets/background.jpg); */
+    /* background-image: url(assets/loading.gif), linear-gradient(to bottom, #958f91 0%, #000 100%); */
+    background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -270,6 +275,10 @@ header .header-content .header-image {
     -webkit-box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+header .header-content .header-title {
+    display: none;
 }
 
 header .header-content h1 {
@@ -488,7 +497,10 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 }
 
 .projects-bg {
-    background-image: url(assets/background.jpg);
+    background-color: #958f91;
+    /* background-image: url(assets/background.jpg);
+    background-image: url(assets/background.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%); */
+    background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -560,6 +572,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 #skillset .section-content {
     max-width: 770px;
+    display: none;
 }
 
 #skillset h2 {
@@ -837,7 +850,6 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     width: 100px;
     height: 2px;
     background-color: #04C2C9;
-    ;
     margin: 7px 0;
     margin-bottom: 10px;
 }
@@ -950,6 +962,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
 @media only screen and (max-width: 1299px) {
     .project {
+        transition: border .3s cubic-bezier(.645, .045, .355, 1);
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -957,8 +970,8 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     }
 
     .project:hover {
+        transition: border .3s cubic-bezier(.645, .045, .355, 1);
         border-bottom: 1px solid rgb(0, 0, 0);
-        /* transition: border 1s; */
     }
 
     .project.start .project-details {
@@ -980,6 +993,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
 @media only screen and (max-width: 1000px) {
     .project {
+        transition: border .3s cubic-bezier(.645, .045, .355, 1);
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -987,6 +1001,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     }
 
     .project:hover {
+        transition: border .3s cubic-bezier(.645, .045, .355, 1);
         border-bottom: 1px solid rgb(175, 175, 175);
     }
 
@@ -1079,10 +1094,12 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     }
 
     .project {
+        transition: border .3s cubic-bezier(.645, .045, .355, 1);
         border-bottom: 1px solid rgb(177, 177, 177);
     }
 
     .project:hover {
+        transition: border .3s cubic-bezier(.645, .045, .355, 1);
         border-bottom: 1px solid rgb(0, 0, 0);
     }
 
@@ -1114,6 +1131,9 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
 /*** CONTACT SECTION ***/
 
+#contact .section-content {
+    display: none;
+}
 
 .contact-title {
     color: #fff;
@@ -1251,12 +1271,25 @@ footer .footer-content {
     overflow: hidden;
 }
 
-footer .footer-content span {
+footer .footer-content .author-name {
     float: left;
     color: #fff;
     font-size: 20px;
     font-weight: bold;
     padding: 16px 0 0;
+    cursor: pointer;
+}
+
+footer .footer-content .hide-letters {
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    font-size: 0px;
+    color: transparent;
+}
+
+footer .footer-content .author-name:hover .hide-letters {
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    font-size: 20px;
+    color: #fff;
 }
 
 footer .footer-content ul {
@@ -1323,7 +1356,7 @@ footer .arrow-to-top:hover svg path {
         height: 260px;
     }
 
-    footer .footer-content span {
+    footer .footer-content .author-name {
         width: 100%;
         z-index: 1;
         position: relative;
@@ -1349,4 +1382,32 @@ footer .arrow-to-top:hover svg path {
     footer .arrow-to-top {
         bottom: 295px;
     }
+}
+
+/* Loading */
+
+.loading-holder {
+    margin: 0 auto;
+    width: 200px;
+}
+
+.loading {
+    width: 200px;
+}
+
+
+/* Custom Scroll Bar */
+
+.custom_scroll_bar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    border-left: 1px solid #ddd;
+}
+
+.custom_scroll_bar::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 6px 6px 0px 0px #04C2C9;
+}
+
+.custom_scroll_bar::-webkit-scrollbar-thumb:hover {
+    -webkit-box-shadow: inset 6px 6px 0px 0px #33d0d6;
 }
