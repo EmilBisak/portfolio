@@ -178,7 +178,6 @@ app.scroll = (function () {
         "style",
         "position:relative; bottom:85px;"
       );
-      // arrowImg.style.top = "10px";
     }
 
     if (bottomOffset >= footerTriger) {
@@ -199,6 +198,64 @@ app.scroll = (function () {
   };
 }());
 
+
+app.loading = (function () {
+
+  Image.prototype.load = function (url) {
+    const thisImg = this;
+    const loadingPercentage = document.querySelector(".loading-percentage");
+    const xmlHTTP = new XMLHttpRequest();
+    xmlHTTP.open('GET', url, true);
+    xmlHTTP.responseType = 'arraybuffer';
+    xmlHTTP.onprogress = function (e) {
+      thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
+
+      thisImg.completedPercentage ? loadingPercentage.innerHTML = `${thisImg.completedPercentage}%` : loadingPercentage.innerHTML = "";
+      document.querySelector(".inside-bar").style.width = `${thisImg.completedPercentage}%`;
+    };
+    xmlHTTP.onloadstart = function () {
+      thisImg.completedPercentage = 0;
+    };
+
+    xmlHTTP.send();
+  };
+
+
+  function loadingImage(url) {
+    const backgroungImageObject = new Image();
+    backgroungImageObject.load(url);
+    backgroungImageObject.src = url;
+
+
+    backgroungImageObject.onload = function () {
+      const body = document.querySelector("body");
+      const header = document.querySelector("header");
+      const title = document.querySelector(".header-title");
+      const wrapper = document.querySelector(".wrapper");
+      const nav = document.querySelector("nav");
+      const loading = document.querySelector(".loading-holder");
+      const projectBg = document.querySelectorAll(".projects-bg");
+
+      body.style.background = "#fff";
+      title.classList.add("in-down")
+      header.style.backgroundImage = `url(${url})`;
+      wrapper.style.display = "block";
+      nav.style.display = "block";
+
+      projectBg.forEach(node => {
+        node.style.backgroundImage = `url(${url})`;
+      });
+
+      loading.style.display = "none";
+    }
+
+  }
+
+  return {
+    loadingImage
+  };
+}());
+
 document.onkeydown = function (e) {
   e = e || window.event;
 
@@ -213,33 +270,4 @@ document.onkeydown = function (e) {
 document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
 
 window.onload = app.nav.onNavClick();
-
-const backgroungImageObject = new Image();
-backgroungImageObject.src = 'assets/background.jpg';
-backgroungImageObject.onload = function () {
-  const header = document.querySelector("header");
-  const title = document.querySelector(".header-title");
-  const skillsetContent = document.querySelector("#skillset .section-content");
-  const contactContent = document.querySelector("#contact .section-content");
-  const loading = document.querySelectorAll(".loading-holder");
-  const projectBg = document.querySelectorAll(".projects-bg");
-
-  header.style.backgroundImage = "url('assets/background.jpg')";
-  title.style.display = "block";
-  skillsetContent.style.display = "block";
-  contactContent.style.display = "block";
-
-  projectBg.forEach(node => {
-    node.style.backgroundImage = "url('assets/background.jpg')";
-  });
-  
-  loading.forEach(node => {
-    node.style.display = "none";
-  });
-
-  console.log("UCITANA");
-
-}
-
-
-
+window.onload = app.loading.loadingImage("assets/background.jpg");

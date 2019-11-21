@@ -165,6 +165,7 @@ html {
 
 body {
     position: relative;
+    background: #222;
 }
 
 body .wrapper {
@@ -175,6 +176,7 @@ body .wrapper {
     top: 0;
     left: 0;
     font-family: 'Cambay', sans-serif;
+    display: none;
 }
 
 section {
@@ -277,8 +279,73 @@ header .header-content .header-image {
     box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
-header .header-content .header-title {
-    display: none;
+@-webkit-keyframes fadeInDown {
+    from {
+        opacity: 0;
+        -webkit-transform: translatey(-10px);
+        -moz-transform: translatey(-10px);
+        -o-transform: translatey(-10px);
+        transform: translatey(-10px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -o-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+
+@-moz-keyframes fadeInDown {
+    from {
+        opacity: 0;
+        -webkit-transform: translatey(-10px);
+        -moz-transform: translatey(-10px);
+        -o-transform: translatey(-10px);
+        transform: translatey(-10px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -o-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        -webkit-transform: translatey(-10px);
+        -moz-transform: translatey(-10px);
+        -o-transform: translatey(-10px);
+        transform: translatey(-10px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -o-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+
+.in-down {
+    -webkit-animation-name: fadeInDown;
+    -moz-animation-name: fadeInDown;
+    -o-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
 }
 
 header .header-content h1 {
@@ -345,6 +412,7 @@ nav {
     -moz-transition: background 0.4s;
     -o-transition: background 0.4s;
     transition: background 0.4s;
+    display: none;
 }
 
 nav .nav-content-wrapp {
@@ -544,14 +612,20 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     font-size: 14px;
 }
 
+.education-holder .courses a {
+    padding-top: 12px;
+}
+
 .education-holder .courses img {
+    transition: box-shadow .3s;
     width: 150px;
     border-radius: 5px;
-    box-shadow: 0 0 8px;
+    box-shadow: 0 0 4px #ddd;
 }
 
 .education-holder .courses img:hover {
-    box-shadow: 0 0 16px;
+    transition: box-shadow .3s;
+    box-shadow: 0 0 12px rgba(34, 34, 34, 0.65);
 }
 
 @media only screen and (max-width: 1130px) {
@@ -572,7 +646,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 #skillset .section-content {
     max-width: 770px;
-    display: none;
+    /* display: none; */
 }
 
 #skillset h2 {
@@ -1132,7 +1206,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 /*** CONTACT SECTION ***/
 
 #contact .section-content {
-    display: none;
+    /* display: none; */
 }
 
 .contact-title {
@@ -1388,11 +1462,83 @@ footer .arrow-to-top:hover svg path {
 
 .loading-holder {
     margin: 0 auto;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading-holder .loading {
     width: 200px;
 }
 
-.loading {
-    width: 200px;
+.loading-holder .loading-title {
+    font-family: 'Cambay', sans-serif;
+    font-size: 36px;
+    color: #04C2C9;
+    text-shadow: 0px 3px 10px #000;
+    text-transform: uppercase;
+    margin: 12px;
+}
+
+.loading-holder .loading-percentage {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    right: 6px;
+    top: 5px;
+}
+
+.loading-holder .progress-bar {
+    border: 1px solid #04C2C9;
+    background: #fff;
+    padding: 3px;
+    width: 100%;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 3px 3px 7px 0px #000;
+    text-shadow: 0px 3px 10px #000;
+}
+
+.loading-holder .inside-bar {
+    height: 25px;
+    width: 0%;
+    position: relative;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid #888;
+    background: #04C2C9;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, rgba(255, 255, 255, 0.3)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.3)), color-stop(0.75, rgba(255, 255, 255, 0.3)), color-stop(0.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+    background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+    -webkit-background-size: 45px 45px;
+    -moz-background-size: 45px 45px;
+    -o-background-size: 45px 45px;
+    background-size: 45px 45px;
+}
+
+.loading-holder .inside-bar:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.03);
 }
 
 
