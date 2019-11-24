@@ -110,6 +110,21 @@ app.nav = (function () {
 
 app.scroll = (function () {
 
+  const headerTitleH1 = document.querySelector('.header-title h1');
+  const headerTitleH2 = document.querySelector('.header-title h2');
+
+  const authorName = document.querySelector('.about-name');
+  const authorImage = document.querySelector('.image-holder');
+
+  const skillsElements = document.querySelectorAll('.inner-hex');
+  const skillset = document.querySelector('#skillset');
+
+  const aboutAnchor = document.querySelector('#about');
+  const arrowToTop = document.querySelector('.arrow-to-top');
+
+  const footer = document.querySelector('footer');
+
+
   function debounce(func, wait, immediate) {
     let timeout;
     return function () {
@@ -125,25 +140,61 @@ app.scroll = (function () {
     };
   };
 
+
   function animatePageElements() {
-    let skillsElements = document.querySelectorAll('.inner-hex');
-    let skillset = document.querySelector('#skillset');
+    const arrowImg = document.querySelector('.arrow-to-top svg');
 
-    let about = document.querySelector('#about');
-    let arrowToTop = document.querySelector('.arrow-to-top');
+    const bottomOffset = window.scrollY + window.innerHeight;
 
-    let arrowImg = document.querySelector('.arrow-to-top svg');
+    const headerTitleTriger = headerTitleH1.offsetTop + (headerTitleH1.offsetHeight * 7);
 
-    let footer = document.querySelector('footer');
+    const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
 
-    let bottomOffset = window.scrollY + window.innerHeight;
-    let trigerHeight = skillset.offsetTop + (skillset.offsetHeight / 1.4);
+    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 1.4);
 
-    let trigerArrow = about.offsetTop + (about.offsetHeight / 2.5);
+    const arrowToTopTriger = aboutAnchor.offsetTop + (aboutAnchor.offsetHeight / 2.5);
 
-    let footerTriger = footer.offsetTop;
+    const footerTriger = footer.offsetTop;
 
-    if (bottomOffset >= trigerHeight) {
+    if (bottomOffset >= headerTitleTriger) {
+      let subtrahend = window.scrollY > 100 ? 0.05 : 0;
+
+      let titleOpacity = (headerTitleTriger / window.scrollY) / 20 - subtrahend;
+
+      headerTitleH1.classList.remove("fade-in");
+      headerTitleH2.classList.remove("fade-in");
+
+      headerTitleH1.setAttribute(
+        "style",
+        `opacity: ${titleOpacity};`
+      );
+      headerTitleH2.setAttribute(
+        "style",
+        `opacity: ${titleOpacity};`
+      );
+    }
+
+    if (bottomOffset >= authorNameTriger) {
+      authorName.classList.add("fade-in");
+      authorName.classList.remove("fade-out");
+
+      authorImage.setAttribute(
+        "style",
+        `opacity: 1;`
+      );
+    } else {
+      let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
+
+      authorName.classList.remove("fade-in");
+      authorName.classList.add("fade-out");
+
+      authorImage.setAttribute(
+        "style",
+        `opacity: ${authorNameOpacity};`
+      );
+    }
+
+    if (bottomOffset >= skillsetTriger) {
       for (let i = 0; i < skillsElements.length; i++) {
         let k = i;
         setTimeout(function () {
@@ -151,13 +202,28 @@ app.scroll = (function () {
           skillsElements[k].style.transition = `all .4s ease-in`;
         }, 150 * (k + 1));
       }
+    } else {
+      for (let i = skillsElements.length - 1; i >= 0; i--) {
+        let k = i;
+        setTimeout(function () {
+          skillsElements[k].classList.remove("show-skills");
+          skillsElements[k].style.transition = `all .4s ease-out`;
+        }, 150 * (k + 1));
+      }
     }
 
-    if (bottomOffset >= trigerArrow) {
+    if (bottomOffset >= arrowToTopTriger) {
       if (window.innerWidth < 768) {
         arrowToTop.setAttribute(
           "style",
-          "position:fixed; right:20px; bottom:20px; z-index: 2; width: 60px; height:60px;"
+          `
+          position:fixed; 
+          right:20px; 
+          bottom:20px; 
+          z-index: 2; 
+          width: 60px; 
+          height:60px;
+          `
         );
         arrowImg.setAttribute(
           "style",
@@ -166,17 +232,23 @@ app.scroll = (function () {
       } else {
         arrowToTop.setAttribute(
           "style",
-          "position:fixed; right:20px; bottom:20px; z-index: 2;"
+          `
+          position:fixed; 
+          right:20px; 
+          bottom:20px; 
+          z-index: 2;`
         );
         arrowImg.setAttribute(
           "style",
           "top: 15px;"
         );
       }
-    } else if (bottomOffset < trigerArrow) {
+    } else if (bottomOffset < arrowToTopTriger) {
       arrowToTop.setAttribute(
         "style",
-        "position:relative; bottom:85px;"
+        `
+        position:relative; 
+        bottom:85px;`
       );
     }
 
@@ -200,6 +272,7 @@ app.scroll = (function () {
 
 
 app.loading = (function () {
+  document.querySelector(".currentYear").innerHTML = new Date().getFullYear();
 
   Image.prototype.load = function (url) {
     const thisImg = this;
@@ -230,14 +303,12 @@ app.loading = (function () {
     backgroungImageObject.onload = function () {
       const body = document.querySelector("body");
       const header = document.querySelector("header");
-      const title = document.querySelector(".header-title");
       const wrapper = document.querySelector(".wrapper");
       const nav = document.querySelector("nav");
       const loading = document.querySelector(".loading-holder");
       const projectBg = document.querySelectorAll(".projects-bg");
 
       body.style.background = "#fff";
-      title.classList.add("in-down")
       header.style.backgroundImage = `url(${url})`;
       wrapper.style.display = "block";
       nav.style.display = "block";

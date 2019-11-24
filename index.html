@@ -94,54 +94,110 @@
             <div class="header-content">
                 <!-- <img class="header-image" src="assets/emilBisak.jpg" alt="Emil Bisak portret" /> -->
                 <div class="header-title">
-                    <h1>Emil Bisak</h1>
-                    <h2>Front End Web Developer</h2>
+                    <h1 class="fade-animation fade-in">Emil Bisak</h1>
+                    <h2 class="fade-animation fade-in">Front End Web Developer</h2>
                 </div>
             </div>
         </header>
 
         <section id="about" class="white-bg">
-            <div class="section-content">
+            <div class="section-content narrower">
                 <h2>Who Am I?</h2>
-                <div class="about-text">
-                    <p>As you can probably guess, my name is Emil Bisak, and I’m a Front End Web Developer.</p>
-                    <p>I'm highly motivated and passionate person, always striving to improve and create the best
-                        positive experience for myself and those
-                        surrounding me. I am currently working as a Frontend Developer at <a
-                            href="https://umz2.unimaze.com/" target="_blank">Unimaze Software</a>.</p>
+                <div class="about-content">
+                    <div class="image-holder fade-animation">
+                        <span class="image-top-borders"></span>
+                        <img class="about-image" src="assets/emil_bisak.jpg" alt="Emil Bisak portret" />
+                        <span class="image-bottom-borders"></span>
+                    </div>
+                    <h3 class="about-name fade-animation">Emil Bisak</h3>
+                    <div class="about-text">
+                        <p>A highly motivated and passionate Front End Web Developer, always striving to improve and
+                            create the best positive experience for myself and those surrounding me.</p>
+                        <p>I’m dedicated to
+                            writing highly maintainable and reliable code while following best coding practices. Web
+                            development is my passion.</p>
+                        <p>I'm currently working as a Front End Developer at <a href="https://umz2.unimaze.com/"
+                                target="_blank">Unimaze Software</a>.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="divider">
+                <div class="inner-hex hexagon-wrapper">
+                    <div class="hexagon">
+                    </div>
                 </div>
             </div>
             <div class="section-content">
-                <h2>Education</h2>
-                <div class="about-text education-holder">
+                <h2>Education and courses</h2>
+                <div class="section-text education-holder">
                     <div class="courses">
-                        <a href="https://skolakoda.org" target="_blank">
+                        <a href="https://reactweek.dev/" target="_blank" class="courses-header">
+                            <div class="circles">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span></span>
+                            </div>
+                            <div class="courses-title">
+                                <h3>ReactWeek</h3>
+                                <h5>React Advanced Course</h5>
+                                <p>October 2019</p>
+                            </div>
+                        </a>
+                        <p>- A week-long program dedicated to React and its ecosystem for experienced developers</p>
+                        <!-- <div class="divider divider-small">
+                            <div class="inner-hex hexagon-wrapper">
+                                <div class="hexagon">
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="courses">
+                        <a href="https://skolakoda.org" target="_blank" class="courses-header">
                             <img src="./assets/skola-koda.png" alt="">
+                            <div class="courses-title">
+                                <h3>Škola Koda</h3>
+                                <h5>React, Redux & React Native</h5>
+                                <p>October 2018 - January 2019</p>
+                            </div>
                         </a>
-                        <h3>Škola Koda</h3>
-                        <h5>React, Redux & React Native</h5>
-                        <p>October 2018 - January 2018</p>
-                        <p>This is an advanced course and is intended for people who know javascript well. It is based
+                        <p>- This is an advanced course and is intended for people who know javascript well. It is based
                             mostly on learning React and Redux and learning the basics of the React Native.</p>
+                        <!-- <div class="divider divider-small">
+                            <div class="inner-hex hexagon-wrapper">
+                                <div class="hexagon">
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                     <div class="courses">
-                        <a href="https://www.bgit.rs/en/" target="_blank">
+                        <a href="https://www.bgit.rs/en/" target="_blank" class="courses-header">
                             <img src="./assets/bit.png" alt="">
+                            <div class="courses-title">
+                                <h3>Belgrade Institute of Technology</h3>
+                                <h5>Front End Bootcamp</h5>
+                                <p>April 2018 - June 2018</p>
+                            </div>
                         </a>
-                        <h3>Belgrade Institute of Technology</h3>
-                        <h5>Front End Bootcamp</h5>
-                        <p>April 2018 - June 2018</p>
-                        <p>Program is designed to be highly practical which means that lectures are usually short and
+                        <p>- Program is designed to be highly practical which means that lectures are usually short and
                             are followed up by practical work on a computer to illustrate theoretical components.</p>
+                        <!-- <div class="divider divider-small">
+                            <div class="inner-hex hexagon-wrapper">
+                                <div class="hexagon">
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                     <div class="courses">
-                        <a href="https://www.krojacevaskola.com" target="_blank">
+                        <a href="https://www.krojacevaskola.com" target="_blank" class="courses-header">
                             <img src="./assets/krojaceva.png" alt="">
+                            <div class="courses-title">
+                                <h3>Krojačeva Škola</h3>
+                                <h5>Front End Course</h5>
+                                <p>December 2017 - March 2018</p>
+                            </div>
                         </a>
-                        <h3>Krojačeva Škola</h3>
-                        <h5>Front End Course</h5>
-                        <p>December 2017 - March 2018</p>
-                        <p>The course is designed to teach front end technologies with focus on UI and learning how to
+                        <p>- The course is designed to teach front end technologies with focus on UI and learning how to
                             develop eye for details.</p>
                     </div>
                 </div>
@@ -149,71 +205,78 @@
         </section>
 
         <section id="skillset" class="projects-bg">
-            <div class="section-content">
+            <div class="section-content narrower">
                 <h2>Skillset</h2>
-                <div class="about-text">
+                <div class="section-text">
 
 
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="fa-brands:react" data-inline="false"></span>
                             <h4>React</h4>
                         </div>
                     </div>
 
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="fa-brands:js" data-inline="false"></span>
                             <h4>JavaScript</h4>
                         </div>
                     </div>
 
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="fa-brands:sass" data-inline="false"></span>
                             <h4>Sass</h4>
                         </div>
                     </div>
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="fa-brands:css3-alt" data-inline="false"></span>
                             <h4>CSS3</h4>
                         </div>
                     </div>
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="fa-brands:github" data-inline="false"></span>
                             <h4>GitHub</h4>
                         </div>
                     </div>
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="simple-icons:redux" data-inline="false"></span>
                             <h4>Redux</h4>
                         </div>
                     </div>
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
-                            <span class="iconify" data-icon="mdi-jquery" data-inline="false"></span>
-                            <h4>Jquery</h4>
+                        <div class="hexagon color1">
+                            <!-- <span class="iconify" data-icon="mdi:language-typescript" data-inline="false"></span> -->
+                            <span class="iconify" data-icon="simple-icons:typescript" data-inline="false"></span>
+                            <h4>TypeScript</h4>
                         </div>
                     </div>
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="mdi-bootstrap" data-inline="false"></span>
                             <h4>Bootstrap</h4>
                         </div>
                     </div>
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="fa-brands:html5" data-inline="false"></span>
                             <h4>HTML5</h4>
                         </div>
                     </div>
                     <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color2">
+                        <div class="hexagon color1">
                             <span class="iconify" data-icon="fa-brands:npm" data-inline="false"></span>
                             <h4>npm</h4>
+                        </div>
+                    </div>
+                    <div class="inner-hex hexagon-wrapper">
+                        <div class="hexagon color1">
+                            <span class="iconify" data-icon="mdi-jquery" data-inline="false"></span>
+                            <h4>Jquery</h4>
                         </div>
                     </div>
 
@@ -244,7 +307,7 @@
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://github.com/EmilBisak/BitBook" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
                                         </div>
@@ -252,7 +315,7 @@
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://emilbisak.github.io/BitBook/#/" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
                                         </div>
@@ -282,7 +345,7 @@
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://github.com/EmilBisak/Shop" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
                                         </div>
@@ -290,7 +353,7 @@
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://emilbisak.github.io/Shop/" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
                                         </div>
@@ -322,7 +385,7 @@
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://github.com/EmilBisak/pokemon_app" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
                                         </div>
@@ -330,7 +393,7 @@
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://emilbisak.github.io/pokemon_app/#/" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
                                         </div>
@@ -360,7 +423,7 @@
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://github.com/EmilBisak/MemoryGame" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
                                         </div>
@@ -368,7 +431,7 @@
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://emilbisak.github.io/MemoryGame/" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
                                         </div>
@@ -402,7 +465,7 @@
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://github.com/EmilBisak/movie-database" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
                                         </div>
@@ -410,7 +473,7 @@
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://emilbisak.github.io/movie-database/#/" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
                                         </div>
@@ -443,7 +506,7 @@
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://github.com/EmilBisak/react_crud_app" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
                                         </div>
@@ -451,7 +514,7 @@
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
                                     <a href="https://emilbisak.github.io/react_crud_app/" target="_blank">
-                                        <div class="hexagon color2">
+                                        <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
                                         </div>
@@ -483,7 +546,7 @@
                     <div class="contact-wrapper">
                         <div class="contact-hex hexagon-wrapper">
                             <a href="mailto:bisak.emil@gmail.com">
-                                <div class="hexagon color2">
+                                <div class="hexagon color1">
                                     <span class="iconify" data-icon="whh-webmail" data-inline="false"></span>
                                     <h4>Gmail</h4>
                                 </div>
@@ -495,7 +558,7 @@
                     <div class="contact-wrapper contact-linkedin">
                         <div class="contact-hex hexagon-wrapper ">
                             <a href="https://linkedin.com/in/emil-bisak" target="_blank">
-                                <div class="hexagon color2">
+                                <div class="hexagon color1">
                                     <span class="iconify" data-icon="jam-linkedin-circle" data-inline="false"></span>
                                     <h4>LinkedIn</h4>
                                 </div>
@@ -507,7 +570,7 @@
                     <div class="contact-wrapper contact-phone">
                         <div class="contact-hex hexagon-wrapper">
                             <a href="tel:+381642049122">
-                                <div class="hexagon color2">
+                                <div class="hexagon color1">
                                     <span class="iconify" data-icon="el-phone-alt" data-inline="false"></span>
                                     <h4>Phone</h4>
                                 </div>
@@ -519,7 +582,7 @@
                     <div class="contact-wrapper contact-github">
                         <div class="contact-hex hexagon-wrapper">
                             <a href="https://github.com/emilbisak" target="_blank">
-                                <div class="hexagon color2">
+                                <div class="hexagon color1">
                                     <span class="iconify" data-icon="fa-brands:github" data-inline="false"></span>
                                     <h4>GitHub</h4>
                                 </div>
@@ -531,7 +594,7 @@
                     <div class="contact-wrapper contact-skype">
                         <div class="contact-hex hexagon-wrapper">
                             <a href="skype:emil.bisak?action" target="_blank">
-                                <div class="hexagon color2">
+                                <div class="hexagon color1">
                                     <span class="iconify" data-icon="entypo-social:skype-with-circle"
                                         data-inline="false"></span>
                                     <h4>Skype</h4>
@@ -547,8 +610,12 @@
 
         <footer class="dark-bg-color">
             <div class="footer-content">
-                <a href="#about" onclick="app.nav.onNavClick()" class="navigation-link author-name">E<span
-                        class="hide-letters">mil </span>B<span class="hide-letters">isak</span>
+
+                <a href="#about" onclick="app.nav.onNavClick()" class="navigation-link author-name">
+                    <span class="copyright">
+                        &copy; Copyright
+                    </span>E<span class="hide-letters">mil </span>B<span class="hide-letters">isak</span>
+                    <span class="currentYear"></span>
                 </a>
                 <ul>
                     <li><a href="#home" onclick="app.nav.onNavClick()" class="navigation-link">Home</a></li>
