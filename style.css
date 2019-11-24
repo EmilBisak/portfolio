@@ -460,7 +460,13 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     font-weight: 600;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 426px) {
+    .nav-bg-color {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+}
+
+@media only screen and (min-width: 769px) {
     nav .nav-content-wrapp .nav-list {
         display: block;
         float: right;
@@ -750,6 +756,10 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
         padding: 20px;
     }
 
+    .education-holder .courses h3 {
+        text-align: center;
+    }
+
     .education-holder .courses-header {
         flex-direction: column;
         align-items: center;
@@ -962,15 +972,16 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
         max-width: 470px;
     }
 
+    .inner-hex:nth-child(4),
     .inner-hex:nth-child(6),
-    .inner-hex:nth-child(9) {
-        top: 10px;
+    .inner-hex:nth-child(9),
+    .inner-hex:nth-child(10),
+    .inner-hex:nth-child(11) {
+        top: 0;
     }
 
-    .inner-hex:nth-child(2),
-    .inner-hex:nth-child(4),
     .inner-hex:nth-child(7) {
-        top: 0;
+        top: -6px;
     }
 
     .inner-hex:nth-child(2),
@@ -1021,12 +1032,18 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     .inner-hex:nth-child(even) {
         top: 56px;
         left: 0;
+        margin-left: 20px;
+    }
+
+    .inner-hex:nth-child(7) {
+        top: -5px;
     }
 
     .inner-hex:nth-child(7) .color1 svg {
         top: 24px;
         font-size: 43px;
     }
+
     #skillset .inner-hex:nth-child(7) .color1:hover h4 {
         top: -13px;
     }
@@ -1223,19 +1240,15 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
 @media only screen and (max-width: 1000px) {
     .project {
-        transition: border .3s cubic-bezier(.645, .045, .355, 1);
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        /* border-bottom: 1px solid rgb(255, 255, 255); */
         border-bottom: 3px solid #ececec;
         border-radius: 30px;
         padding: 20px 40px;
     }
 
     .project:hover {
-        transition: border .3s cubic-bezier(.645, .045, .355, 1);
-        /* border-bottom: 3px solid rgb(175, 175, 175); */
         border-bottom: 3px solid #ececec;
     }
 
@@ -1266,7 +1279,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 769px) {
     .project {
         flex-direction: column-reverse !important;
     }
@@ -1296,6 +1309,10 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
         border-bottom: none;
     }
 
+    .project:hover {
+        border-bottom: none;
+    }
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -1315,6 +1332,13 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
         height: 488px;
         top: 25px;
     }
+}
+
+@media only screen and (max-width: 400px) {
+    .project {
+        padding: 20px 0;
+    }
+
 }
 
 @media only screen and (min-width: 1300px) {
@@ -1599,7 +1623,7 @@ footer .arrow-to-top:hover svg path {
 
 @media only screen and (max-width: 768px) {
     footer {
-        height: 260px;
+        height: 240px;
     }
 
     footer .footer-content .author-name {
@@ -1614,7 +1638,7 @@ footer .arrow-to-top:hover svg path {
         display: table;
         margin: 0 auto;
         overflow: hidden;
-        padding: 0 0 40px 0;
+        padding: 20px 0 0 0;
     }
 
     footer .footer-content ul li {
@@ -1626,9 +1650,11 @@ footer .arrow-to-top:hover svg path {
     }
 
     footer .arrow-to-top {
-        bottom: 295px;
+        bottom: 265px;
     }
 }
+
+/*** CUSTOM COMPONENTS ***/
 
 /*** Loading Bar ***/
 
@@ -1782,8 +1808,25 @@ footer .arrow-to-top:hover svg path {
     from {
         transform: rotateZ(0deg) rotateX(0deg) rotateZ(0deg);
     }
+
     to {
         transform: rotateZ(0deg) rotateX(0deg) rotateZ(360deg);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .divider::before,
+    .divider::after {
+        width: 30%;
+    }
+
+    .divider::before {
+        left: -25%;
+    }
+
+    .divider::after {
+        right: -25%;
     }
 }
 
@@ -1875,7 +1918,7 @@ footer .arrow-to-top:hover svg path {
     from {
         opacity: 1;
     }
-    
+
     to {
         opacity: 0;
     }
@@ -1885,7 +1928,7 @@ footer .arrow-to-top:hover svg path {
     from {
         opacity: 1;
     }
-    
+
     to {
         opacity: 0;
     }
@@ -2079,7 +2122,7 @@ footer .arrow-to-top:hover svg path {
         -o-transform: translateX(0);
         transform: translateX(0);
     }
-    
+
     to {
         opacity: 0;
         -webkit-transform: translateX(-180px);
@@ -2097,7 +2140,7 @@ footer .arrow-to-top:hover svg path {
         -o-transform: translateX(0);
         transform: translateX(0);
     }
-    
+
     to {
         opacity: 0;
         -webkit-transform: translateX(-180px);
@@ -2124,12 +2167,14 @@ footer .arrow-to-top:hover svg path {
     -o-animation-name: fadeIn;
     animation-name: fadeIn;
 }
+
 .fade-out {
     -webkit-animation-name: fadeOut;
     -moz-animation-name: fadeOut;
     -o-animation-name: fadeOut;
     animation-name: fadeOut;
 }
+
 .fade-in-down {
     -webkit-animation-name: fadeInDown;
     -moz-animation-name: fadeInDown;
