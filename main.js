@@ -150,7 +150,7 @@ app.scroll = (function () {
 
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
 
-    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 1.4);
+    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
 
     const arrowToTopTriger = aboutAnchor.offsetTop + (aboutAnchor.offsetHeight / 2.5);
 
@@ -199,7 +199,7 @@ app.scroll = (function () {
         let k = i;
         setTimeout(function () {
           skillsElements[k].classList.add("show-skills");
-          skillsElements[k].style.transition = `all .4s ease-in`;
+          skillsElements[k].style.transition = `all .2s ease-in`;
         }, 150 * (k + 1));
       }
     } else {
@@ -207,7 +207,7 @@ app.scroll = (function () {
         let k = i;
         setTimeout(function () {
           skillsElements[k].classList.remove("show-skills");
-          skillsElements[k].style.transition = `all .4s ease-out`;
+          skillsElements[k].style.transition = `all .2s ease-out`;
         }, 150 * (k + 1));
       }
     }
