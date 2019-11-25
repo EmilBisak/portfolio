@@ -798,7 +798,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     z-index: 2;
     opacity: 0;
     transform: rotateY(60deg);
-    transition: all .6s;
+    transition: all .3s ease-in;
     left: 20px;
 }
 
@@ -870,6 +870,11 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 /* typescript */
 
+.inner-hex:nth-child(7) {
+    position: relative;
+    top: 64px;
+}
+
 .inner-hex:nth-child(7) .color1 svg {
     top: 29px;
     font-size: 61px;
@@ -909,7 +914,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 .inner-hex:nth-child(2),
 .inner-hex:nth-child(4),
-.inner-hex:nth-child(7),
+/* .inner-hex:nth-child(7), */
 .inner-hex:nth-child(9) {
     position: relative;
     top: 71px;
@@ -963,6 +968,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 }
 
 .show-skills {
+    transition: all .25s ease-in;
     opacity: 1;
     transform: rotateY(0deg);
 }

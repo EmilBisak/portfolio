@@ -107,7 +107,7 @@ app.nav = (function () {
 }());
 
 
-
+// scroll module
 app.scroll = (function () {
 
   const headerTitleH1 = document.querySelector('.header-title h1');
@@ -116,8 +116,10 @@ app.scroll = (function () {
   const authorName = document.querySelector('.about-name');
   const authorImage = document.querySelector('.image-holder');
 
-  const skillsElements = document.querySelectorAll('.inner-hex');
+  const skillsElements = document.querySelectorAll('#skillset .inner-hex');
   const skillset = document.querySelector('#skillset');
+
+  const portfolioSection = document.querySelector('#portfolio');
 
   const aboutAnchor = document.querySelector('#about');
   const arrowToTop = document.querySelector('.arrow-to-top');
@@ -147,16 +149,15 @@ app.scroll = (function () {
     const bottomOffset = window.scrollY + window.innerHeight;
 
     const headerTitleTriger = headerTitleH1.offsetTop + (headerTitleH1.offsetHeight * 7);
-
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
-
     const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
-
+    const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10);
     const arrowToTopTriger = aboutAnchor.offsetTop + (aboutAnchor.offsetHeight / 2.5);
-
     const footerTriger = footer.offsetTop;
 
-    if (bottomOffset >= headerTitleTriger) {
+    // *** Header title animation START ***
+    if (bottomOffset >= headerTitleTriger && bottomOffset <= authorNameTriger) {
+
       let subtrahend = window.scrollY > 100 ? 0.05 : 0;
 
       let titleOpacity = (headerTitleTriger / window.scrollY) / 20 - subtrahend;
@@ -173,45 +174,74 @@ app.scroll = (function () {
         `opacity: ${titleOpacity};`
       );
     }
+    // --- Header title animation END ---
 
-    if (bottomOffset >= authorNameTriger) {
-      authorName.classList.add("fade-in");
-      authorName.classList.remove("fade-out");
+    // *** Author image and name animation START ***
+    if (bottomOffset <= skillsetTriger) {
+      if (bottomOffset >= authorNameTriger) {
+        authorName.classList.add("fade-in");
+        authorName.classList.remove("fade-out");
 
-      authorImage.setAttribute(
-        "style",
-        `opacity: 1;`
-      );
-    } else {
-      let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
+        authorImage.setAttribute(
+          "style",
+          `opacity: 1;`
+        );
+      } else {
+        let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
 
-      authorName.classList.remove("fade-in");
-      authorName.classList.add("fade-out");
+        authorName.classList.remove("fade-in");
+        authorName.classList.add("fade-out");
 
-      authorImage.setAttribute(
-        "style",
-        `opacity: ${authorNameOpacity};`
-      );
-    }
-
-    if (bottomOffset >= skillsetTriger) {
-      for (let i = 0; i < skillsElements.length; i++) {
-        let k = i;
-        setTimeout(function () {
-          skillsElements[k].classList.add("show-skills");
-          skillsElements[k].style.transition = `all .2s ease-in`;
-        }, 150 * (k + 1));
-      }
-    } else {
-      for (let i = skillsElements.length - 1; i >= 0; i--) {
-        let k = i;
-        setTimeout(function () {
-          skillsElements[k].classList.remove("show-skills");
-          skillsElements[k].style.transition = `all .2s ease-out`;
-        }, 150 * (k + 1));
+        authorImage.setAttribute(
+          "style",
+          `opacity: ${authorNameOpacity};`
+        );
       }
     }
+    // --- Author image and name animation END ---
 
+    // *** Skills animation START ***
+    if (bottomOffset <= portfolioSectionTriger) {
+
+      if (bottomOffset >= skillsetTriger) {
+
+        for (let i = 0; i < skillsElements.length; i++) {
+
+          let skillsElementsTriger = skillsElements[i].offsetTop + (skillsElements[i].offsetHeight * 1.4);
+          if (bottomOffset >= skillsElementsTriger) {
+            skillsElements[i].classList.add("show-skills");
+          } else {
+            skillsElements[i].classList.remove("show-skills");
+          }
+
+        }
+      }
+
+    }
+
+    // Skills animation 2 
+
+    // if (bottomOffset >= skillsetTriger) {
+    //   for (let i = 0; i < skillsElements.length; i++) {
+    //     let k = i;
+    //     setTimeout(function () {
+    //       skillsElements[k].classList.add("show-skills");
+    //       skillsElements[k].style.transition = `all .2s ease-in`;
+    //     }, 150 * (k + 1));
+    //   }
+    // } else {
+    //   for (let i = skillsElements.length - 1; i >= 0; i--) {
+    //     let k = i;
+    //     setTimeout(function () {
+    //       skillsElements[k].classList.remove("show-skills");
+    //       skillsElements[k].style.transition = `all .2s ease-out`;
+    //     }, 150 * (k + 1));
+    //   }
+    // }
+
+    // --- Skills animation END ---
+
+    // *** Arrow to top animation START ***
     if (bottomOffset >= arrowToTopTriger) {
       if (window.innerWidth < 768) {
         arrowToTop.setAttribute(
@@ -236,7 +266,8 @@ app.scroll = (function () {
           position:fixed; 
           right:20px; 
           bottom:20px; 
-          z-index: 2;`
+          z-index: 2;
+          `
         );
         arrowImg.setAttribute(
           "style",
@@ -248,7 +279,8 @@ app.scroll = (function () {
         "style",
         `
         position:relative; 
-        bottom:85px;`
+        bottom:85px;
+        `
       );
     }
 
@@ -263,6 +295,7 @@ app.scroll = (function () {
       );
     }
   };
+  // --- Arrow to top animation END ---
 
   return {
     debounce,
@@ -271,8 +304,8 @@ app.scroll = (function () {
 }());
 
 
+// loading module
 app.loading = (function () {
-  document.querySelector(".currentYear").innerHTML = new Date().getFullYear();
 
   Image.prototype.load = function (url) {
     const thisImg = this;
@@ -326,6 +359,7 @@ app.loading = (function () {
     loadingImage
   };
 }());
+
 
 document.onkeydown = function (e) {
   e = e || window.event;
