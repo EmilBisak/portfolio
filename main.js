@@ -118,7 +118,7 @@ app.header = (function () {
     } else {
       headerNode.style.height = "100%";
     }
-    
+
   };
 
   return {
@@ -396,7 +396,10 @@ function init() {
 
   app.nav.onNavClick();
   app.header.setHeaderHeight();
-  app.loading.loadingImage("assets/background.jpg");
+
+  let backgroundImageURL = window.innerWidth >= 500 ? "assets/background.jpg" : "assets/background_mobile.jpg";
+  app.loading.loadingImage(backgroundImageURL)
+  
 }
 
 window.onload = init();

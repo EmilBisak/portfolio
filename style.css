@@ -330,6 +330,12 @@ header .header-content h2 {
     }
 }
 
+@media only screen and (max-width: 500px) {
+    .header {
+        background-image: url(assets/background_mobile.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%);
+    }
+}
+
 @media only screen and (max-width: 480px) {
     header .header-content h1 {
         font-size: 12vw;
@@ -587,6 +593,12 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     background-size: cover;
 }
 
+
+@media only screen and (max-width: 500px) {
+    .projects-bg {
+        background-image: url(assets/background_mobile.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%);
+    }
+}
 
 /*** EDUCATION SECTION ***/
 
