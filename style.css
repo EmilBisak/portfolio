@@ -254,14 +254,12 @@ section:nth-child(5) {
 header {
     background-color: #958f91;
     /* background-image: url(assets/background.jpg); */
-    /* background-image: url(assets/loading.gif), linear-gradient(to bottom, #958f91 0%, #000 100%); */
     background-image: url(assets/background.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%);
-    /* background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%); */
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    min-height: 100%;
+    /* height: 100%; */
     z-index: 1;
     width: 100%;
 }
@@ -315,12 +313,6 @@ header .header-content h2 {
 @media only screen and (max-width: 768px) {
     header {
         background-attachment: initial;
-        min-height: 100vh;
-    }
-
-    header .header-content {
-        top: 50vh;
-        left: 50vw;
     }
 
     header .header-content h1 {
@@ -588,7 +580,6 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     background-color: #958f91;
     /* background-image: url(assets/background.jpg); */
     background-image: url(assets/background.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%);
-    /* background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%); */
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;

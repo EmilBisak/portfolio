@@ -107,6 +107,20 @@ app.nav = (function () {
 }());
 
 
+// header module
+app.header = (function () {
+  const headerNode = document.querySelector("header");
+
+  function setHeaderHeight() {
+    headerNode.style.height = `${window.innerHeight}px`;
+  };
+
+  return {
+    setHeaderHeight
+  };
+}());
+
+
 // scroll module
 app.scroll = (function () {
 
@@ -360,19 +374,25 @@ app.loading = (function () {
   };
 }());
 
+function init() {
+  document.onkeydown = function (e) {
+    e = e || window.event;
 
-document.onkeydown = function (e) {
-  e = e || window.event;
+    if (e.key === "Escape" && app.nav.isNavigationShown()) {
+      app.nav.toggleNav();
+    }
+    if (e.keyCode === 13 && !app.nav.isNavigationShown()) {
+      app.nav.toggleNav();
+    }
+  };
 
-  if (e.key === "Escape" && app.nav.isNavigationShown()) {
-    app.nav.toggleNav();
-  }
-  if (e.keyCode === 13 && !app.nav.isNavigationShown()) {
-    app.nav.toggleNav();
-  }
-};
+  document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
 
-document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
+  app.nav.onNavClick();
+  app.header.setHeaderHeight();
+  app.loading.loadingImage("assets/background.jpg");
+}
 
-window.onload = app.nav.onNavClick();
-window.onload = app.loading.loadingImage("assets/background.jpg");
+window.onload = init();
+
+
