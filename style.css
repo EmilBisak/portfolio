@@ -316,6 +316,7 @@ header .header-content h2 {
     header {
         background-attachment: initial;
         transition: min-height 999999s;
+        min-height: 100vh;
     }
 
     header .header-content h1 {
