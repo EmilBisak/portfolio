@@ -315,6 +315,7 @@ header .header-content h2 {
 @media only screen and (max-width: 768px) {
     header {
         background-attachment: initial;
+        transition: min-height 999999s;
     }
 
     header .header-content h1 {
