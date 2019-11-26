@@ -255,7 +255,8 @@ header {
     background-color: #958f91;
     /* background-image: url(assets/background.jpg); */
     /* background-image: url(assets/loading.gif), linear-gradient(to bottom, #958f91 0%, #000 100%); */
-    background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%);
+    background-image: url(assets/background.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%);
+    /* background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%); */
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -579,9 +580,9 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 .projects-bg {
     background-color: #958f91;
-    /* background-image: url(assets/background.jpg);
-    background-image: url(assets/background.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%); */
-    background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%);
+    /* background-image: url(assets/background.jpg); */
+    background-image: url(assets/background.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%);
+    /* background-image: linear-gradient(to bottom, #958f91 0%, #222222 100%); */
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
