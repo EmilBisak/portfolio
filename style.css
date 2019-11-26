@@ -315,8 +315,12 @@ header .header-content h2 {
 @media only screen and (max-width: 768px) {
     header {
         background-attachment: initial;
-        transition: min-height 999999s;
         min-height: 100vh;
+    }
+
+    header .header-content {
+        top: 50vh;
+        left: 50vw;
     }
 
     header .header-content h1 {
