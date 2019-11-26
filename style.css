@@ -252,6 +252,7 @@ section:nth-child(5) {
 /*** HEADER SECTION ***/
 
 header {
+    position: relative;
     background-color: #958f91;
     /* background-image: url(assets/background.jpg); */
     background-image: url(assets/background.jpg), linear-gradient(to bottom, #958f91 0%, #000 100%);
