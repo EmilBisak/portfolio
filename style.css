@@ -259,7 +259,12 @@ header {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    /* height: 100%; */
+    width: 100%;
+}
+
+.header-content-holder {
+    position: relative;
+    height: 100%;
     width: 100%;
 }
 
