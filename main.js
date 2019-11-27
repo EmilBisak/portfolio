@@ -112,7 +112,7 @@ app.header = (function () {
   const headerNode = document.querySelector("header");
 
   function setHeaderHeight() {
-    
+
     if (window.innerWidth <= 500) {
       headerNode.style.height = `${window.innerHeight}px`;
     } else {
@@ -147,6 +147,9 @@ app.scroll = (function () {
   const footer = document.querySelector('footer');
 
 
+  const isSmallScreen = window.innerWidth <= 500;
+
+
   function debounce(func, wait, immediate) {
     let timeout;
     return function () {
@@ -163,19 +166,11 @@ app.scroll = (function () {
   };
 
 
-  function animatePageElements() {
-    const arrowImg = document.querySelector('.arrow-to-top svg');
-
-    const bottomOffset = window.scrollY + window.innerHeight;
+  function animateHeaderTitle(bottomOffset) {
 
     const headerTitleTriger = headerTitleH1.offsetTop + (headerTitleH1.offsetHeight * 7);
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
-    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
-    const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10);
-    const arrowToTopTriger = aboutAnchor.offsetTop + (aboutAnchor.offsetHeight / 2.5);
-    const footerTriger = footer.offsetTop;
 
-    // *** Header title animation START ***
     if (bottomOffset >= headerTitleTriger && bottomOffset <= authorNameTriger) {
 
       let subtrahend = window.scrollY > 100 ? 0.05 : 0;
@@ -194,9 +189,14 @@ app.scroll = (function () {
         `opacity: ${titleOpacity};`
       );
     }
-    // --- Header title animation END ---
+  };
 
-    // *** Author image and name animation START ***
+
+  function animateAuthorImage(bottomOffset) {
+
+    const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
+    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
+
     if (bottomOffset <= skillsetTriger) {
       if (bottomOffset >= authorNameTriger) {
         authorName.classList.add("fade-in");
@@ -218,16 +218,21 @@ app.scroll = (function () {
         );
       }
     }
-    // --- Author image and name animation END ---
+  }
 
-    // *** Skills animation START ***
+
+  function animateSkillset(bottomOffset) {
+
+    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 3.6);
+    const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10);
+
     if (bottomOffset <= portfolioSectionTriger) {
 
       if (bottomOffset >= skillsetTriger) {
 
         for (let i = 0; i < skillsElements.length; i++) {
 
-          let skillsElementsTriger = skillsElements[i].offsetTop + (skillsElements[i].offsetHeight * 1.4);
+          let skillsElementsTriger = skillsElements[i].offsetTop + (skillsElements[i].offsetHeight * 1.6);
           if (bottomOffset >= skillsElementsTriger) {
             skillsElements[i].classList.add("show-skills");
           } else {
@@ -258,10 +263,16 @@ app.scroll = (function () {
     //     }, 150 * (k + 1));
     //   }
     // }
+  }
+  
 
-    // --- Skills animation END ---
+  function animateArrowToTop(bottomOffset) {
 
-    // *** Arrow to top animation START ***
+    const arrowImg = document.querySelector('.arrow-to-top svg');
+
+    const arrowToTopTriger = aboutAnchor.offsetTop + (aboutAnchor.offsetHeight / 2.5);
+    const footerTriger = footer.offsetTop;
+
     if (bottomOffset >= arrowToTopTriger) {
       if (window.innerWidth < 768) {
         arrowToTop.setAttribute(
@@ -314,8 +325,22 @@ app.scroll = (function () {
         "left: 20px; top: 0;"
       );
     }
+  }
+
+
+  function animatePageElements() {
+
+    const bottomOffset = window.scrollY + window.innerHeight;
+
+    if (!isSmallScreen) {
+      animateHeaderTitle(bottomOffset);
+      animateAuthorImage(bottomOffset);
+    }
+
+    animateSkillset(bottomOffset);
+    animateArrowToTop(bottomOffset);
+
   };
-  // --- Arrow to top animation END ---
 
   return {
     debounce,
@@ -326,18 +351,21 @@ app.scroll = (function () {
 
 // loading module
 app.loading = (function () {
+  const loadingPercentageElement = document.querySelector(".loading-percentage");
+  const loadingBarElement = document.querySelector(".inside-bar");
 
   Image.prototype.load = function (url) {
     const thisImg = this;
-    const loadingPercentage = document.querySelector(".loading-percentage");
     const xmlHTTP = new XMLHttpRequest();
     xmlHTTP.open('GET', url, true);
     xmlHTTP.responseType = 'arraybuffer';
     xmlHTTP.onprogress = function (e) {
       thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
 
-      thisImg.completedPercentage ? loadingPercentage.innerHTML = `${thisImg.completedPercentage}%` : loadingPercentage.innerHTML = "";
-      document.querySelector(".inside-bar").style.width = `${thisImg.completedPercentage}%`;
+      loadingPercentageElement.innerHTML = thisImg.completedPercentage ? `${thisImg.completedPercentage}%` : "";
+      loadingPercentageElement.style.right = thisImg.completedPercentage < 10 ? "0px" : "6px";
+
+      loadingBarElement.style.width = `${thisImg.completedPercentage}%`;
     };
     xmlHTTP.onloadstart = function () {
       thisImg.completedPercentage = 0;
@@ -399,9 +427,7 @@ function init() {
 
   let backgroundImageURL = window.innerWidth >= 500 ? "assets/background.jpg" : "assets/background_mobile.jpg";
   app.loading.loadingImage(backgroundImageURL)
-  
+
 }
 
 window.onload = init();
-
-
