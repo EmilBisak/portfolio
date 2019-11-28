@@ -264,7 +264,7 @@ app.scroll = (function () {
     //   }
     // }
   }
-  
+
 
   function animateArrowToTop(bottomOffset) {
 
@@ -380,7 +380,6 @@ app.loading = (function () {
     backgroungImageObject.load(url);
     backgroungImageObject.src = url;
 
-
     backgroungImageObject.onload = function () {
       const body = document.querySelector("body");
       const header = document.querySelector("header");
@@ -396,11 +395,26 @@ app.loading = (function () {
 
       projectBg.forEach(node => {
         node.style.backgroundImage = `url(${url})`;
+        disableParallaxOnIE(node);
       });
 
       loading.style.display = "none";
+
+      disableParallaxOnIE(header);
     }
 
+  }
+
+  function disableParallaxOnIE(element) {
+    const ua = window.navigator.userAgent;
+
+    const msie = ua.indexOf('MSIE ');
+    const trident = ua.indexOf('Trident/');
+    const edge = ua.indexOf('Edge/');
+
+    if (msie > 0 || trident > 0 || edge > 0) {
+      element.style.backgroundAttachment = "initial";
+    }
   }
 
   return {
