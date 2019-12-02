@@ -1527,6 +1527,14 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
         justify-content: center;
         left: 0;
     }
+    
+    .iframes-not-loaded .project.start .hex-holder,
+    .iframes-not-loaded .project.end .hex-holder {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        left: 0;
+    }
 
     .project.start .project-details {
         margin: 0 0 0 30px;
