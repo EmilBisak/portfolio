@@ -152,8 +152,8 @@ app.canvas = (function () {
   }
 
   function mouseLeaveCanvas() {
-    mouse.x = 0;
-    mouse.y = 0;
+    mouse.x = undefined;
+    mouse.y = undefined;
     document.removeEventListener("mousemove", updateMousePosition);
   }
 
