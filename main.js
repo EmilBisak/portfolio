@@ -596,7 +596,7 @@ app.loadingIFrames = (function () {
 
         portfolioSection.classList.add("iframes-not-loaded");
 
-        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.png" alt="project image">`;
+        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.jpg" alt="project image">`;
 
       } else {
         const iFrameName = laptopElements[index].getAttribute("data-app-name");
