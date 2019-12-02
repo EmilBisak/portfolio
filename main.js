@@ -231,9 +231,6 @@ app.canvas = (function () {
       circleArray.push(new Circle(x, y, radius, 0.5, 128))
     }
 
-    // requestAnimationFrame(animateCircle);
-    // requestAnimationFrame(animateCircle);
-    // requestAnimationFrame(animateCircle);
     animateCircle();
 
   }
@@ -607,7 +604,7 @@ app.loadingIFrames = (function () {
         portfolioSection.classList.remove("iframes-not-loaded");
 
         laptopElements[index].innerHTML = `
-          <img src="./assets/computer.png" alt="laptop image">
+          <img src="./assets/computer.jpg" alt="laptop image">
           <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
 
       }
