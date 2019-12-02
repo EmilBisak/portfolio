@@ -1,6 +1,6 @@
 /*** GLOBAL SECTION ***/
 
-@import url('https://fonts.googleapis.com/css?family=Cambay:700');
+/* @import url('https://fonts.googleapis.com/css?family=Cambay:700'); */
 
 
 * {
@@ -163,7 +163,7 @@ body,
 html {
     height: 100%;
     margin: 0;
-    color: #777;
+    color: #666;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -249,6 +249,17 @@ section:nth-child(5) {
     box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
 }
 
+canvas {
+    background-color: #222;
+    background-image: linear-gradient(to bottom, #151515 0%, #111 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
 /*** HEADER SECTION ***/
 
 header {
@@ -280,7 +291,10 @@ header .header-content {
     -webkit-transform: translateX(-50%) translateY(-50%);
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
+    width: fit-content;
     max-width: 1100px;
+    cursor: default;
+    z-index: 2;
 }
 
 header .header-content .header-image {
@@ -587,7 +601,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     width: 200px;
     height: 200px;
     margin: 40px auto;
-    border-top: 2px solid rgb(175, 175, 175);
+    border-top: 2px solid rgb(143, 143, 143);
     border-bottom: 2px solid rgb(175, 175, 175);
 }
 
@@ -660,7 +674,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 .education-holder .courses h5,
 .education-holder .courses p {
     margin-top: 15px;
-    color: #777;
+    color: #666;
 }
 
 .education-holder .courses p {
@@ -1419,6 +1433,10 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
         margin: 0 30px;
     }
 
+    .iframes-not-loaded .project.start .project-details {
+        margin: 0px 30px 0px 10px;
+    }
+
     .project.end .project-details {
         margin-left: 30px;
     }
@@ -1448,6 +1466,12 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
         padding: 20px 40px;
     }
 
+    .iframes-not-loaded .project {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
+
     .project:hover {
         border-bottom: 3px solid #ececec;
     }
@@ -1461,6 +1485,10 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
     .project .project-details {
         margin-left: 30px;
+    }
+
+    .iframes-not-loaded .project .project-details {
+        margin-left: 10px;
     }
 
     .project.start h4,
@@ -1502,6 +1530,15 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
     .project.start .project-details {
         margin: 0 0 0 30px;
+    }
+
+    .iframes-not-loaded .project.start .project-details {
+        margin: 0px 0px 0px 10px;
+    }
+
+    .iframes-not-loaded .laptop img {
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     .project-hex {

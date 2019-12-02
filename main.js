@@ -126,6 +126,151 @@ app.header = (function () {
   };
 }());
 
+// canvas module
+app.canvas = (function () {
+  let canvas = document.querySelector("canvas");
+
+  let context = canvas.getContext('2d');
+
+  let isSmallScreen = false;
+
+  const mouse = {
+    x: undefined,
+    y: undefined,
+  }
+
+  let circleArray = [];
+
+
+  canvas.addEventListener("mouseover", mouseOverCanvas);
+  canvas.addEventListener("mouseleave", mouseLeaveCanvas);
+  window.addEventListener("resize", redrawCanvas);
+
+
+  function mouseOverCanvas() {
+    document.addEventListener("mousemove", updateMousePosition);
+  }
+
+  function mouseLeaveCanvas() {
+    mouse.x = 0;
+    mouse.y = 0;
+    document.removeEventListener("mousemove", updateMousePosition);
+  }
+
+  function updateMousePosition(event) {
+    mouse.x = event.x;
+    mouse.y = event.y;
+  }
+
+  function Circle(x, y, radius, opacity, color) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.opacity = opacity;
+    this.color = color;
+    this.randomRedColor = Math.round(Math.random() * 255);
+    this.randomGreenColor = Math.round(Math.random() * 255);
+    this.randomBlueColor = Math.round(Math.random() * 255);
+    this.radians = Math.random() * Math.PI * 2;
+
+    this.draw = function () {
+      // drawing circles ***
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+      context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
+      context.fill();
+      context.stroke();
+      context.closePath();
+
+      // drawing lines ***
+      context.beginPath();
+      context.lineJoin = "round";
+      context.moveTo(this.x, this.y);
+      context.lineTo(this.x, this.y + innerHeight * 2);
+      context.lineWidth = 0.9;
+      context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${this.opacity})`;
+      context.stroke();
+      context.closePath();
+    }
+
+    this.update = function () {
+      let circleSize = isSmallScreen ? innerWidth / 1.6 : innerHeight / 1.6;
+
+      this.radians += 0.0008;
+      this.x = x + Math.cos(this.radians) * circleSize;
+      this.y = y + Math.sin(this.radians) * circleSize;
+
+
+      if (
+        mouse.x <= this.x + 50 &&
+        mouse.x > this.x - 50 &&
+        mouse.y > this.y
+      ) {
+        this.opacity < 0.9 ? this.opacity += 0.04 : null;
+        this.color += 5;
+        this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
+      } else {
+        this.opacity = opacity;
+        this.color <= color ? color : this.color -= 5;
+        this.radius = this.radius > radius ? this.radius - 0.02 : radius;
+      }
+
+
+      this.draw();
+    }
+  }
+
+  function createCircleArray(numberOfCircle) {
+
+    for (let index = 0; index < numberOfCircle; index++) {
+
+      let radius = 1;
+      let x = Math.floor(Math.random() * (innerWidth / 8 - radius * 2) + innerWidth / 2.4 + radius);
+      let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
+
+      circleArray.push(new Circle(x, y, radius, 0.5, 128))
+    }
+
+    // requestAnimationFrame(animateCircle);
+    // requestAnimationFrame(animateCircle);
+    // requestAnimationFrame(animateCircle);
+    animateCircle();
+
+  }
+
+  var animationRequestID;
+  // Animate Circle
+  function animateCircle() {
+    animationRequestID = requestAnimationFrame(animateCircle);
+    context.clearRect(0, 0, innerWidth, innerHeight);
+
+    circleArray.forEach(circle => {
+      circle.update();
+    });
+  }
+
+  function redrawCanvas() {
+    cancelAnimationFrame(animationRequestID);
+    isSmallScreen = window.innerWidth <= 500;
+    circleArray = [];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let numberOfCircle = window.innerWidth >= 1024 ? 120 : 50;
+    createCircleArray(numberOfCircle);
+  }
+
+  function cancelCanvasAnimation() {
+    cancelAnimationFrame(animationRequestID);
+  }
+
+  return {
+    redrawCanvas,
+    cancelCanvasAnimation,
+  };
+}());
+
 
 // scroll module
 app.scroll = (function () {
@@ -135,6 +280,8 @@ app.scroll = (function () {
 
   const authorName = document.querySelector('.about-name');
   const authorImage = document.querySelector('.image-holder');
+
+  const educationElement = document.querySelector('.education-holder');
 
   const skillsElements = document.querySelectorAll('#skillset .inner-hex');
   const skillset = document.querySelector('#skillset');
@@ -192,13 +339,17 @@ app.scroll = (function () {
   };
 
 
+  let isAnimationRunning = false;
   function animateAuthorImage(bottomOffset) {
 
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
     const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
+    const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 10);
+
 
     if (bottomOffset <= skillsetTriger) {
       if (bottomOffset >= authorNameTriger) {
+
         authorName.classList.add("fade-in");
         authorName.classList.remove("fade-out");
 
@@ -218,7 +369,20 @@ app.scroll = (function () {
         );
       }
     }
+
+    // Stoping and resuming canvas animation
+    if (bottomOffset >= educationElementTriger) {
+
+      isAnimationRunning && app.canvas.cancelCanvasAnimation();
+      isAnimationRunning = false;
+    } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
+      !isAnimationRunning && app.canvas.redrawCanvas();
+      isAnimationRunning = true;
+    }
+
   }
+
+
 
 
   function animateSkillset(bottomOffset) {
@@ -227,8 +391,8 @@ app.scroll = (function () {
     const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10);
 
     if (bottomOffset <= portfolioSectionTriger) {
-
       if (bottomOffset >= skillsetTriger) {
+
 
         for (let i = 0; i < skillsElements.length; i++) {
 
@@ -422,7 +586,42 @@ app.loading = (function () {
   };
 }());
 
+
+// loadingIFrames module
+app.loadingIFrames = (function () {
+  const portfolioSection = document.querySelector(".portfolio");
+  const laptopElements = document.querySelectorAll(".laptop");
+
+  function shouldLoadIFrame() {
+    for (let index = 0; index < laptopElements.length; index++) {
+      if (window.innerWidth <= 768) {
+        const projectImgName = laptopElements[index].getAttribute("data-image");
+
+        portfolioSection.classList.add("iframes-not-loaded");
+
+        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.png" alt="project image">`;
+
+      } else {
+        const iFrameName = laptopElements[index].getAttribute("data-app-name");
+
+        portfolioSection.classList.remove("iframes-not-loaded");
+
+        laptopElements[index].innerHTML = `
+          <img src="./assets/computer.png" alt="laptop image">
+          <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
+
+      }
+
+    }
+  }
+
+  return {
+    shouldLoadIFrame
+  };
+}());
+
 function init() {
+
   document.onkeydown = function (e) {
     e = e || window.event;
 
@@ -436,12 +635,15 @@ function init() {
 
   document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
 
+  app.loadingIFrames.shouldLoadIFrame();
   app.nav.onNavClick();
   app.header.setHeaderHeight();
+  app.canvas.redrawCanvas();
 
   let backgroundImageURL = window.innerWidth >= 500 ? "assets/background.jpg" : "assets/background_mobile.jpg";
   app.loading.loadingImage(backgroundImageURL)
 
 }
+
 
 window.onload = init();

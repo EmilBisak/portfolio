@@ -42,8 +42,19 @@
 
     <!--[if IE]><link rel="shortcut icon" href="./assets/code_icon.png"><![endif]-->
     <link rel="shortcut icon" href="./assets/code_icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Cambay:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <script type="text/javascript">
+        var slowLoad = window.setTimeout(function () {
+            alert("the page is taking its sweet time loading");
+        }, 10000);
+
+        window.addEventListener('load', function () {
+            window.clearTimeout(slowLoad);
+        }, false);
+    </script>
 
     <script src="https://code.iconify.design/1/1.0.0-rc7/iconify.min.js"></script>
 </head>
@@ -99,6 +110,7 @@
                         <h2 class="fade-animation fade-in">Front End Web Developer</h2>
                     </div>
                 </div>
+                <canvas></canvas>
             </div>
         </header>
 
@@ -307,7 +319,7 @@
                             </div>
                         </div>
 
-                        <div class="laptop bitbook">
+                        <div class="laptop bitbook" data-image="bitbook-responsive" data-app-name="BitBook">
                             <img src="./assets/computer.png" alt="">
                             <iframe src="https://emilbisak.github.io/BitBook/#/"></iframe>
                         </div>
@@ -345,7 +357,7 @@
                             </div>
 
                         </div>
-                        <div class="laptop">
+                        <div class="laptop" data-image="shop-responsive" data-app-name="Shop">
                             <img src="./assets/computer.png" alt="">
                             <iframe src="https://emilbisak.github.io/Shop/"></iframe>
                         </div>
@@ -385,7 +397,7 @@
                             </div>
 
                         </div>
-                        <div class="laptop">
+                        <div class="laptop" data-image="pokemons-responsive" data-app-name="pokemon_app">
                             <img src="./assets/computer.png" alt="">
                             <iframe src="https://emilbisak.github.io/pokemon_app/#/"></iframe>
                         </div>
@@ -423,7 +435,7 @@
                             </div>
 
                         </div>
-                        <div class="laptop">
+                        <div class="laptop" data-image="memory-responsive" data-app-name="MemoryGame">
                             <img src="./assets/computer.png" alt="">
                             <iframe src="https://emilbisak.github.io/MemoryGame/"></iframe>
                         </div>
@@ -465,7 +477,7 @@
                             </div>
 
                         </div>
-                        <div class="laptop">
+                        <div class="laptop" data-image="movies-responsive" data-app-name="movie-database">
                             <img src="./assets/computer.png" alt="">
                             <iframe src="https://emilbisak.github.io/movie-database/#/"></iframe>
                         </div>
@@ -506,9 +518,9 @@
                             </div>
 
                         </div>
-                        <div class="laptop">
+                        <div class="laptop" data-image="CRUD-responsive" data-app-name="react_crud_app">
                             <a href="https://emilbisak.github.io/react_crud_app/" target="_blank">
-                                <img src="./assets/computer.png" alt="">
+                                <img src="" alt="">
                             </a>
                             <iframe src="https://emilbisak.github.io/react_crud_app/"></iframe>
                         </div>
