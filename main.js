@@ -132,7 +132,10 @@ app.canvas = (function () {
 
   let context = canvas.getContext('2d');
 
-  let isSmallScreen = false;
+  let isSmallScreen = window.innerWidth <= 768;
+
+  const initialWindowHeight = window.innerHeight;
+  const initialWindowWidth = window.innerWidth;
 
   const mouse = {
     x: undefined,
@@ -194,21 +197,21 @@ app.canvas = (function () {
     }
 
     this.update = function () {
-      let circleSize = isSmallScreen ? innerWidth / 1.6 : innerHeight / 1.6;
+      let circleWidth = isSmallScreen ? innerWidth / 3.2 : innerHeight / 1.6;
+      let circleHeight = isSmallScreen ? innerWidth / 5 : innerHeight / 4;
 
       this.radians += 0.0008;
-      this.x = x + Math.cos(this.radians) * circleSize;
-      this.y = y + Math.sin(this.radians) * circleSize;
-
+      this.x = x + Math.cos(this.radians) * circleWidth;
+      this.y = y + Math.sin(this.radians) * circleWidth;
 
       if (
         mouse.x <= this.x + 50 &&
         mouse.x > this.x - 50 &&
         mouse.y > this.y
       ) {
-        this.opacity < 0.9 ? this.opacity += 0.04 : null;
+        this.opacity < 0.8 ? this.opacity += 0.04 : null;
         this.color += 5;
-        this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
+        this.radius < (radius + 0.4) ? this.radius += 0.08 : this.radius -= 0.08;
       } else {
         this.opacity = opacity;
         this.color <= color ? color : this.color -= 5;
@@ -247,15 +250,21 @@ app.canvas = (function () {
   }
 
   function redrawCanvas() {
-    cancelAnimationFrame(animationRequestID);
-    isSmallScreen = window.innerWidth <= 500;
-    circleArray = [];
+    if (isSmallScreen
+      && (initialWindowHeight !== window.innerHeight)
+      && (initialWindowWidth == window.innerWidth)) {
+          return
+    } else {
+      cancelAnimationFrame(animationRequestID);
+      isSmallScreen = window.innerWidth <= 768;
+      circleArray = [];
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-    let numberOfCircle = window.innerWidth >= 1024 ? 120 : 50;
-    createCircleArray(numberOfCircle);
+      let numberOfCircle = window.innerWidth >= 1024 ? 120 : 50;
+      createCircleArray(numberOfCircle);
+    }
   }
 
   function cancelCanvasAnimation() {
@@ -274,6 +283,10 @@ app.scroll = (function () {
 
   const headerTitleH1 = document.querySelector('.header-title h1');
   const headerTitleH2 = document.querySelector('.header-title h2');
+
+  const headerArrowDownFirst = document.querySelector('header .animated-arrow-1');
+  const headerArrowDownSecond = document.querySelector('header .animated-arrow-2');
+
 
   const authorName = document.querySelector('.about-name');
   const authorImage = document.querySelector('.image-holder');
@@ -310,12 +323,13 @@ app.scroll = (function () {
   };
 
 
-  function animateHeaderTitle(bottomOffset) {
+  function animateHeaderTitleAndHeaderArrow(bottomOffset) {
 
     const headerTitleTriger = headerTitleH1.offsetTop + (headerTitleH1.offsetHeight * 7);
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
 
     if (bottomOffset >= headerTitleTriger && bottomOffset <= authorNameTriger) {
+
 
       let subtrahend = window.scrollY > 100 ? 0.05 : 0;
 
@@ -331,6 +345,35 @@ app.scroll = (function () {
       headerTitleH2.setAttribute(
         "style",
         `opacity: ${titleOpacity};`
+      );
+      headerArrowDownFirst.setAttribute(
+        "style",
+        `bottom: 30px;
+        // transition: all .4s;
+        border-color: rgba(187, 187, 187, 1);
+        pointer-events: all;`
+      );
+      headerArrowDownSecond.setAttribute(
+        "style",
+        `bottom: 30px;
+        // transition: all .4s;
+        border-color: rgba(187, 187, 187, 1);
+        pointer-events: all;`
+      );
+    } else {
+      headerArrowDownFirst.setAttribute(
+        "style",
+        `bottom: -40px;
+        transition: all .4s;
+        border-color: rgba(255, 255, 255, 0);
+        pointer-events: none;`
+      );
+      headerArrowDownSecond.setAttribute(
+        "style",
+        `bottom: -40px;
+        transition: all .4s;
+        border-color: rgba(255, 255, 255, 0);
+        pointer-events: none;`
       );
     }
   };
@@ -494,7 +537,7 @@ app.scroll = (function () {
     const bottomOffset = window.scrollY + window.innerHeight;
 
     if (!isSmallScreen) {
-      animateHeaderTitle(bottomOffset);
+      animateHeaderTitleAndHeaderArrow(bottomOffset);
       animateAuthorImage(bottomOffset);
     }
 

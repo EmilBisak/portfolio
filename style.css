@@ -327,6 +327,70 @@ header .header-content h2 {
     text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.3);
 }
 
+header .header-content-holder .arrow-to-down {
+    position: absolute;
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 30px;
+    width: 15px;
+    height: 15px;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: ssrotate(45deg);
+    transform: rotate(45deg);
+    border-right: 5px solid rgba(255, 255, 255, 1);
+    border-bottom: 5px solid rgba(255, 255, 255, 1);
+    z-index: 2;
+    margin-bottom: 20px;
+    /* margin-bottom: 30px; */
+    cursor: pointer;
+    pointer-events: all;
+}
+
+header .header-content-holder .arrow-to-down:hover {
+    border-right: 5px solid #fff;
+    border-bottom: 5px solid #fff;
+}
+
+
+header .header-content-holder .animated-arrow-1 {
+    /* -webkit-animation: fadeInHeaderArrow 3s 2s, arrow1 3s 12s infinite ease-in;
+    animation: fadeInHeaderArrow 3s 2s, arrow1 3s 12s infinite ease-in; */
+    -webkit-animation-name: fadeInHeaderArrow, arrow1;
+    -webkit-animation-duration: 1s, 3s;
+    -webkit-animation-timing-function: ease-in, ease-in;
+    -webkit-animation-delay: 0s, 12s;
+    -webkit-animation-iteration-count: 1, infinite;
+    -webkit-animation-fill-mode: backwards, forwards;
+    animation-name: fadeInHeaderArrow, arrow1;
+    animation-duration: 1s, 3s;
+    animation-timing-function: ease-in, ease-in;
+    animation-delay: 5s, 12s;
+    animation-iteration-count: 1, infinite;
+    animation-fill-mode: backwards, forwards;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0
+}
+
+header .header-content-holder .animated-arrow-2 {
+    /* -webkit-animation: fadeInHeaderArrow 3s 2s, arrow2 3s 12s infinite ease-out;
+    animation: fadeInHeaderArrow 3s 2s, arrow2 3s 12s infinite ease-out; */
+    -webkit-animation-name: fadeInHeaderArrow, arrow2;
+    -webkit-animation-duration: 1s, 3s;
+    -webkit-animation-timing-function: ease-in, ease-out;
+    -webkit-animation-delay: 0s, 12s;
+    -webkit-animation-iteration-count: 1, infinite;
+    -webkit-animation-fill-mode: backwards, forwards;
+    animation-name: fadeInHeaderArrow, arrow2;
+    animation-duration: 1s, 3s;
+    animation-timing-function: ease-in, ease-out;
+    animation-delay: 5s, 12s;
+    animation-iteration-count: 1, infinite;
+    animation-fill-mode: backwards, forwards;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1
+}
+
 @media only screen and (max-width: 768px) {
 
     header .header-content h1 {
@@ -359,6 +423,113 @@ header .header-content h2 {
 
     header .header-content h2 {
         font-size: 6vw;
+    }
+}
+
+
+@-webkit-keyframes arrow1 {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate(0, 0) rotate(45deg);
+        transform: translate(0, 0) rotate(45deg);
+    }
+
+    90% {
+        opacity: 0;
+        -webkit-transform: translate(0, -40px) rotate(45deg);
+        transform: translate(0, -40px) rotate(45deg);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0, 0) rotate(45deg);
+        transform: translate(0, 0) rotate(45deg);
+    }
+}
+
+@keyframes arrow1 {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate(0, 0) rotate(45deg);
+        -ms-transform: translate(0, 0) rotate(45deg);
+        transform: translate(0, 0) rotate(45deg);
+    }
+
+    90% {
+        opacity: 0;
+        -webkit-transform: translate(0, -40px) rotate(45deg);
+        -ms-transform: translate(0, -40px) rotate(45deg);
+        transform: translate(0, -40px) rotate(45deg);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translate(0, 0)rotate(45deg) ;
+        -ms-transform: translate(0, 0)rotate(45deg);
+        transform: translate(0, 0)rotate(45deg); 
+    }
+}
+
+@-webkit-keyframes arrow2 {
+    0% {
+        opacity: 1;
+        -webkit-transform: translate(0, 0)rotate(45deg);
+        transform: translate(0, 0)rotate(45deg); 
+    }
+
+    90% {
+        opacity: 1;
+        -webkit-transform: translate(0, 0)rotate(45deg);
+        transform: translate(0, 0)rotate(45deg); 
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate(0, 30px)rotate(45deg);
+        transform: translate(0, 30px)rotate(45deg);
+    }
+}
+
+@keyframes arrow2 {
+    0% {
+        opacity: 1;
+        -webkit-transform: translate(0, 0) rotate(45deg);
+        -ms-transform: translate(0, 0) rotate(45deg);
+        transform: translate(0, 0) rotate(45deg);
+    }
+
+    90% {
+        opacity: 1;
+        -webkit-transform: translate(0, 0) rotate(45deg);
+        -ms-transform: translate(0, 0) rotate(45deg);
+        transform: translate(0, 0) rotate(45deg);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate(0, 30px) rotate(45deg);
+        -ms-transform: translate(0, 30px) rotate(45deg);
+        transform: translate(0, 30px) rotate(45deg);
+    }
+}
+
+@-webkit-keyframes fadeInHeaderArrow {
+    from {
+        border-color: rgba(187, 187, 187, 0);
+    }
+    
+    to {
+        border-color: rgba(187, 187, 187, 1);
+    }
+}
+
+@keyframes fadeInHeaderArrow {
+    from {
+        border-color: rgba(187, 187, 187, 0);
+    }
+    
+    to {
+        border-color: rgba(187, 187, 187, 1);
     }
 }
 
@@ -400,9 +571,16 @@ nav .nav-content-wrapp .nav-list li:last-of-type {
 
 nav .nav-content-wrapp .nav-list li a {
     font-size: 24px;
-    color: #fff;
+    color: rgba(255, 255, 255, 1);
+    /* color: rgba(255, 255, 255, 0); */
     font-family: Helvetica, Arial, sans-serif;
     text-decoration: none;
+    transition: color .8s;
+}
+
+nav:hover .nav-content-wrapp .nav-list li a {
+    color: rgba(255, 255, 255, 1);
+    transition: color .8s;
 }
 
 nav .nav-content-wrapp .nav-list li a::after {
@@ -420,6 +598,7 @@ nav .nav-content-wrapp .nav-list li a::after {
     cursor: pointer;
 }
 
+/* nav .nav-content-wrapp .nav-list li a.active:after, */
 nav .nav-content-wrapp .nav-list li a:hover:after {
     -webkit-transform: scaleX(1);
     -ms-transform: scaleX(1);
@@ -483,7 +662,9 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 .active {
     font-weight: 600;
+    color: #fff;
 }
+
 
 @media only screen and (max-width: 426px) {
     .nav-bg-color {
@@ -1527,7 +1708,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
         justify-content: center;
         left: 0;
     }
-    
+
     .iframes-not-loaded .project.start .hex-holder,
     .iframes-not-loaded .project.end .hex-holder {
         -webkit-box-pack: start;
