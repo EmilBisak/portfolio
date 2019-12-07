@@ -128,7 +128,10 @@ app.header = (function () {
 
 // canvas module
 app.canvas = (function () {
+
+
   let canvas = document.querySelector("canvas");
+
   let headerTitle = document.querySelector(".header-content");
 
   let context = canvas.getContext('2d');
@@ -146,7 +149,6 @@ app.canvas = (function () {
 
   let dotsArray = [];
   let animationRequestID;
-
 
 
   window.addEventListener("resize", redrawCanvas);
@@ -183,6 +185,28 @@ app.canvas = (function () {
   function updateMousePosition(event) {
     mouse.x = event.x;
     mouse.y = event.y;
+  }
+  
+
+  let PIXEL_RATIO = (function () {
+    let dpr = window.devicePixelRatio || 1,
+      bsr = context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio ||
+        context.backingStorePixelRatio || 1;
+
+    return dpr / bsr;
+  })();
+
+  function createHiDPICanvas(w, h, ratio) {
+    if (!ratio) { ratio = PIXEL_RATIO; }
+    canvas.width = w * ratio;
+    canvas.height = h * ratio;
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    canvas.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+    return canvas;
   }
 
   function Point(x, y, radius, opacity, color) {
@@ -255,8 +279,8 @@ app.canvas = (function () {
 
     for (let index = 0; index < numberOfDots; index++) {
       const offset = 200;
-      const offsetX = window.innerWidth <= 996? 2.3 : 2.4;
-      
+      const offsetX = window.innerWidth <= 996 ? 2.3 : 2.4;
+
       let radius = 1;
       let x = Math.floor(Math.random() * (innerWidth / 8 - radius * 2) + innerWidth / offsetX + radius);
       // let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
@@ -289,6 +313,7 @@ app.canvas = (function () {
   }
 
   function redrawCanvas() {
+
     isSmallScreen = window.innerWidth <= 996;
     if (isSmallScreen
       && (initialWindowHeight !== window.innerHeight)
@@ -298,8 +323,9 @@ app.canvas = (function () {
       cancelAnimationFrame(animationRequestID);
       dotsArray = [];
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      // canvas.width = window.innerWidth;
+      // canvas.height = window.innerHeight;
+      createHiDPICanvas(window.innerWidth, window.innerHeight);
 
       let numberOfDots = window.innerWidth >= 1024 ? 120 : 40;
       createDotsArray(numberOfDots);
