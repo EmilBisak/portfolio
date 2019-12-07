@@ -327,66 +327,59 @@ header .header-content h2 {
     text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.3);
 }
 
-header .header-content-holder .arrow-to-down {
+header .header-content-holder .arrow-to-down-wrapper {
     position: absolute;
     left: 50%;
     right: auto;
     top: auto;
     bottom: 30px;
+    -ms-transform: translate(-50%, 0);
+    -webkit-transform: stranslate(-50%, 0);
+    transform: translate(-50%, 0);
+    display: block;
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    -webkit-animation: fadeInHeaderArrow 3s 2s forwards;
+    animation: fadeInHeaderArrow 3s 2s forwards;
+    opacity: 0;
+    cursor: default;
+}
+
+header .header-content-holder .arrow-to-down {
+    position: absolute;
+    left: 15px;
+    right: auto;
+    top: 12px;
     width: 15px;
     height: 15px;
     -ms-transform: rotate(45deg);
-    -webkit-transform: ssrotate(45deg);
+    -webkit-transform: srotate(45deg);
     transform: rotate(45deg);
-    border-right: 5px solid rgba(255, 255, 255, 1);
-    border-bottom: 5px solid rgba(255, 255, 255, 1);
+    border-right: 4px solid rgba(187, 187, 187, 1);
+    border-bottom: 4px solid rgba(187, 187, 187, 1);
     z-index: 2;
     margin-bottom: 20px;
     /* margin-bottom: 30px; */
-    cursor: pointer;
     pointer-events: all;
 }
 
-header .header-content-holder .arrow-to-down:hover {
-    border-right: 5px solid #fff;
-    border-bottom: 5px solid #fff;
+header .header-content-holder .arrow-to-down-wrapper:hover .arrow-to-down,
+header .header-content-holder .arrow-to-down-wrapper:active .arrow-to-down {
+    border-color: rgba(255, 255, 255, 1) !important;
 }
 
 
 header .header-content-holder .animated-arrow-1 {
-    /* -webkit-animation: fadeInHeaderArrow 3s 2s, arrow1 3s 12s infinite ease-in;
-    animation: fadeInHeaderArrow 3s 2s, arrow1 3s 12s infinite ease-in; */
-    -webkit-animation-name: fadeInHeaderArrow, arrow1;
-    -webkit-animation-duration: 1s, 3s;
-    -webkit-animation-timing-function: ease-in, ease-in;
-    -webkit-animation-delay: 0s, 12s;
-    -webkit-animation-iteration-count: 1, infinite;
-    -webkit-animation-fill-mode: backwards, forwards;
-    animation-name: fadeInHeaderArrow, arrow1;
-    animation-duration: 1s, 3s;
-    animation-timing-function: ease-in, ease-in;
-    animation-delay: 5s, 12s;
-    animation-iteration-count: 1, infinite;
-    animation-fill-mode: backwards, forwards;
+    -webkit-animation: arrow1 3s 5s infinite ease-in;
+    animation: arrow1 3s 5s infinite ease-in;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0
 }
 
 header .header-content-holder .animated-arrow-2 {
-    /* -webkit-animation: fadeInHeaderArrow 3s 2s, arrow2 3s 12s infinite ease-out;
-    animation: fadeInHeaderArrow 3s 2s, arrow2 3s 12s infinite ease-out; */
-    -webkit-animation-name: fadeInHeaderArrow, arrow2;
-    -webkit-animation-duration: 1s, 3s;
-    -webkit-animation-timing-function: ease-in, ease-out;
-    -webkit-animation-delay: 0s, 12s;
-    -webkit-animation-iteration-count: 1, infinite;
-    -webkit-animation-fill-mode: backwards, forwards;
-    animation-name: fadeInHeaderArrow, arrow2;
-    animation-duration: 1s, 3s;
-    animation-timing-function: ease-in, ease-out;
-    animation-delay: 5s, 12s;
-    animation-iteration-count: 1, infinite;
-    animation-fill-mode: backwards, forwards;
+    -webkit-animation: arrow2 3s 5s infinite ease-out;
+    animation: arrow2 3s 5s infinite ease-out;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1
 }
@@ -464,9 +457,9 @@ header .header-content-holder .animated-arrow-2 {
 
     100% {
         opacity: 1;
-        -webkit-transform: translate(0, 0)rotate(45deg) ;
+        -webkit-transform: translate(0, 0)rotate(45deg);
         -ms-transform: translate(0, 0)rotate(45deg);
-        transform: translate(0, 0)rotate(45deg); 
+        transform: translate(0, 0)rotate(45deg);
     }
 }
 
@@ -474,13 +467,13 @@ header .header-content-holder .animated-arrow-2 {
     0% {
         opacity: 1;
         -webkit-transform: translate(0, 0)rotate(45deg);
-        transform: translate(0, 0)rotate(45deg); 
+        transform: translate(0, 0)rotate(45deg);
     }
 
     90% {
         opacity: 1;
         -webkit-transform: translate(0, 0)rotate(45deg);
-        transform: translate(0, 0)rotate(45deg); 
+        transform: translate(0, 0)rotate(45deg);
     }
 
     100% {
@@ -515,21 +508,25 @@ header .header-content-holder .animated-arrow-2 {
 
 @-webkit-keyframes fadeInHeaderArrow {
     from {
-        border-color: rgba(187, 187, 187, 0);
+        cursor: defaut;
+        opacity: 0;
     }
-    
+
     to {
-        border-color: rgba(187, 187, 187, 1);
+        cursor: pointer;
+        opacity: 1;
     }
 }
 
 @keyframes fadeInHeaderArrow {
     from {
-        border-color: rgba(187, 187, 187, 0);
+        cursor: defaut;
+        opacity: 0;
     }
-    
+
     to {
-        border-color: rgba(187, 187, 187, 1);
+        cursor: pointer;
+        opacity: 1;
     }
 }
 
@@ -672,13 +669,19 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     }
 }
 
+/* @media only screen and (min-width: 1400px) { */
 @media only screen and (min-width: 769px) {
+    nav {
+        padding: 30px 0 0 0;
+    }
+
     nav .nav-content-wrapp .nav-list {
         display: block;
         float: right;
     }
 
     nav .nav-content-wrapp .nav-list li {
+        padding-bottom: 0px;
         margin-right: 20px;
         float: left;
     }

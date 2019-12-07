@@ -129,10 +129,11 @@ app.header = (function () {
 // canvas module
 app.canvas = (function () {
   let canvas = document.querySelector("canvas");
+  let headerTitle = document.querySelector(".header-content");
 
   let context = canvas.getContext('2d');
 
-  let isSmallScreen = window.innerWidth <= 768;
+  let isSmallScreen = window.innerWidth <= 996;
 
   const initialWindowHeight = window.innerHeight;
   const initialWindowWidth = window.innerWidth;
@@ -141,23 +142,42 @@ app.canvas = (function () {
     x: undefined,
     y: undefined,
   }
+  let isMouseOverTitle = false;
 
-  let circleArray = [];
+  let dotsArray = [];
+  let animationRequestID;
 
 
+  
+  window.addEventListener("resize", redrawCanvas);
   canvas.addEventListener("mouseover", mouseOverCanvas);
   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
-  window.addEventListener("resize", redrawCanvas);
-
-
+  headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
+  headerTitle.addEventListener("mouseover", mouseOverTitle);
+  
+  
   function mouseOverCanvas() {
     document.addEventListener("mousemove", updateMousePosition);
   }
 
+  function mouseOverTitle() {
+    isMouseOverTitle = true;
+  }
+  
+  function mouseLeaveTitle() {
+    isMouseOverTitle = false;
+  }
+  
   function mouseLeaveCanvas() {
-    mouse.x = undefined;
-    mouse.y = undefined;
-    document.removeEventListener("mousemove", updateMousePosition);
+    setTimeout(() => {
+
+      if (!isMouseOverTitle) {
+        mouse.x = undefined;
+        mouse.y = undefined;
+        document.removeEventListener("mousemove", updateMousePosition);
+      }
+      
+    }, 10);
   }
 
   function updateMousePosition(event) {
@@ -165,7 +185,7 @@ app.canvas = (function () {
     mouse.y = event.y;
   }
 
-  function Circle(x, y, radius, opacity, color) {
+  function Point(x, y, radius, opacity, color) {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -177,41 +197,48 @@ app.canvas = (function () {
     this.radians = Math.random() * Math.PI * 2;
 
     this.draw = function () {
-      // drawing circles ***
-      context.beginPath();
-      context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-      context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
-      context.fill();
-      context.stroke();
-      context.closePath();
+      if (isSmallScreen) {
+        // drawing squares ***
+        context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 1)`;
+        context.fillRect(this.x, this.y, this.radius, this.radius)
+      } else {
+        // drawing circles ***
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
+        context.fill();
+        context.stroke();
+        context.closePath();
+      }
 
       // drawing lines ***
+      let lineToX = isSmallScreen ? this.x + (this.radius/2) : this.x;
       context.beginPath();
       context.lineJoin = "round";
-      context.moveTo(this.x, this.y);
+      context.moveTo(lineToX, this.y);
       context.lineTo(this.x, this.y + innerHeight * 2);
-      context.lineWidth = 0.9;
+      context.lineWidth = isSmallScreen ? 0.6 : 0.9;
       context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${this.opacity})`;
       context.stroke();
       context.closePath();
     }
 
     this.update = function () {
-      let circleWidth = isSmallScreen ? innerWidth / 3.2 : innerHeight / 1.6;
-      let circleHeight = isSmallScreen ? innerWidth / 5 : innerHeight / 4;
+      let circleWidth = isSmallScreen ? innerWidth / 2.9 : innerHeight / 1.6;
+      let circleHeight = isSmallScreen ? innerWidth / 2 : innerHeight / 2;
 
       this.radians += 0.0008;
       this.x = x + Math.cos(this.radians) * circleWidth;
-      this.y = y + Math.sin(this.radians) * circleWidth;
+      this.y = y + Math.sin(this.radians) * circleHeight;
 
       if (
         mouse.x <= this.x + 50 &&
         mouse.x > this.x - 50 &&
-        mouse.y > this.y
+        mouse.y > this.y - 50
       ) {
         this.opacity < 0.8 ? this.opacity += 0.04 : null;
         this.color += 5;
-        this.radius < (radius + 0.4) ? this.radius += 0.08 : this.radius -= 0.08;
+        this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
       } else {
         this.opacity = opacity;
         this.color <= color ? color : this.color -= 5;
@@ -223,47 +250,48 @@ app.canvas = (function () {
     }
   }
 
-  function createCircleArray(numberOfCircle) {
 
-    for (let index = 0; index < numberOfCircle; index++) {
+  function createDotsArray(numberOfDots) {
+
+    for (let index = 0; index < numberOfDots; index++) {
 
       let radius = 1;
       let x = Math.floor(Math.random() * (innerWidth / 8 - radius * 2) + innerWidth / 2.4 + radius);
-      let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
+      // let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
+      let y = Math.random() * innerHeight - ((innerHeight + 200) - (innerHeight - 200)) + (innerHeight - 200);
 
-      circleArray.push(new Circle(x, y, radius, 0.5, 128))
+      dotsArray.push(new Point(x, y, radius, 0.5, 128))
     }
 
-    animateCircle();
+    animateDots();
 
   }
 
-  var animationRequestID;
-  // Animate Circle
-  function animateCircle() {
-    animationRequestID = requestAnimationFrame(animateCircle);
+  // Animate Dots ***
+  function animateDots() {
+    animationRequestID = requestAnimationFrame(animateDots);
     context.clearRect(0, 0, innerWidth, innerHeight);
 
-    circleArray.forEach(circle => {
-      circle.update();
+    dotsArray.forEach(dot => {
+      dot.update();
     });
   }
 
   function redrawCanvas() {
+    isSmallScreen = window.innerWidth <= 996;
     if (isSmallScreen
       && (initialWindowHeight !== window.innerHeight)
       && (initialWindowWidth == window.innerWidth)) {
-          return
+      return
     } else {
       cancelAnimationFrame(animationRequestID);
-      isSmallScreen = window.innerWidth <= 768;
-      circleArray = [];
+      dotsArray = [];
 
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
-      let numberOfCircle = window.innerWidth >= 1024 ? 120 : 50;
-      createCircleArray(numberOfCircle);
+      let numberOfDots = window.innerWidth >= 1024 ? 120 : 50;
+      createDotsArray(numberOfDots);
     }
   }
 
@@ -284,6 +312,7 @@ app.scroll = (function () {
   const headerTitleH1 = document.querySelector('.header-title h1');
   const headerTitleH2 = document.querySelector('.header-title h2');
 
+  const headerArrowDownWrapper = document.querySelector('header .arrow-to-down-wrapper');
   const headerArrowDownFirst = document.querySelector('header .animated-arrow-1');
   const headerArrowDownSecond = document.querySelector('header .animated-arrow-2');
 
@@ -304,7 +333,7 @@ app.scroll = (function () {
   const footer = document.querySelector('footer');
 
 
-  const isSmallScreen = window.innerWidth <= 500;
+  const isSmallScreen = window.innerWidth <= 996;
 
 
   function debounce(func, wait, immediate) {
@@ -323,7 +352,53 @@ app.scroll = (function () {
   };
 
 
-  function animateHeaderTitleAndHeaderArrow(bottomOffset) {
+  function animateHeaderArrow() {
+    let titleTriger = headerTitleH1.offsetTop + headerTitleH1.offsetHeight
+
+    if (window.scrollY < titleTriger) {
+
+      headerArrowDownFirst.setAttribute(
+        "style",
+        `bottom: 30px;
+         border-color: rgba(187, 187, 187, 1);
+         pointer-events: all;`
+      );
+      headerArrowDownSecond.setAttribute(
+        "style",
+        `bottom: 30px;
+         border-color: rgba(187, 187, 187, 1);
+         pointer-events: all;`
+      );
+      headerArrowDownWrapper.setAttribute(
+        "style",
+        `cursor: pointer;
+         pointer-events: all;`
+      );
+    } else {
+      headerArrowDownFirst.setAttribute(
+        "style",
+        `bottom: -40px;
+         transition: all .4s;
+         border-color: rgba(255, 255, 255, 0);
+         pointer-events: none;`
+      );
+      headerArrowDownSecond.setAttribute(
+        "style",
+        `bottom: -40px;
+         transition: all .4s;
+         border-color: rgba(255, 255, 255, 0);
+         pointer-events: none;`
+      );
+      headerArrowDownWrapper.setAttribute(
+        "style",
+        `cursor: default;
+         pointer-events: none;`
+      );
+    }
+  };
+
+
+  function animateHeaderTitle(bottomOffset) {
 
     const headerTitleTriger = headerTitleH1.offsetTop + (headerTitleH1.offsetHeight * 7);
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
@@ -345,35 +420,6 @@ app.scroll = (function () {
       headerTitleH2.setAttribute(
         "style",
         `opacity: ${titleOpacity};`
-      );
-      headerArrowDownFirst.setAttribute(
-        "style",
-        `bottom: 30px;
-        // transition: all .4s;
-        border-color: rgba(187, 187, 187, 1);
-        pointer-events: all;`
-      );
-      headerArrowDownSecond.setAttribute(
-        "style",
-        `bottom: 30px;
-        // transition: all .4s;
-        border-color: rgba(187, 187, 187, 1);
-        pointer-events: all;`
-      );
-    } else {
-      headerArrowDownFirst.setAttribute(
-        "style",
-        `bottom: -40px;
-        transition: all .4s;
-        border-color: rgba(255, 255, 255, 0);
-        pointer-events: none;`
-      );
-      headerArrowDownSecond.setAttribute(
-        "style",
-        `bottom: -40px;
-        transition: all .4s;
-        border-color: rgba(255, 255, 255, 0);
-        pointer-events: none;`
       );
     }
   };
@@ -537,10 +583,11 @@ app.scroll = (function () {
     const bottomOffset = window.scrollY + window.innerHeight;
 
     if (!isSmallScreen) {
-      animateHeaderTitleAndHeaderArrow(bottomOffset);
+      animateHeaderTitle(bottomOffset);
       animateAuthorImage(bottomOffset);
     }
 
+    animateHeaderArrow();
     animateSkillset(bottomOffset);
     animateArrowToTop(bottomOffset);
 
