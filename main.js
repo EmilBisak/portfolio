@@ -186,7 +186,7 @@ app.canvas = (function () {
     mouse.x = event.x;
     mouse.y = event.y;
   }
-  
+
 
   let PIXEL_RATIO = (function () {
     let dpr = window.devicePixelRatio || 1,
@@ -248,7 +248,7 @@ app.canvas = (function () {
     }
 
     this.update = function () {
-      let circleWidth = isSmallScreen ? innerWidth / 2.4 : innerHeight / 1.6;
+      let circleWidth = isSmallScreen ? innerWidth / 1.8 : innerHeight / 1.6;
       let circleHeight = isSmallScreen ? innerWidth / 2.2 : innerHeight / 2;
 
       this.radians += 0.0008;
@@ -261,11 +261,11 @@ app.canvas = (function () {
         mouse.y > this.y - 50
       ) {
         this.opacity < 0.8 ? this.opacity += 0.04 : null;
-        this.color += 5;
+        this.color < 160 ? this.color += 1 : null;
         this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
       } else {
         this.opacity = opacity;
-        this.color <= color ? color : this.color -= 5;
+        this.color <= color ? color : this.color -= 2;
         this.radius = this.radius > radius ? this.radius - 0.02 : radius;
       }
 
@@ -292,10 +292,10 @@ app.canvas = (function () {
         let minY = innerHeight / 2 - 70;
         let maxY = innerHeight / 2 + 70;
         y = Math.random() * (maxY - minY) + minY;
-        radius = 2;
+        radius = 1.5;
       }
 
-      dotsArray.push(new Point(x, y, radius, 0.5, 128))
+      dotsArray.push(new Point(x, y, radius, 0.5, 80))
     }
 
     animateDots();
