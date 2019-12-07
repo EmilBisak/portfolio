@@ -223,7 +223,7 @@ app.canvas = (function () {
     this.draw = function () {
       if (isSmallScreen) {
         // drawing squares ***
-        context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 1)`;
+        context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 0.9)`;
         context.fillRect(this.x, this.y, this.radius, this.radius)
       } else {
         // drawing circles ***
@@ -285,12 +285,11 @@ app.canvas = (function () {
       let x = Math.floor(Math.random() * (innerWidth / 8 - radius * 2) + innerWidth / offsetX + radius);
       // let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
       let y = Math.random() * innerHeight - ((innerHeight + offset) - (innerHeight - offset)) + (innerHeight - offset);
-      // let y = Math.random() * (innerHeight - (innerHeight/5)) + innerHeight/5;
 
 
       if (window.innerWidth <= 996) {
-        let minY = innerHeight / 2 - 70;
-        let maxY = innerHeight / 2 + 70;
+        let minY = innerHeight / 2 - 200;
+        let maxY = innerHeight / 2 + 200;
         y = Math.random() * (maxY - minY) + minY;
         radius = 1.5;
       }
@@ -327,7 +326,7 @@ app.canvas = (function () {
       // canvas.height = window.innerHeight;
       createHiDPICanvas(window.innerWidth, window.innerHeight);
 
-      let numberOfDots = window.innerWidth >= 1024 ? 120 : 40;
+      let numberOfDots = window.innerWidth >= 1024 ? 120 : 50;
       createDotsArray(numberOfDots);
     }
   }
