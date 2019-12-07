@@ -201,11 +201,15 @@ app.canvas = (function () {
 
   function createHiDPICanvas(w, h, ratio) {
     if (!ratio) { ratio = PIXEL_RATIO; }
+    console.log('ratio', ratio)
     canvas.width = w * ratio;
     canvas.height = h * ratio;
     canvas.style.width = w + "px";
     canvas.style.height = h + "px";
-    canvas.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+    // canvas.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+    if(1!==ratio) {
+      context.scale(ratio,ratio)
+    }
     return canvas;
   }
 
@@ -312,18 +316,21 @@ app.canvas = (function () {
   }
 
   function redrawCanvas() {
-
+    console.log("REDRAW");
+    
+    
     isSmallScreen = window.innerWidth <= 996;
     if (isSmallScreen
       && (initialWindowHeight !== window.innerHeight)
       && (initialWindowWidth == window.innerWidth)) {
-      return
-    } else {
+        return
+      } else {
+        console.log("REDRAW ELSE");
       cancelAnimationFrame(animationRequestID);
       dotsArray = [];
 
-      // canvas.width = window.innerWidth;
-      // canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
       createHiDPICanvas(window.innerWidth, window.innerHeight);
 
       let numberOfDots = window.innerWidth >= 1024 ? 120 : 50;
