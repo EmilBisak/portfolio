@@ -327,11 +327,12 @@ app.canvas = (function () {
       return
     };
 
-    // if (isSmallScreen
-    //   && (initialWindowHeight !== window.innerHeight)
-    //   && (initialWindowWidth == window.innerWidth)) {
-    //   return
-    // } else {
+    if (isSmallScreen
+      && (initialWindowHeight !== window.innerHeight)
+      && (initialWindowWidth == window.innerWidth)) {
+      return
+    } else {
+      app.header.setHeaderHeight();
       cancelAnimationFrame(animationRequestID);
       dotsArray = [];
 
@@ -341,7 +342,7 @@ app.canvas = (function () {
 
       let numberOfDots = window.innerWidth >= 1024 ? 120 : 50;
       createDotsArray(numberOfDots);
-    // }
+    }
   }
 
 
