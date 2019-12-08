@@ -201,7 +201,6 @@ app.canvas = (function () {
 
   function createHiDPICanvas(w, h, ratio) {
     if (!ratio) { ratio = PIXEL_RATIO; }
-    console.log('ratio', ratio)
     canvas.width = w * ratio;
     canvas.height = h * ratio;
     canvas.style.width = w + "px";
@@ -222,18 +221,22 @@ app.canvas = (function () {
     this.randomRedColor = Math.round(Math.random() * 255);
     this.randomGreenColor = Math.round(Math.random() * 255);
     this.randomBlueColor = Math.round(Math.random() * 255);
+    this.dotsColor = ["#fff", "#2196f3", "#04c2c9", "#209cee", "#2121ff"]
+    this.randomDotColorIndex = Math.floor(Math.random() * this.dotsColor.length);
     this.radians = Math.random() * Math.PI * 2;
 
     this.draw = function () {
       if (isSmallScreen) {
         // drawing squares ***
-        context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 0.9)`;
+        // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 0.9)`;
+        context.fillStyle = this.dotsColor[this.randomDotColorIndex];
         context.fillRect(this.x, this.y, this.radius, this.radius)
       } else {
         // drawing circles ***
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
+        // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
+        context.fillStyle = this.dotsColor[this.randomDotColorIndex];
         context.fill();
         context.stroke();
         context.closePath();
@@ -245,8 +248,9 @@ app.canvas = (function () {
       context.lineJoin = "round";
       context.moveTo(lineToX, this.y);
       context.lineTo(this.x, this.y + innerHeight * 2);
-      context.lineWidth = isSmallScreen ? 0.8 : 1;
+      context.lineWidth = isSmallScreen ? 0.8 : 0.9;
       context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${this.opacity})`;
+      // context.strokeStyle = this.dotsColor[this.randomDotColorIndex];
       context.stroke();
       context.closePath();
     }
@@ -265,7 +269,7 @@ app.canvas = (function () {
         mouse.y > this.y - 50
       ) {
         this.opacity < 0.8 ? this.opacity += 0.04 : null;
-        this.color < 160 ? this.color += 1 : null;
+        this.color < 160 ? this.color += 3 : null;
         this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
       } else {
         this.opacity = opacity;
@@ -316,8 +320,6 @@ app.canvas = (function () {
   }
 
   function redrawCanvas() {
-    console.log("REDRAW");
-    
     
     isSmallScreen = window.innerWidth <= 996;
     if (isSmallScreen
@@ -325,7 +327,6 @@ app.canvas = (function () {
       && (initialWindowWidth == window.innerWidth)) {
         return
       } else {
-        console.log("REDRAW ELSE");
       cancelAnimationFrame(animationRequestID);
       dotsArray = [];
 
