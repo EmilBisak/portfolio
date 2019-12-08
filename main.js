@@ -206,8 +206,8 @@ app.canvas = (function () {
     canvas.style.width = w + "px";
     canvas.style.height = h + "px";
     // canvas.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
-    if(1!==ratio) {
-      context.scale(ratio,ratio)
+    if (1 !== ratio) {
+      context.scale(ratio, ratio)
     }
     return canvas;
   }
@@ -320,13 +320,16 @@ app.canvas = (function () {
   }
 
   function redrawCanvas() {
-    
+    console.log('shouldDisableCanvasOnIE()', shouldDisableCanvasOnIE(canvas))
+
+    if(shouldDisableCanvasOnIE(canvas)) {return};
+
     isSmallScreen = window.innerWidth <= 996;
     if (isSmallScreen
       && (initialWindowHeight !== window.innerHeight)
       && (initialWindowWidth == window.innerWidth)) {
-        return
-      } else {
+      return
+    } else {
       cancelAnimationFrame(animationRequestID);
       dotsArray = [];
 
@@ -341,6 +344,23 @@ app.canvas = (function () {
 
   function cancelCanvasAnimation() {
     cancelAnimationFrame(animationRequestID);
+  }
+
+  function shouldDisableCanvasOnIE(canvas) {
+    const ua = window.navigator.userAgent;
+
+    const msie = ua.indexOf('MSIE ');
+    const trident = ua.indexOf('Trident/');
+    const edge = ua.indexOf('Edge/');
+
+    let shouldDisableCanvas = false;
+
+    if (msie > 0 || trident > 0 || edge > 0) {
+      shouldDisableCanvas = true;
+      canvas.style.display = "none";
+    }
+
+    return shouldDisableCanvas;
   }
 
   return {
