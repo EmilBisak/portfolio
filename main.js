@@ -575,7 +575,7 @@ app.scroll = (function () {
           position:fixed; 
           right:20px; 
           bottom:20px; 
-          z-index: 2; 
+          z-index: 6; 
           width: 60px; 
           height:60px;
           `
@@ -591,7 +591,7 @@ app.scroll = (function () {
           position:fixed; 
           right:20px; 
           bottom:20px; 
-          z-index: 2;
+          z-index: 6;
           `
         );
         arrowImg.setAttribute(
