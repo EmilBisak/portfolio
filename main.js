@@ -323,15 +323,15 @@ app.canvas = (function () {
     isSmallScreen = window.innerWidth <= 996;
 
     if (shouldDisableCanvasOnIE() || !isChrome()) {
-      canvas.style.display = "none"
+      canvas.style.display = "none";
       return
     };
 
-    if (isSmallScreen
-      && (initialWindowHeight !== window.innerHeight)
-      && (initialWindowWidth == window.innerWidth)) {
-      return
-    } else {
+    // if (isSmallScreen
+    //   && (initialWindowHeight !== window.innerHeight)
+    //   && (initialWindowWidth == window.innerWidth)) {
+    //   return
+    // } else {
       cancelAnimationFrame(animationRequestID);
       dotsArray = [];
 
@@ -341,7 +341,7 @@ app.canvas = (function () {
 
       let numberOfDots = window.innerWidth >= 1024 ? 120 : 50;
       createDotsArray(numberOfDots);
-    }
+    // }
   }
 
 
