@@ -250,7 +250,7 @@ section:nth-child(5) {
 }
 
 canvas {
-    background-color: #222;
+    background-color: #111;
     background-image: linear-gradient(to bottom, #151515 0%, #111 100%);
     position: absolute;
     top: 0;
@@ -314,7 +314,7 @@ header .header-content h1 {
     font-weight: 700;
     text-transform: uppercase;
     /* text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.3); */
-    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 1);
     color: #fff;
 }
 
@@ -327,7 +327,7 @@ header .header-content h2 {
     line-height: 1;
     font-weight: 700;
     /* text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.3); */
-    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 1);
 }
 
 header .header-content-holder .arrow-to-down-wrapper {
@@ -400,7 +400,7 @@ header .header-content-holder .animated-arrow-2 {
     header .header-content h2 {
         font-size: 30px;
         /* text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3); */
-        text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+        text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 1);
     }
 }
 
