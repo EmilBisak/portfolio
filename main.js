@@ -188,7 +188,7 @@ app.canvas = (function () {
   }
 
   function addNewPointOnClick(event) {
-    if ((isSmallScreen && dotsArray.length < 100) || (!isSmallScreen && dotsArray.length < 200)) {
+    if ((isSmallScreen && dotsArray.length < 90) || (!isSmallScreen && dotsArray.length < 200)) {
       cancelCanvasAnimation();
       dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
       animateDots();
@@ -356,8 +356,8 @@ app.canvas = (function () {
 
 
       if (window.innerWidth <= 996) {
-        let minY = innerHeight / 2 - 200;
-        let maxY = innerHeight / 2 + 200;
+        let minY = innerHeight / 3 - 200;
+        let maxY = innerHeight / 1.5 + 200;
         y = Math.random() * (maxY - minY) + minY;
         radius = 1.5;
       }
