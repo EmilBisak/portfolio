@@ -150,8 +150,8 @@ app.canvas = (function () {
   let dotsArray = [];
   let animationRequestID;
 
-
   window.addEventListener("resize", redrawCanvas);
+  canvas.addEventListener("click", addNewPointOnClick);
   canvas.addEventListener("mouseover", mouseOverCanvas);
   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
   headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
@@ -187,6 +187,16 @@ app.canvas = (function () {
     mouse.y = event.y;
   }
 
+  function addNewPointOnClick(event) {
+    if ((isSmallScreen && dotsArray.length < 100) || (!isSmallScreen && dotsArray.length < 200)) {
+      cancelCanvasAnimation();
+      dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
+      animateDots();
+    } else {
+      return
+    }
+  }
+
 
   let PIXEL_RATIO = (function () {
     let dpr = window.devicePixelRatio || 1,
@@ -212,7 +222,7 @@ app.canvas = (function () {
     return canvas;
   }
 
-  function Point(x, y, radius, opacity, color) {
+  function Point(x, y, radius, opacity, color, isDotAddedOnClick) {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -224,6 +234,9 @@ app.canvas = (function () {
     this.dotsColor = ["#fff", "#2196f3", "#04c2c9", "#209cee", "#2121ff"]
     this.randomDotColorIndex = Math.floor(Math.random() * this.dotsColor.length);
     this.radians = Math.random() * Math.PI * 2;
+    this.isDotAddedOnClick = isDotAddedOnClick;
+    this.dx = (Math.random() - 0.5);;
+    this.dy = (Math.random() - 0.5);;
 
     this.draw = function () {
       if (isSmallScreen) {
@@ -238,44 +251,91 @@ app.canvas = (function () {
         // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
         context.fillStyle = this.dotsColor[this.randomDotColorIndex];
         context.fill();
-        context.stroke();
+        // context.stroke();
         context.closePath();
       }
 
-      // drawing lines ***
-      let lineToX = isSmallScreen ? this.x + (this.radius / 2) : this.x;
-      context.beginPath();
-      context.lineJoin = "round";
-      context.moveTo(lineToX, this.y);
-      context.lineTo(this.x, this.y + innerHeight * 2);
-      context.lineWidth = isSmallScreen ? 0.8 : 0.9;
-      context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${this.opacity})`;
-      // context.strokeStyle = this.dotsColor[this.randomDotColorIndex];
-      context.stroke();
-      context.closePath();
     }
 
     this.update = function () {
-      let circleWidth = isSmallScreen ? innerWidth / 1.8 : innerHeight / 1.6;
-      let circleHeight = isSmallScreen ? innerWidth / 2.2 : innerHeight / 2;
+      let circleWidth = isSmallScreen ? innerWidth / 2.5 : innerHeight / 1.6;
+      let circleHeight = isSmallScreen ? innerWidth / 3 : innerHeight / 3;
 
-      this.radians += 0.0008;
-      this.x = x + Math.cos(this.radians) * circleWidth;
-      this.y = y + Math.sin(this.radians) * circleHeight;
-
-      if (
-        mouse.x <= this.x + 50 &&
-        mouse.x > this.x - 50 &&
-        mouse.y > this.y - 50
-      ) {
-        this.opacity < 0.8 ? this.opacity += 0.04 : null;
-        this.color < 160 ? this.color += 3 : null;
-        this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
+      if (!this.isDotAddedOnClick) {
+        this.radians += 0.001;
+        this.x = x + Math.cos(this.radians) * circleWidth;
+        this.y = y + Math.sin(this.radians) * circleHeight;
       } else {
-        this.opacity = opacity;
-        this.color <= color ? color : this.color -= 2;
-        this.radius = this.radius > radius ? this.radius - 0.02 : radius;
+        if (this.x + this.radius > innerWidth + 100 || this.x - this.radius < -100 /*0*/) {
+          this.dx = -this.dx;
+        }
+
+        if (this.y + this.radius > innerHeight + 100 || this.y - this.radius < -100 /*0*/) {
+          this.dy = -this.dy;
+        }
+        this.x += this.dx;
+        this.y += this.dy;
       }
+
+
+      // this.x = x + Math.cos(this.radians) * circleWidth - mouse.x / 50;
+      // this.y = y + Math.sin(this.radians) * circleHeight - mouse.y / 50;
+
+      // if (
+      //   mouse.x <= this.x + 50 &&
+      //   mouse.x > this.x - 50 &&
+      //   mouse.y > this.y - 50
+      // ) {
+      //   this.opacity < 0.8 ? this.opacity += 0.04 : null;
+      //   this.color < 160 ? this.color += 3 : null;
+      //   this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
+      // } else {
+      //   this.opacity = opacity;
+      //   this.color <= color ? color : this.color -= 2;
+      //   this.radius = this.radius > radius ? this.radius - 0.02 : radius;
+      // }
+
+
+      dotsArray.forEach(dot => {
+        if (this.x - dot.x <= 120 &&
+          this.x - dot.x > -120 &&
+          this.y - dot.y <= 120 &&
+          this.y - dot.y > -120) {
+          context.beginPath();
+          context.lineJoin = "round";
+          context.moveTo(this.x, this.y);
+          context.lineTo(dot.x, dot.y);
+          context.fill();
+
+          let distance = (1 - ((Math.abs(this.x - dot.x) + Math.abs(this.y - dot.y)) / 240)).toFixed(3);
+          
+          context.lineWidth = distance;
+          context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : `rgba(255, 255, 255, ${distance})`;
+          
+          // if (this.y > 0 && dot.y > 0) {
+          //     context.lineWidth = (this.y * dot.y) / 1000000;
+          // context.strokeStyle = "#cecece";
+          // } else {
+          //     context.lineWidth = 0.0001;
+          //     context.strokeStyle = "#222";
+          //   }
+
+
+          // if (
+          //   mouse.x <= this.x + 120 &&
+          //   mouse.x > this.x - 120 &&
+          //   mouse.y <= this.y + 120 &&
+          //   mouse.y > this.y - 120
+          // ) {
+          //   context.lineTo(mouse.x, mouse.y);
+          //   context.strokeStyle = `rgba(4, 194, 201, ${distance})`;
+          // }
+
+
+          // context.lineWidth = (this.y / this.x) * (dot.y / dot.x)/2;
+          context.stroke();
+        }
+      });
 
 
       this.draw();
@@ -302,7 +362,7 @@ app.canvas = (function () {
         radius = 1.5;
       }
 
-      dotsArray.push(new Point(x, y, radius, 0.5, 80))
+      dotsArray.push(new Point(x, y, radius, 0.5, 80, false))
     }
 
     animateDots();
@@ -322,14 +382,16 @@ app.canvas = (function () {
   function redrawCanvas() {
     isSmallScreen = window.innerWidth <= 996;
 
-    if (shouldDisableCanvasOnIE() || !isChrome()) {
+    if (shouldDisableCanvasOnIE()) {
       canvas.style.display = "none";
       return
     };
 
-    if (isSmallScreen
-      && (initialWindowHeight !== window.innerHeight)
-      && (initialWindowWidth == window.innerWidth)) {
+    if (
+      isSmallScreen
+      && initialWindowHeight !== window.innerHeight
+      && initialWindowWidth == window.innerWidth
+    ) {
       return
     } else {
       app.header.setHeaderHeight();
@@ -340,7 +402,7 @@ app.canvas = (function () {
       // canvas.height = window.innerHeight;
       createHiDPICanvas(window.innerWidth, window.innerHeight);
 
-      let numberOfDots = window.innerWidth >= 1024 ? 120 : 50;
+      let numberOfDots = window.innerWidth >= 1024 ? 120 : 45;
       createDotsArray(numberOfDots);
     }
   }
