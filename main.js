@@ -592,14 +592,14 @@ app.scroll = (function () {
     }
 
     // Stoping and resuming canvas animation
-    if (bottomOffset >= educationElementTriger) {
+    // if (bottomOffset >= educationElementTriger) {
 
-      isAnimationRunning && app.canvas.cancelCanvasAnimation();
-      isAnimationRunning = false;
-    } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
-      !isAnimationRunning && app.canvas.redrawCanvas();
-      isAnimationRunning = true;
-    }
+    //   isAnimationRunning && app.canvas.cancelCanvasAnimation();
+    //   isAnimationRunning = false;
+    // } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
+    //   !isAnimationRunning && app.canvas.redrawCanvas();
+    //   isAnimationRunning = true;
+    // }
 
   }
 
