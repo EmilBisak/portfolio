@@ -140,6 +140,7 @@ table {
 
 a {
     text-decoration: none;
+    outline: none;
 }
 
 p {
@@ -166,7 +167,7 @@ html {
     color: #666;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
 }
 
 body {

@@ -70,10 +70,12 @@ app.nav = (function () {
   function navigateSmooth(location) {
     const locationPosition = location === '#' ? 0 : document.querySelector(location).offsetTop;
 
+    let isMobileChrome = window.innerWidth <= 768 && isChrome();
+
     window.scrollTo({
       left: 0,
       top: locationPosition,
-      behavior: 'auto',
+      behavior: isMobileChrome ? 'auto' : "smooth",
     });
   };
 
@@ -97,6 +99,11 @@ app.nav = (function () {
         }
       });
     });
+  };
+
+  function isChrome() {
+    let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
+    return isChrome;
   };
 
   return {
@@ -308,10 +315,10 @@ app.canvas = (function () {
           context.fill();
 
           let distance = (1 - ((Math.abs(this.x - dot.x) + Math.abs(this.y - dot.y)) / 240)).toFixed(3);
-          
+
           context.lineWidth = distance;
           context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : `rgba(255, 255, 255, ${distance})`;
-          
+
           // if (this.y > 0 && dot.y > 0) {
           //     context.lineWidth = (this.y * dot.y) / 1000000;
           // context.strokeStyle = "#cecece";
@@ -428,11 +435,6 @@ app.canvas = (function () {
 
     return shouldDisableCanvas;
   }
-
-  function isChrome() {
-    let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
-    return isChrome;
-  };
 
   return {
     redrawCanvas,
@@ -560,12 +562,12 @@ app.scroll = (function () {
   };
 
 
-  // let isAnimationRunning = false;
+  let isAnimationRunning = false;
   function animateAuthorImage(bottomOffset) {
 
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
     const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
-    // const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 10);
+    const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 10);
 
 
     if (bottomOffset <= skillsetTriger) {
@@ -592,14 +594,14 @@ app.scroll = (function () {
     }
 
     // Stoping and resuming canvas animation
-    // if (bottomOffset >= educationElementTriger) {
+    if (bottomOffset >= educationElementTriger) {
 
-    //   isAnimationRunning && app.canvas.cancelCanvasAnimation();
-    //   isAnimationRunning = false;
-    // } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
-    //   !isAnimationRunning && app.canvas.redrawCanvas();
-    //   isAnimationRunning = true;
-    // }
+      isAnimationRunning && app.canvas.cancelCanvasAnimation();
+      isAnimationRunning = false;
+    } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
+      !isAnimationRunning && app.canvas.redrawCanvas();
+      isAnimationRunning = true;
+    }
 
   }
 
