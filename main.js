@@ -127,318 +127,318 @@ app.header = (function () {
 }());
 
 // canvas module
-// app.canvas = (function () {
+app.canvas = (function () {
 
 
-//   let canvas = document.querySelector("canvas");
+  let canvas = document.querySelector("canvas");
 
-//   let headerTitle = document.querySelector(".header-content");
+  let headerTitle = document.querySelector(".header-content");
 
-//   let context = canvas.getContext('2d');
+  let context = canvas.getContext('2d');
 
-//   let isSmallScreen = window.innerWidth <= 996;
+  let isSmallScreen = window.innerWidth <= 996;
 
-//   const initialWindowHeight = window.innerHeight;
-//   const initialWindowWidth = window.innerWidth;
+  const initialWindowHeight = window.innerHeight;
+  const initialWindowWidth = window.innerWidth;
 
-//   const mouse = {
-//     x: undefined,
-//     y: undefined,
-//   }
-//   let isMouseOverTitle = false;
+  const mouse = {
+    x: undefined,
+    y: undefined,
+  }
+  let isMouseOverTitle = false;
 
-//   let dotsArray = [];
-//   let animationRequestID;
+  let dotsArray = [];
+  let animationRequestID;
 
-//   window.addEventListener("resize", redrawCanvas);
-//   canvas.addEventListener("click", addNewPointOnClick);
-//   canvas.addEventListener("mouseover", mouseOverCanvas);
-//   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
-//   headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
-//   headerTitle.addEventListener("mouseover", mouseOverTitle);
-
-
-//   function mouseOverCanvas() {
-//     document.addEventListener("mousemove", updateMousePosition);
-//   }
-
-//   function mouseOverTitle() {
-//     isMouseOverTitle = true;
-//   }
-
-//   function mouseLeaveTitle() {
-//     isMouseOverTitle = false;
-//   }
-
-//   function mouseLeaveCanvas() {
-//     setTimeout(() => {
-
-//       if (!isMouseOverTitle) {
-//         mouse.x = undefined;
-//         mouse.y = undefined;
-//         document.removeEventListener("mousemove", updateMousePosition);
-//       }
-
-//     }, 10);
-//   }
-
-//   function updateMousePosition(event) {
-//     mouse.x = event.x;
-//     mouse.y = event.y;
-//   }
-
-//   function addNewPointOnClick(event) {
-//     if ((isSmallScreen && dotsArray.length < 90) || (!isSmallScreen && dotsArray.length < 200)) {
-//       cancelCanvasAnimation();
-//       dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
-//       animateDots();
-//     } else {
-//       return
-//     }
-//   }
+  window.addEventListener("resize", redrawCanvas);
+  canvas.addEventListener("click", addNewPointOnClick);
+  canvas.addEventListener("mouseover", mouseOverCanvas);
+  canvas.addEventListener("mouseleave", mouseLeaveCanvas);
+  headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
+  headerTitle.addEventListener("mouseover", mouseOverTitle);
 
 
-//   let PIXEL_RATIO = (function () {
-//     let dpr = window.devicePixelRatio || 1,
-//       bsr = context.webkitBackingStorePixelRatio ||
-//         context.mozBackingStorePixelRatio ||
-//         context.msBackingStorePixelRatio ||
-//         context.oBackingStorePixelRatio ||
-//         context.backingStorePixelRatio || 1;
+  function mouseOverCanvas() {
+    document.addEventListener("mousemove", updateMousePosition);
+  }
 
-//     return dpr / bsr;
-//   })();
+  function mouseOverTitle() {
+    isMouseOverTitle = true;
+  }
 
-//   function createHiDPICanvas(w, h, ratio) {
-//     if (!ratio) { ratio = PIXEL_RATIO; }
-//     canvas.width = w * ratio;
-//     canvas.height = h * ratio;
-//     canvas.style.width = w + "px";
-//     canvas.style.height = h + "px";
-//     // canvas.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
-//     if (1 !== ratio) {
-//       context.scale(ratio, ratio)
-//     }
-//     return canvas;
-//   }
+  function mouseLeaveTitle() {
+    isMouseOverTitle = false;
+  }
 
-//   function Point(x, y, radius, opacity, color, isDotAddedOnClick) {
-//     this.x = x;
-//     this.y = y;
-//     this.radius = radius;
-//     this.opacity = opacity;
-//     this.color = color;
-//     this.randomRedColor = Math.round(Math.random() * 255);
-//     this.randomGreenColor = Math.round(Math.random() * 255);
-//     this.randomBlueColor = Math.round(Math.random() * 255);
-//     this.dotsColor = ["#fff", "#2196f3", "#04c2c9", "#209cee", "#2121ff"]
-//     this.randomDotColorIndex = Math.floor(Math.random() * this.dotsColor.length);
-//     this.radians = Math.random() * Math.PI * 2;
-//     this.isDotAddedOnClick = isDotAddedOnClick;
-//     this.dx = (Math.random() - 0.5);;
-//     this.dy = (Math.random() - 0.5);;
+  function mouseLeaveCanvas() {
+    setTimeout(() => {
 
-//     this.draw = function () {
-//       if (isSmallScreen) {
-//         // drawing squares ***
-//         // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 0.9)`;
-//         context.fillStyle = this.dotsColor[this.randomDotColorIndex];
-//         context.fillRect(this.x, this.y, this.radius, this.radius)
-//       } else {
-//         // drawing circles ***
-//         context.beginPath();
-//         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-//         // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
-//         context.fillStyle = this.dotsColor[this.randomDotColorIndex];
-//         context.fill();
-//         // context.stroke();
-//         context.closePath();
-//       }
+      if (!isMouseOverTitle) {
+        mouse.x = undefined;
+        mouse.y = undefined;
+        document.removeEventListener("mousemove", updateMousePosition);
+      }
 
-//     }
+    }, 10);
+  }
 
-//     this.update = function () {
-//       let circleWidth = isSmallScreen ? innerWidth / 2.5 : innerHeight / 1.6;
-//       let circleHeight = isSmallScreen ? innerWidth / 3 : innerHeight / 3;
+  function updateMousePosition(event) {
+    mouse.x = event.x;
+    mouse.y = event.y;
+  }
 
-//       if (!this.isDotAddedOnClick) {
-//         this.radians += 0.001;
-//         this.x = x + Math.cos(this.radians) * circleWidth;
-//         this.y = y + Math.sin(this.radians) * circleHeight;
-//       } else {
-//         if (this.x + this.radius > innerWidth + 100 || this.x - this.radius < -100 /*0*/) {
-//           this.dx = -this.dx;
-//         }
-
-//         if (this.y + this.radius > innerHeight + 100 || this.y - this.radius < -100 /*0*/) {
-//           this.dy = -this.dy;
-//         }
-//         this.x += this.dx;
-//         this.y += this.dy;
-//       }
+  function addNewPointOnClick(event) {
+    if ((isSmallScreen && dotsArray.length < 90) || (!isSmallScreen && dotsArray.length < 200)) {
+      cancelCanvasAnimation();
+      dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
+      animateDots();
+    } else {
+      return
+    }
+  }
 
 
-//       // this.x = x + Math.cos(this.radians) * circleWidth - mouse.x / 50;
-//       // this.y = y + Math.sin(this.radians) * circleHeight - mouse.y / 50;
+  let PIXEL_RATIO = (function () {
+    let dpr = window.devicePixelRatio || 1,
+      bsr = context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio ||
+        context.backingStorePixelRatio || 1;
 
-//       // if (
-//       //   mouse.x <= this.x + 50 &&
-//       //   mouse.x > this.x - 50 &&
-//       //   mouse.y > this.y - 50
-//       // ) {
-//       //   this.opacity < 0.8 ? this.opacity += 0.04 : null;
-//       //   this.color < 160 ? this.color += 3 : null;
-//       //   this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
-//       // } else {
-//       //   this.opacity = opacity;
-//       //   this.color <= color ? color : this.color -= 2;
-//       //   this.radius = this.radius > radius ? this.radius - 0.02 : radius;
-//       // }
+    return dpr / bsr;
+  })();
+
+  function createHiDPICanvas(w, h, ratio) {
+    if (!ratio) { ratio = PIXEL_RATIO; }
+    canvas.width = w * ratio;
+    canvas.height = h * ratio;
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    // canvas.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+    if (1 !== ratio) {
+      context.scale(ratio, ratio)
+    }
+    return canvas;
+  }
+
+  function Point(x, y, radius, opacity, color, isDotAddedOnClick) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.opacity = opacity;
+    this.color = color;
+    this.randomRedColor = Math.round(Math.random() * 255);
+    this.randomGreenColor = Math.round(Math.random() * 255);
+    this.randomBlueColor = Math.round(Math.random() * 255);
+    this.dotsColor = ["#fff", "#2196f3", "#04c2c9", "#209cee", "#2121ff"]
+    this.randomDotColorIndex = Math.floor(Math.random() * this.dotsColor.length);
+    this.radians = Math.random() * Math.PI * 2;
+    this.isDotAddedOnClick = isDotAddedOnClick;
+    this.dx = (Math.random() - 0.5);;
+    this.dy = (Math.random() - 0.5);;
+
+    this.draw = function () {
+      if (isSmallScreen) {
+        // drawing squares ***
+        // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 0.9)`;
+        context.fillStyle = this.dotsColor[this.randomDotColorIndex];
+        context.fillRect(this.x, this.y, this.radius, this.radius)
+      } else {
+        // drawing circles ***
+        context.beginPath();
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
+        context.fillStyle = this.dotsColor[this.randomDotColorIndex];
+        context.fill();
+        // context.stroke();
+        context.closePath();
+      }
+
+    }
+
+    this.update = function () {
+      let circleWidth = isSmallScreen ? innerWidth / 2.5 : innerHeight / 1.6;
+      let circleHeight = isSmallScreen ? innerWidth / 3 : innerHeight / 3;
+
+      if (!this.isDotAddedOnClick) {
+        this.radians += 0.001;
+        this.x = x + Math.cos(this.radians) * circleWidth;
+        this.y = y + Math.sin(this.radians) * circleHeight;
+      } else {
+        if (this.x + this.radius > innerWidth + 100 || this.x - this.radius < -100 /*0*/) {
+          this.dx = -this.dx;
+        }
+
+        if (this.y + this.radius > innerHeight + 100 || this.y - this.radius < -100 /*0*/) {
+          this.dy = -this.dy;
+        }
+        this.x += this.dx;
+        this.y += this.dy;
+      }
 
 
-//       dotsArray.forEach(dot => {
-//         if (this.x - dot.x <= 120 &&
-//           this.x - dot.x > -120 &&
-//           this.y - dot.y <= 120 &&
-//           this.y - dot.y > -120) {
-//           context.beginPath();
-//           context.lineJoin = "round";
-//           context.moveTo(this.x, this.y);
-//           context.lineTo(dot.x, dot.y);
-//           context.fill();
+      // this.x = x + Math.cos(this.radians) * circleWidth - mouse.x / 50;
+      // this.y = y + Math.sin(this.radians) * circleHeight - mouse.y / 50;
 
-//           let distance = (1 - ((Math.abs(this.x - dot.x) + Math.abs(this.y - dot.y)) / 240)).toFixed(3);
+      // if (
+      //   mouse.x <= this.x + 50 &&
+      //   mouse.x > this.x - 50 &&
+      //   mouse.y > this.y - 50
+      // ) {
+      //   this.opacity < 0.8 ? this.opacity += 0.04 : null;
+      //   this.color < 160 ? this.color += 3 : null;
+      //   this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
+      // } else {
+      //   this.opacity = opacity;
+      //   this.color <= color ? color : this.color -= 2;
+      //   this.radius = this.radius > radius ? this.radius - 0.02 : radius;
+      // }
+
+
+      dotsArray.forEach(dot => {
+        if (this.x - dot.x <= 120 &&
+          this.x - dot.x > -120 &&
+          this.y - dot.y <= 120 &&
+          this.y - dot.y > -120) {
+          context.beginPath();
+          context.lineJoin = "round";
+          context.moveTo(this.x, this.y);
+          context.lineTo(dot.x, dot.y);
+          context.fill();
+
+          let distance = (1 - ((Math.abs(this.x - dot.x) + Math.abs(this.y - dot.y)) / 240)).toFixed(3);
           
-//           context.lineWidth = distance;
-//           context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : `rgba(255, 255, 255, ${distance})`;
+          context.lineWidth = distance;
+          context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : `rgba(255, 255, 255, ${distance})`;
           
-//           // if (this.y > 0 && dot.y > 0) {
-//           //     context.lineWidth = (this.y * dot.y) / 1000000;
-//           // context.strokeStyle = "#cecece";
-//           // } else {
-//           //     context.lineWidth = 0.0001;
-//           //     context.strokeStyle = "#222";
-//           //   }
+          // if (this.y > 0 && dot.y > 0) {
+          //     context.lineWidth = (this.y * dot.y) / 1000000;
+          // context.strokeStyle = "#cecece";
+          // } else {
+          //     context.lineWidth = 0.0001;
+          //     context.strokeStyle = "#222";
+          //   }
 
 
-//           // if (
-//           //   mouse.x <= this.x + 120 &&
-//           //   mouse.x > this.x - 120 &&
-//           //   mouse.y <= this.y + 120 &&
-//           //   mouse.y > this.y - 120
-//           // ) {
-//           //   context.lineTo(mouse.x, mouse.y);
-//           //   context.strokeStyle = `rgba(4, 194, 201, ${distance})`;
-//           // }
+          // if (
+          //   mouse.x <= this.x + 120 &&
+          //   mouse.x > this.x - 120 &&
+          //   mouse.y <= this.y + 120 &&
+          //   mouse.y > this.y - 120
+          // ) {
+          //   context.lineTo(mouse.x, mouse.y);
+          //   context.strokeStyle = `rgba(4, 194, 201, ${distance})`;
+          // }
 
 
-//           // context.lineWidth = (this.y / this.x) * (dot.y / dot.x)/2;
-//           context.stroke();
-//         }
-//       });
+          // context.lineWidth = (this.y / this.x) * (dot.y / dot.x)/2;
+          context.stroke();
+        }
+      });
 
 
-//       this.draw();
-//     }
-//   }
+      this.draw();
+    }
+  }
 
 
-//   function createDotsArray(numberOfDots) {
+  function createDotsArray(numberOfDots) {
 
-//     for (let index = 0; index < numberOfDots; index++) {
-//       const offset = 200;
-//       const offsetX = window.innerWidth <= 996 ? 2.3 : 2.4;
+    for (let index = 0; index < numberOfDots; index++) {
+      const offset = 200;
+      const offsetX = window.innerWidth <= 996 ? 2.3 : 2.4;
 
-//       let radius = 1;
-//       let x = Math.floor(Math.random() * (innerWidth / 8 - radius * 2) + innerWidth / offsetX + radius);
-//       // let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
-//       let y = Math.random() * innerHeight - ((innerHeight + offset) - (innerHeight - offset)) + (innerHeight - offset);
-
-
-//       if (window.innerWidth <= 996) {
-//         let minY = innerHeight / 3 - 200;
-//         let maxY = innerHeight / 1.5 + 200;
-//         y = Math.random() * (maxY - minY) + minY;
-//         radius = 1.5;
-//       }
-
-//       dotsArray.push(new Point(x, y, radius, 0.5, 80, false))
-//     }
-
-//     animateDots();
-
-//   }
-
-//   // Animate Dots ***
-//   function animateDots() {
-//     animationRequestID = requestAnimationFrame(animateDots);
-//     context.clearRect(0, 0, innerWidth, innerHeight);
-
-//     dotsArray.forEach(dot => {
-//       dot.update();
-//     });
-//   }
-
-//   function redrawCanvas() {
-//     isSmallScreen = window.innerWidth <= 996;
-
-//     if (shouldDisableCanvasOnIE()) {
-//       canvas.style.display = "none";
-//       return
-//     };
-
-//     if (
-//       isSmallScreen
-//       && initialWindowHeight !== window.innerHeight
-//       && initialWindowWidth == window.innerWidth
-//     ) {
-//       return
-//     } else {
-//       app.header.setHeaderHeight();
-//       cancelAnimationFrame(animationRequestID);
-//       dotsArray = [];
-
-//       // canvas.width = window.innerWidth;
-//       // canvas.height = window.innerHeight;
-//       createHiDPICanvas(window.innerWidth, window.innerHeight);
-
-//       let numberOfDots = window.innerWidth >= 1024 ? 120 : 45;
-//       createDotsArray(numberOfDots);
-//     }
-//   }
+      let radius = 1;
+      let x = Math.floor(Math.random() * (innerWidth / 8 - radius * 2) + innerWidth / offsetX + radius);
+      // let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
+      let y = Math.random() * innerHeight - ((innerHeight + offset) - (innerHeight - offset)) + (innerHeight - offset);
 
 
-//   function cancelCanvasAnimation() {
-//     cancelAnimationFrame(animationRequestID);
-//   }
+      if (window.innerWidth <= 996) {
+        let minY = innerHeight / 3 - 200;
+        let maxY = innerHeight / 1.5 + 200;
+        y = Math.random() * (maxY - minY) + minY;
+        radius = 1.5;
+      }
+
+      dotsArray.push(new Point(x, y, radius, 0.5, 80, false))
+    }
+
+    animateDots();
+
+  }
+
+  // Animate Dots ***
+  function animateDots() {
+    animationRequestID = requestAnimationFrame(animateDots);
+    context.clearRect(0, 0, innerWidth, innerHeight);
+
+    dotsArray.forEach(dot => {
+      dot.update();
+    });
+  }
+
+  function redrawCanvas() {
+    isSmallScreen = window.innerWidth <= 996;
+
+    if (shouldDisableCanvasOnIE()) {
+      canvas.style.display = "none";
+      return
+    };
+
+    if (
+      isSmallScreen
+      && initialWindowHeight !== window.innerHeight
+      && initialWindowWidth == window.innerWidth
+    ) {
+      return
+    } else {
+      app.header.setHeaderHeight();
+      cancelAnimationFrame(animationRequestID);
+      dotsArray = [];
+
+      // canvas.width = window.innerWidth;
+      // canvas.height = window.innerHeight;
+      createHiDPICanvas(window.innerWidth, window.innerHeight);
+
+      let numberOfDots = window.innerWidth >= 1024 ? 120 : 45;
+      createDotsArray(numberOfDots);
+    }
+  }
 
 
-//   function shouldDisableCanvasOnIE() {
-//     const ua = window.navigator.userAgent;
+  function cancelCanvasAnimation() {
+    cancelAnimationFrame(animationRequestID);
+  }
 
-//     const msie = ua.indexOf('MSIE ');
-//     const trident = ua.indexOf('Trident/');
-//     const edge = ua.indexOf('Edge/');
 
-//     let shouldDisableCanvas = false;
+  function shouldDisableCanvasOnIE() {
+    const ua = window.navigator.userAgent;
 
-//     if (msie > 0 || trident > 0 || edge > 0) {
-//       shouldDisableCanvas = true;
-//     }
+    const msie = ua.indexOf('MSIE ');
+    const trident = ua.indexOf('Trident/');
+    const edge = ua.indexOf('Edge/');
 
-//     return shouldDisableCanvas;
-//   }
+    let shouldDisableCanvas = false;
 
-//   function isChrome() {
-//     let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
-//     return isChrome;
-//   };
+    if (msie > 0 || trident > 0 || edge > 0) {
+      shouldDisableCanvas = true;
+    }
 
-//   return {
-//     redrawCanvas,
-//     cancelCanvasAnimation,
-//   };
-// }());
+    return shouldDisableCanvas;
+  }
+
+  function isChrome() {
+    let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
+    return isChrome;
+  };
+
+  return {
+    redrawCanvas,
+    cancelCanvasAnimation,
+  };
+}());
 
 
 // scroll module
@@ -560,12 +560,12 @@ app.scroll = (function () {
   };
 
 
-  let isAnimationRunning = false;
+  // let isAnimationRunning = false;
   function animateAuthorImage(bottomOffset) {
 
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
     const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
-    const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 10);
+    // const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 10);
 
 
     if (bottomOffset <= skillsetTriger) {
@@ -860,7 +860,7 @@ function init() {
   app.loadingIFrames.shouldLoadIFrame();
   app.nav.onNavClick();
   app.header.setHeaderHeight();
-  // app.canvas.redrawCanvas();
+  app.canvas.redrawCanvas();
 
   let backgroundImageURL = window.innerWidth >= 500 ? "assets/background.jpg" : "assets/background_mobile.jpg";
   app.loading.loadingImage(backgroundImageURL)
