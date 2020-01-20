@@ -73,7 +73,7 @@ app.nav = (function () {
     window.scrollTo({
       left: 0,
       top: locationPosition,
-      behavior: 'smooth',
+      behavior: 'auto',
     });
   };
 
