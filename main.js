@@ -316,11 +316,12 @@ app.canvas = (function () {
           let distance = (1 - ((Math.abs(this.x - dot.x) + Math.abs(this.y - dot.y)) / 240)).toFixed(3);
 
           context.lineWidth = distance;
-          context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
+          context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : isSmallScreen ? `rgba(255, 255, 255, ${distance})` : `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
 
 
 
           if (
+            !isSmallScreen &&
             mouse.x <= this.x + 120 &&
             mouse.x > this.x - 120 &&
             mouse.y <= this.y + 120 &&
@@ -342,8 +343,8 @@ app.canvas = (function () {
           // context.lineWidth = (this.y / this.x) * (dot.y / dot.x)/2;
           //   context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
           // } else {
-            // context.lineWidth = 0.0001;
-            // context.strokeStyle = "#222";
+          // context.lineWidth = 0.0001;
+          // context.strokeStyle = "#222";
           // }
 
           context.stroke();
