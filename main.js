@@ -268,10 +268,12 @@ app.canvas = (function () {
       let circleWidth = isSmallScreen ? innerWidth / 2.5 : innerHeight / 1.6;
       let circleHeight = isSmallScreen ? innerWidth / 3 : innerHeight / 3;
 
-      if (!this.isDotAddedOnClick) {
+      if (!this.isDotAddedOnClick && !isSmallScreen) {
         this.radians += 0.001;
         this.x = x + Math.cos(this.radians) * circleWidth;
         this.y = y + Math.sin(this.radians) * circleHeight;
+        // this.x = x + Math.cos(this.radians) * circleWidth - mouse.x / 20;
+        // this.y = y + Math.sin(this.radians) * circleHeight - mouse.y / 20;
       } else {
         if (this.x + this.radius > innerWidth + 100 || this.x - this.radius < -100 /*0*/) {
           this.dx = -this.dx;
@@ -284,9 +286,6 @@ app.canvas = (function () {
         this.y += this.dy;
       }
 
-
-      // this.x = x + Math.cos(this.radians) * circleWidth - mouse.x / 50;
-      // this.y = y + Math.sin(this.radians) * circleHeight - mouse.y / 50;
 
       // if (
       //   mouse.x <= this.x + 50 &&
@@ -317,29 +316,36 @@ app.canvas = (function () {
           let distance = (1 - ((Math.abs(this.x - dot.x) + Math.abs(this.y - dot.y)) / 240)).toFixed(3);
 
           context.lineWidth = distance;
-          context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : `rgba(255, 255, 255, ${distance})`;
+          context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
+
+
+
+          if (
+            mouse.x <= this.x + 120 &&
+            mouse.x > this.x - 120 &&
+            mouse.y <= this.y + 120 &&
+            mouse.y > this.y - 120
+          ) {
+            this.color < 255 ? this.color += 1 : null;
+            this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
+            // context.strokeStyle = `rgba(255, 255, 255, ${distance})`;
+            // context.strokeStyle = `rgba(${this.randomRedColor}, ${this.randomGreenColor}, ${this.randomBlueColor}, ${distance})`;
+            context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${distance + 0.1})`;
+          } else {
+            this.color <= color ? color : this.color -= 1;
+            this.radius = this.radius > radius ? this.radius - 0.02 : radius;
+          }
 
           // if (this.y > 0 && dot.y > 0) {
-          //     context.lineWidth = (this.y * dot.y) / 1000000;
-          // context.strokeStyle = "#cecece";
+          //   context.lineWidth = (this.y * dot.y) / 300000;
+          //   // context.lineWidth = (this.x * dot.x) / 300000;
+          // context.lineWidth = (this.y / this.x) * (dot.y / dot.x)/2;
+          //   context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
           // } else {
-          //     context.lineWidth = 0.0001;
-          //     context.strokeStyle = "#222";
-          //   }
-
-
-          // if (
-          //   mouse.x <= this.x + 120 &&
-          //   mouse.x > this.x - 120 &&
-          //   mouse.y <= this.y + 120 &&
-          //   mouse.y > this.y - 120
-          // ) {
-          //   context.lineTo(mouse.x, mouse.y);
-          //   context.strokeStyle = `rgba(4, 194, 201, ${distance})`;
+            // context.lineWidth = 0.0001;
+            // context.strokeStyle = "#222";
           // }
 
-
-          // context.lineWidth = (this.y / this.x) * (dot.y / dot.x)/2;
           context.stroke();
         }
       });
@@ -363,13 +369,15 @@ app.canvas = (function () {
 
 
       if (window.innerWidth <= 996) {
-        let minY = innerHeight / 3 - 200;
-        let maxY = innerHeight / 1.5 + 200;
-        y = Math.random() * (maxY - minY) + minY;
-        radius = 1.5;
+        // let minY = innerHeight / 3 - 200;
+        // let maxY = innerHeight / 1.5 + 200;
+        // y = Math.random() * (maxY - minY) + minY;
+        // radius = 1.5;
+        x = Math.floor(Math.random() * innerWidth);
+        y = Math.floor(Math.random() * innerHeight);
       }
 
-      dotsArray.push(new Point(x, y, radius, 0.5, 80, false))
+      dotsArray.push(new Point(x, y, radius, 0.5, 180, false))
     }
 
     animateDots();
@@ -409,7 +417,8 @@ app.canvas = (function () {
       // canvas.height = window.innerHeight;
       createHiDPICanvas(window.innerWidth, window.innerHeight);
 
-      let numberOfDots = window.innerWidth >= 1024 ? 120 : 45;
+      let numberOfDots = Math.floor(window.innerWidth / 11);
+      numberOfDots = numberOfDots < 120 ? numberOfDots : 120;
       createDotsArray(numberOfDots);
     }
   }
@@ -497,39 +506,39 @@ app.scroll = (function () {
       headerArrowDownFirst.setAttribute(
         "style",
         `bottom: 30px;
-         border-color: rgba(187, 187, 187, 1);
-         pointer-events: all;`
+            border - color: rgba(187, 187, 187, 1);
+            pointer - events: all; `
       );
       headerArrowDownSecond.setAttribute(
         "style",
         `bottom: 30px;
-         border-color: rgba(187, 187, 187, 1);
-         pointer-events: all;`
+            border - color: rgba(187, 187, 187, 1);
+            pointer - events: all; `
       );
       headerArrowDownWrapper.setAttribute(
         "style",
         `cursor: pointer;
-         pointer-events: all;`
+            pointer - events: all; `
       );
     } else {
       headerArrowDownFirst.setAttribute(
         "style",
         `bottom: -40px;
-         transition: all .4s;
-         border-color: rgba(255, 255, 255, 0);
-         pointer-events: none;`
+            transition: all .4s;
+            border - color: rgba(255, 255, 255, 0);
+            pointer - events: none; `
       );
       headerArrowDownSecond.setAttribute(
         "style",
         `bottom: -40px;
-         transition: all .4s;
-         border-color: rgba(255, 255, 255, 0);
-         pointer-events: none;`
+            transition: all .4s;
+            border - color: rgba(255, 255, 255, 0);
+            pointer - events: none; `
       );
       headerArrowDownWrapper.setAttribute(
         "style",
-        `cursor: default;
-         pointer-events: none;`
+        `cursor: default ;
+            pointer - events: none; `
       );
     }
   };
@@ -552,11 +561,11 @@ app.scroll = (function () {
 
       headerTitleH1.setAttribute(
         "style",
-        `opacity: ${titleOpacity};`
+        `opacity: ${titleOpacity}; `
       );
       headerTitleH2.setAttribute(
         "style",
-        `opacity: ${titleOpacity};`
+        `opacity: ${titleOpacity}; `
       );
     }
   };
@@ -578,7 +587,7 @@ app.scroll = (function () {
 
         authorImage.setAttribute(
           "style",
-          `opacity: 1;`
+          `opacity: 1; `
         );
       } else {
         let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
@@ -588,7 +597,7 @@ app.scroll = (function () {
 
         authorImage.setAttribute(
           "style",
-          `opacity: ${authorNameOpacity};`
+          `opacity: ${authorNameOpacity}; `
         );
       }
     }
@@ -638,7 +647,7 @@ app.scroll = (function () {
     //     let k = i;
     //     setTimeout(function () {
     //       skillsElements[k].classList.add("show-skills");
-    //       skillsElements[k].style.transition = `all .2s ease-in`;
+    //       skillsElements[k].style.transition = `all .2s ease -in `;
     //     }, 150 * (k + 1));
     //   }
     // } else {
@@ -646,7 +655,7 @@ app.scroll = (function () {
     //     let k = i;
     //     setTimeout(function () {
     //       skillsElements[k].classList.remove("show-skills");
-    //       skillsElements[k].style.transition = `all .2s ease-out`;
+    //       skillsElements[k].style.transition = `all .2s ease - out`;
     //     }, 150 * (k + 1));
     //   }
     // }
@@ -665,13 +674,13 @@ app.scroll = (function () {
         arrowToTop.setAttribute(
           "style",
           `
-          position:fixed; 
-          right:20px; 
-          bottom:20px; 
-          z-index: 6; 
-          width: 60px; 
-          height:60px;
-          `
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z - index: 6;
+            width: 60px;
+            height: 60px;
+            `
         );
         arrowImg.setAttribute(
           "style",
@@ -681,11 +690,11 @@ app.scroll = (function () {
         arrowToTop.setAttribute(
           "style",
           `
-          position:fixed; 
-          right:20px; 
-          bottom:20px; 
-          z-index: 6;
-          `
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z - index: 6;
+            `
         );
         arrowImg.setAttribute(
           "style",
@@ -696,9 +705,9 @@ app.scroll = (function () {
       arrowToTop.setAttribute(
         "style",
         `
-        position:relative; 
-        bottom:85px;
-        `
+            position: relative;
+            bottom: 85px;
+            `
       );
     }
 
@@ -750,10 +759,10 @@ app.loading = (function () {
     xmlHTTP.onprogress = function (e) {
       thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
 
-      loadingPercentageElement.innerHTML = thisImg.completedPercentage ? `${thisImg.completedPercentage}%` : "";
+      loadingPercentageElement.innerHTML = thisImg.completedPercentage ? `${thisImg.completedPercentage}% ` : "";
       loadingPercentageElement.style.right = thisImg.completedPercentage < 10 ? "0px" : "6px";
 
-      loadingBarElement.style.width = `${thisImg.completedPercentage}%`;
+      loadingBarElement.style.width = `${thisImg.completedPercentage}% `;
     };
     xmlHTTP.onloadstart = function () {
       thisImg.completedPercentage = 0;
@@ -823,7 +832,7 @@ app.loadingIFrames = (function () {
 
         portfolioSection.classList.add("iframes-not-loaded");
 
-        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.jpg" alt="project image">`;
+        laptopElements[index].innerHTML = `< img src = "./assets/websitesImages/${projectImgName}.jpg" alt = "project image" > `;
 
       } else {
         const iFrameName = laptopElements[index].getAttribute("data-app-name");
@@ -831,8 +840,8 @@ app.loadingIFrames = (function () {
         portfolioSection.classList.remove("iframes-not-loaded");
 
         laptopElements[index].innerHTML = `
-          <img src="./assets/computer.jpg" alt="laptop image">
-          <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
+              < img src = "./assets/computer.jpg" alt = "laptop image" >
+                <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
 
       }
 
