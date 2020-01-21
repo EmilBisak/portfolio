@@ -507,39 +507,39 @@ app.scroll = (function () {
       headerArrowDownFirst.setAttribute(
         "style",
         `bottom: 30px;
-            border - color: rgba(187, 187, 187, 1);
-            pointer - events: all; `
+            border-color: rgba(187, 187, 187, 1);
+            pointer-events: all; `
       );
       headerArrowDownSecond.setAttribute(
         "style",
         `bottom: 30px;
-            border - color: rgba(187, 187, 187, 1);
-            pointer - events: all; `
+            border-color: rgba(187, 187, 187, 1);
+            pointer-events: all; `
       );
       headerArrowDownWrapper.setAttribute(
         "style",
         `cursor: pointer;
-            pointer - events: all; `
+            pointer-events: all; `
       );
     } else {
       headerArrowDownFirst.setAttribute(
         "style",
         `bottom: -40px;
             transition: all .4s;
-            border - color: rgba(255, 255, 255, 0);
-            pointer - events: none; `
+            border-color: rgba(255, 255, 255, 0);
+            pointer-events: none; `
       );
       headerArrowDownSecond.setAttribute(
         "style",
         `bottom: -40px;
             transition: all .4s;
-            border - color: rgba(255, 255, 255, 0);
-            pointer - events: none; `
+            border-color: rgba(255, 255, 255, 0);
+            pointer-events: none; `
       );
       headerArrowDownWrapper.setAttribute(
         "style",
         `cursor: default ;
-            pointer - events: none; `
+            pointer-events: none; `
       );
     }
   };
@@ -833,7 +833,7 @@ app.loadingIFrames = (function () {
 
         portfolioSection.classList.add("iframes-not-loaded");
 
-        laptopElements[index].innerHTML = `< img src = "./assets/websitesImages/${projectImgName}.jpg" alt = "project image" > `;
+        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.jpg" alt="project image" >`;
 
       } else {
         const iFrameName = laptopElements[index].getAttribute("data-app-name");
@@ -841,8 +841,8 @@ app.loadingIFrames = (function () {
         portfolioSection.classList.remove("iframes-not-loaded");
 
         laptopElements[index].innerHTML = `
-              < img src = "./assets/computer.jpg" alt = "laptop image" >
-                <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
+          <img src = "./assets/computer.jpg" alt = "laptop image" >
+          <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
 
       }
 
