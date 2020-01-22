@@ -141,6 +141,7 @@ app.canvas = (function () {
 
   let headerTitle = document.querySelector(".header-content");
 
+  let colorFiller = document.querySelector(".header-content-holder .color-filler");
   let playIcon = document.querySelector(".header-content-holder .color-filler .play-animation");
   let pauseIcon = document.querySelector(".header-content-holder .color-filler .pause-animation");
   let playTitle = document.querySelector(".header-content-holder .color-filler .play-title");
@@ -171,8 +172,7 @@ app.canvas = (function () {
   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
   headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
   headerTitle.addEventListener("mouseover", mouseOverTitle);
-  playIcon.addEventListener("click", coloringTrianglesAnimation);
-  pauseIcon.addEventListener("click", coloringTrianglesAnimation);
+  colorFiller.addEventListener("click", coloringTrianglesAnimation);
 
 
   function mouseOverCanvas() {
