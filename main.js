@@ -141,6 +141,12 @@ app.canvas = (function () {
 
   let headerTitle = document.querySelector(".header-content");
 
+  let colorFiller = document.querySelector(".header-content-holder .color-filler");
+  let playIcon = document.querySelector(".header-content-holder .color-filler .play-animation");
+  let pauseIcon = document.querySelector(".header-content-holder .color-filler .pause-animation");
+  let playTitle = document.querySelector(".header-content-holder .color-filler .play-title");
+  let pauseTitle = document.querySelector(".header-content-holder .color-filler .pause-title");
+
   let context = canvas.getContext('2d');
 
   let isSmallScreen = window.innerWidth <= 996;
@@ -157,12 +163,16 @@ app.canvas = (function () {
   let dotsArray = [];
   let animationRequestID;
 
+  let fillColor = "0,0,0";
+
+
   window.addEventListener("resize", redrawCanvas);
   canvas.addEventListener("click", addNewPointOnClick);
   canvas.addEventListener("mouseover", mouseOverCanvas);
   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
   headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
   headerTitle.addEventListener("mouseover", mouseOverTitle);
+  colorFiller.addEventListener("click", coloringTrianglesAnimation);
 
 
   function mouseOverCanvas() {
@@ -195,7 +205,7 @@ app.canvas = (function () {
   }
 
   function addNewPointOnClick(event) {
-    if ((isSmallScreen && dotsArray.length < 90) || (!isSmallScreen && dotsArray.length < 200)) {
+    if ((isSmallScreen && dotsArray.length < 80) || (!isSmallScreen && dotsArray.length < 150)) {
       cancelCanvasAnimation();
       dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
       animateDots();
@@ -229,6 +239,140 @@ app.canvas = (function () {
     return canvas;
   }
 
+  let red = 0;
+  let green = 0;
+  let blue = 0;
+
+  let fillTrianglesCounter = 0;
+
+  let coloringAnimation;
+
+  let isCanvasFilled = false;
+  let shouldStartColoringAnimation = false;
+
+  function fillTriangle() {
+
+    if (fillTrianglesCounter === 3) {
+      red = 0;
+      green = 0;
+      blue = 0;
+      fillTrianglesCounter = 0;
+    }
+
+
+    if (!isCanvasFilled) {
+
+      if ((red === 0 || red === 5) && (green === 0 || green === 5) && (blue === 0 || blue === 5)) {
+        fillTrianglesCounter++;
+
+
+        // while (red < 4) {
+        //   (function (red) {
+        //     setTimeout(() => {
+        //       // fillColor = `${red},${green},${blue}`
+        //     }, 8 * red)
+        //   })(red++)
+        // }
+        // while (green < 221) {
+        //   (function (green) {
+        //     setTimeout(() => {
+        //       // fillColor = `${red},${green},${blue}`
+        //     }, 8 * green)
+        //   })(green++)
+        // }
+        while (blue < 231) {
+          (function (blue) {
+            setTimeout(() => {
+              fillColor = `${blue},${blue},${blue}`
+            }, 8 * blue)
+          })(blue++)
+        }
+
+        isCanvasFilled = true;
+      } else {
+        fillTrianglesCounter++;
+        for (let i = red, j = green, p = blue; i >= 0, p > 0, j > 0; i-- , j-- , p--) {
+          setTimeout(() => {
+            if (i < 2) i = 0;
+            if (j == 1) j = 0;
+            if (p == 1) p = 0;
+            if (i === 0 && j === 0 && p === 0) {
+              red = 0;
+              green = 0;
+              blue = 0;
+              fillTrianglesCounter = 0;
+            }
+            fillColor = `${i},${j},${p}`
+
+          }, Math.abs(i) * 7);
+          isCanvasFilled = false;
+        }
+
+
+      }
+
+
+    } else {
+      isCanvasFilled = false;
+      fillTrianglesCounter++;
+
+      while (red < 4) {
+        (function (red) {
+          setTimeout(() => {
+            fillColor = `${red},${green},${blue}`
+          }, 10 * red)
+        })(red++)
+      }
+      while (green < 232) {
+        (function (green) {
+          setTimeout(() => {
+            fillColor = `${red},${green},${blue}`
+          }, 10 * green)
+        })(green++)
+      }
+      while (blue < 232) {
+        (function (blue) {
+          setTimeout(() => {
+            fillColor = `${red},${green},${blue}`
+          }, 10 * blue)
+        })(blue++)
+      }
+
+    }
+  }
+
+  function startColoringTrianglesAnimation(intervalTime) {
+    coloringAnimation = setInterval(() => {
+      fillTriangle();
+    }, intervalTime);
+    shouldStartColoringAnimation && fillTriangle();
+  }
+
+  function stopColoringTrianglesAnimation() {
+    clearInterval(coloringAnimation)
+  }
+
+  function coloringTrianglesAnimation() {
+    shouldStartColoringAnimation = !shouldStartColoringAnimation;
+    console.log({shouldStartColoringAnimation});
+    
+
+    if (shouldStartColoringAnimation) {
+      startColoringTrianglesAnimation(8000);
+      playIcon.style.display = "none";
+      pauseIcon.style.display = "block";
+      playTitle.style.display = "none";
+      pauseTitle.style.display = "block";
+    } else {
+      stopColoringTrianglesAnimation();
+      playIcon.style.display = "block";
+      pauseIcon.style.display = "none";
+      playTitle.style.display = "block";
+      pauseTitle.style.display = "none";
+    }
+
+  }
+
   function Point(x, y, radius, opacity, color, isDotAddedOnClick) {
     this.x = x;
     this.y = y;
@@ -238,7 +382,7 @@ app.canvas = (function () {
     this.randomRedColor = Math.round(Math.random() * 255);
     this.randomGreenColor = Math.round(Math.random() * 255);
     this.randomBlueColor = Math.round(Math.random() * 255);
-    this.dotsColor = ["#fff", "#2196f3", "#04c2c9", "#209cee", "#2121ff"]
+    this.dotsColor = ["rgba(255, 255, 255", "rgba(33, 150, 243", "rgba(4, 194, 201", "rgba(32, 156, 238", "rgba(33, 33, 255"]
     this.randomDotColorIndex = Math.floor(Math.random() * this.dotsColor.length);
     this.radians = Math.random() * Math.PI * 2;
     this.isDotAddedOnClick = isDotAddedOnClick;
@@ -247,16 +391,16 @@ app.canvas = (function () {
 
     this.draw = function () {
       if (isSmallScreen) {
-        // drawing squares ***
+        // DRAWING SQUARES //
         // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, 0.9)`;
-        context.fillStyle = this.dotsColor[this.randomDotColorIndex];
+        context.fillStyle = `${this.dotsColor[this.randomDotColorIndex]},1)`;
         context.fillRect(this.x, this.y, this.radius, this.radius)
       } else {
-        // drawing circles ***
+        // DRAWING CIRCLES //
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         // context.fillStyle = `rgba(${this.randomRedColor},${this.randomGreenColor},${this.randomBlueColor}, .92)`;
-        context.fillStyle = this.dotsColor[this.randomDotColorIndex];
+        context.fillStyle = `${this.dotsColor[this.randomDotColorIndex]},1)`;
         context.fill();
         // context.stroke();
         context.closePath();
@@ -265,6 +409,8 @@ app.canvas = (function () {
     }
 
     this.update = function () {
+      const conectedDots = [];
+
       let circleWidth = isSmallScreen ? innerWidth / 2.5 : innerHeight / 1.6;
       let circleHeight = isSmallScreen ? innerWidth / 3 : innerHeight / 3;
 
@@ -287,39 +433,49 @@ app.canvas = (function () {
       }
 
 
-      // if (
-      //   mouse.x <= this.x + 50 &&
-      //   mouse.x > this.x - 50 &&
-      //   mouse.y > this.y - 50
-      // ) {
-      //   this.opacity < 0.8 ? this.opacity += 0.04 : null;
-      //   this.color < 160 ? this.color += 3 : null;
-      //   this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
-      // } else {
-      //   this.opacity = opacity;
-      //   this.color <= color ? color : this.color -= 2;
-      //   this.radius = this.radius > radius ? this.radius - 0.02 : radius;
-      // }
-
-
       dotsArray.forEach(dot => {
         if (this.x - dot.x <= 120 &&
           this.x - dot.x > -120 &&
           this.y - dot.y <= 120 &&
           this.y - dot.y > -120) {
+
+          // DRAWING LINES BETWEEN DOTS //
           context.beginPath();
           context.lineJoin = "round";
           context.moveTo(this.x, this.y);
           context.lineTo(dot.x, dot.y);
           context.fill();
 
+          // CALCULATING DISTANCE BETWEEN DOTS //
           let distance = (1 - ((Math.abs(this.x - dot.x) + Math.abs(this.y - dot.y)) / 240)).toFixed(3);
 
+          // SETTING LINE WIDTH //
           context.lineWidth = distance;
+
+          // SETTING LINE COLOR //
           context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : isSmallScreen ? `rgba(255, 255, 255, ${distance})` : `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
 
+          // FILLING ELEMENTS //
+          if (fillColor !== "0,0,0") {
+
+            conectedDots.length = fillTrianglesCounter === 0 ? 0 : conectedDots.length;
+
+            if (!conectedDots.includes(dot)) { conectedDots.push(dot); }
 
 
+            if (conectedDots.length > 0) {
+              context.lineWidth = distance / 4;
+              context.lineTo(conectedDots[0].x, conectedDots[0].y);
+              context.fillStyle = `rgba(${fillColor}, ${distance / 6})`;
+              context.fill();
+            } else {
+              context.lineWidth = distance;
+            }
+          }
+          // FILLING ELEMENTS END //
+
+
+          // ON MOUSE HOVER LINES //
           if (
             !isSmallScreen &&
             mouse.x <= this.x + 120 &&
@@ -327,16 +483,25 @@ app.canvas = (function () {
             mouse.y <= this.y + 120 &&
             mouse.y > this.y - 120
           ) {
-            this.color < 255 ? this.color += 1 : null;
-            this.radius < (radius + 0.5) ? this.radius += 0.08 : this.radius -= 0.08;
-            // context.strokeStyle = `rgba(255, 255, 255, ${distance})`;
-            // context.strokeStyle = `rgba(${this.randomRedColor}, ${this.randomGreenColor}, ${this.randomBlueColor}, ${distance})`;
+            this.color < 255 ? this.color += 2 : null;
+            this.radius < (radius + 0.8) ? this.radius += 0.08 : this.radius -= 0.08;
+            context.lineWidth = distance;
             context.strokeStyle = `rgba(${this.color}, ${this.color}, ${this.color}, ${distance + 0.1})`;
+
+            // context.strokeStyle = `rgba(${this.randomRedColor}, ${this.randomGreenColor}, ${this.randomBlueColor}, ${distance})`;
+
+            // context.lineTo(mouse.x, mouse.y);
+            // context.fillStyle = `${this.dotsColor[this.randomDotColorIndex]}, ${0.02})`;
+            // context.fillStyle = `${fillColor}, ${0.02})`;
+            context.fill();
           } else {
             this.color <= color ? color : this.color -= 1;
             this.radius = this.radius > radius ? this.radius - 0.02 : radius;
           }
+          // ON MOUSE HOVER LINES END //
 
+
+          // // SETTING LINE WIDTH TO BE THICKER ON ONE SIDE OF SCREEN //
           // if (this.y > 0 && dot.y > 0) {
           //   context.lineWidth = (this.y * dot.y) / 300000;
           //   // context.lineWidth = (this.x * dot.x) / 300000;
@@ -378,7 +543,7 @@ app.canvas = (function () {
         y = Math.floor(Math.random() * innerHeight);
       }
 
-      dotsArray.push(new Point(x, y, radius, 0.5, 180, false))
+      dotsArray.push(new Point(x, y, radius, 0, 180, false))
     }
 
     animateDots();
@@ -419,7 +584,7 @@ app.canvas = (function () {
       createHiDPICanvas(window.innerWidth, window.innerHeight);
 
       let numberOfDots = Math.floor(window.innerWidth / 11);
-      numberOfDots = numberOfDots < 120 ? numberOfDots : 120;
+      numberOfDots = numberOfDots < 100 ? numberOfDots : 100;
       createDotsArray(numberOfDots);
     }
   }
@@ -678,7 +843,7 @@ app.scroll = (function () {
             position: fixed;
             right: 20px;
             bottom: 20px;
-            z - index: 6;
+            z-index: 6;
             width: 60px;
             height: 60px;
             `
@@ -694,7 +859,7 @@ app.scroll = (function () {
             position: fixed;
             right: 20px;
             bottom: 20px;
-            z - index: 6;
+            z-index: 6;
             `
         );
         arrowImg.setAttribute(
@@ -706,9 +871,9 @@ app.scroll = (function () {
       arrowToTop.setAttribute(
         "style",
         `
-            position: relative;
-            bottom: 85px;
-            `
+          position: relative;
+          bottom: 85px;
+          `
       );
     }
 
@@ -760,10 +925,10 @@ app.loading = (function () {
     xmlHTTP.onprogress = function (e) {
       thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
 
-      loadingPercentageElement.innerHTML = thisImg.completedPercentage ? `${thisImg.completedPercentage}% ` : "";
+      loadingPercentageElement.innerHTML = thisImg.completedPercentage ? `${thisImg.completedPercentage}%` : "";
       loadingPercentageElement.style.right = thisImg.completedPercentage < 10 ? "0px" : "6px";
 
-      loadingBarElement.style.width = `${thisImg.completedPercentage}% `;
+      loadingBarElement.style.width = `${thisImg.completedPercentage}%`;
     };
     xmlHTTP.onloadstart = function () {
       thisImg.completedPercentage = 0;
@@ -841,7 +1006,7 @@ app.loadingIFrames = (function () {
         portfolioSection.classList.remove("iframes-not-loaded");
 
         laptopElements[index].innerHTML = `
-          <img src = "./assets/computer.jpg" alt = "laptop image" >
+          <img src="./assets/computer.jpg" alt="laptop image" >
           <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
 
       }

@@ -160,6 +160,10 @@ h5 {
     font-size: 0.9em;
 }
 
+img {
+    user-select: none;
+}
+
 body,
 html {
     height: 100%;
@@ -252,8 +256,10 @@ section:nth-child(5) {
 }
 
 canvas {
-    background-color: #111;
-    background-image: linear-gradient(to bottom, #151515 0%, #111 100%);
+    /* background-color: #111;
+    background-image: linear-gradient(to bottom, #000 0%, #222 100%); */
+    background: rgb(0,0,0);
+    background: linear-gradient(-180deg, rgba(10,10,10,1) 0%, rgb(20, 20, 20) 100%);
     position: absolute;
     top: 0;
     left: 0;
@@ -285,6 +291,60 @@ header {
     overflow-x: hidden;
 }
 
+.header-content-holder .color-filler{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    left: 30px;
+    bottom: 35px;
+    z-index: 1000;
+    color: #bbb;
+    cursor: pointer;
+}
+
+.header-content-holder .color-filler .play-title,
+.header-content-holder .color-filler .pause-title{
+    color: #bbb;
+    position: absolute;
+    top: -30px;
+    left: -13px;
+    width: 100px;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.header-content-holder .color-filler .play-animation,
+.header-content-holder .color-filler .pause-animation{
+    height: 25px;
+    width: 25px;
+    color: #bbb;
+    cursor: pointer;
+    transition: color .2s;
+    z-index: 1001;
+    position: relative;
+}
+.header-content-holder .color-filler .pause-animation,
+.header-content-holder .color-filler .pause-title{
+    display: none;
+}
+
+.header-content-holder .color-filler .play-animation:visited,
+.header-content-holder .color-filler .play-animation:hover,
+.header-content-holder .color-filler .play-animation:active,
+.header-content-holder .color-filler .pause-animation:visited,
+.header-content-holder .color-filler .pause-animation:hover,
+.header-content-holder .color-filler .pause-animation:active,
+.header-content-holder .color-filler .play-animation:visited ~ .play-title,
+.header-content-holder .color-filler .play-animation:hover ~ .play-title,
+.header-content-holder .color-filler .play-animation:active ~ .play-title,
+.header-content-holder .color-filler .pause-animation:visited ~ .pause-title,
+.header-content-holder .color-filler .pause-animation:hover ~ .pause-title,
+.header-content-holder .color-filler .pause-animation:active ~ .pause-title {
+    color: #fff;
+    transition: color .2s, opacity .2s;
+    opacity: 1;
+}
+
 header .header-content {
     position: absolute;
     top: 50%;
@@ -299,6 +359,7 @@ header .header-content {
     max-width: 1100px;
     cursor: default;
     z-index: 2;
+    user-select: none;
 }
 
 header .header-content .header-image {
@@ -309,6 +370,7 @@ header .header-content .header-image {
     margin: 20px auto;
     -webkit-box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.3);
+    user-select: none;
 }
 
 header .header-content h1 {
@@ -316,8 +378,9 @@ header .header-content h1 {
     font-size: 70px;
     font-weight: 700;
     text-transform: uppercase;
-    text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 1), 0 0 4px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 15px rgba(10, 10, 10, 1), 0 0 10px rgba(10, 10, 10, 1), 0 0 5px rgba(10, 10, 10, 1), 0 0 4px rgba(10, 10, 10, 1), 0 0 3px rgba(10, 10, 10, 1);
     color: #fff;
+    user-select: none;
 }
 
 header .header-content h2 {
@@ -328,7 +391,8 @@ header .header-content h2 {
     padding-bottom: 20px;
     line-height: 1;
     font-weight: 700;
-    text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 1), 0 0 4px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 15px rgba(10, 10, 10, 1), 0 0 10px rgba(10, 10, 10, 1), 0 0 5px rgba(10, 10, 10, 1), 0 0 4px rgba(10, 10, 10, 1), 0 0 3px rgba(10, 10, 10, 1);
+    user-select: none;
 }
 
 header .header-content-holder .arrow-to-down-wrapper {
@@ -366,6 +430,7 @@ header .header-content-holder .arrow-to-down {
     margin-bottom: 20px;
     /* margin-bottom: 30px; */
     pointer-events: all;
+    outline: none;
 }
 
 header .header-content-holder .arrow-to-down-wrapper:hover .arrow-to-down,
@@ -401,7 +466,7 @@ header .header-content-holder .animated-arrow-2 {
     header .header-content h2 {
         font-size: 30px;
         /* text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3); */
-        text-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 1), 0 0 4px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 1);
+        text-shadow: 0 0 15px rgba(10, 10, 10, 1), 0 0 10px rgba(10, 10, 10, 1), 0 0 5px rgba(10, 10, 10, 1), 0 0 4px rgba(10, 10, 10, 1), 0 0 3px rgba(10, 10, 10, 1);
     }
 }
 
@@ -549,6 +614,7 @@ nav {
     -o-transition: background 0.4s;
     transition: background 0.4s;
     display: none;
+    user-select: none;
 }
 
 nav .nav-content-wrapp {
@@ -585,6 +651,28 @@ nav:hover .nav-content-wrapp .nav-list li a {
     transition: color .8s;
 }
 
+/* nav .nav-content-wrapp .nav-list li a::before {
+    display: block;
+    content: '';
+    border-bottom: solid 3px #04C2C9;
+    -webkit-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: -webkit-transform 300ms ease-in-out;
+    transition: -webkit-transform 300ms ease-in-out;
+    -o-transition: transform 300ms ease-in-out;
+    transition: transform 300ms ease-in-out;
+    transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+nav .nav-content-wrapp .nav-list li a:hover:before {
+    -webkit-transform: scaleX(1.5);
+    -ms-transform: scaleX(1.5);
+    transform: scaleX(1.5);
+} */
+
 nav .nav-content-wrapp .nav-list li a::after {
     display: block;
     content: '';
@@ -598,6 +686,7 @@ nav .nav-content-wrapp .nav-list li a::after {
     transition: transform 300ms ease-in-out;
     transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
     cursor: pointer;
+    margin-top: 3px;
 }
 
 /* nav .nav-content-wrapp .nav-list li a.active:after, */
@@ -735,6 +824,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 /* about-image start */
 .about-content .image-holder {
     position: relative;
+    user-select: none;
 }
 
 .about-content .image-top-borders::before,
