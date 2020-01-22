@@ -141,7 +141,6 @@ app.canvas = (function () {
 
   let headerTitle = document.querySelector(".header-content");
 
-  let colorFiller = document.querySelector(".header-content-holder .color-filler");
   let playIcon = document.querySelector(".header-content-holder .color-filler .play-animation");
   let pauseIcon = document.querySelector(".header-content-holder .color-filler .pause-animation");
   let playTitle = document.querySelector(".header-content-holder .color-filler .play-title");
@@ -172,7 +171,8 @@ app.canvas = (function () {
   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
   headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
   headerTitle.addEventListener("mouseover", mouseOverTitle);
-  colorFiller.addEventListener("click", coloringTrianglesAnimation);
+  playIcon.addEventListener("click", coloringTrianglesAnimation);
+  pauseIcon.addEventListener("click", coloringTrianglesAnimation);
 
 
   function mouseOverCanvas() {
@@ -358,17 +358,17 @@ app.canvas = (function () {
     
 
     if (shouldStartColoringAnimation) {
-      startColoringTrianglesAnimation(8000);
       playIcon.style.display = "none";
-      pauseIcon.style.display = "block";
       playTitle.style.display = "none";
+      pauseIcon.style.display = "block";
       pauseTitle.style.display = "block";
+      startColoringTrianglesAnimation(8000);
     } else {
-      stopColoringTrianglesAnimation();
       playIcon.style.display = "block";
-      pauseIcon.style.display = "none";
       playTitle.style.display = "block";
+      pauseIcon.style.display = "none";
       pauseTitle.style.display = "none";
+      stopColoringTrianglesAnimation();
     }
 
   }
