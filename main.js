@@ -207,7 +207,7 @@ app.canvas = (function () {
   }
 
   function addNewPointOnClick(event) {
-    if (dotsArray.length < (numberOfDots + Math.round(numberOfDots/3))) {
+    if ((isSmallScreen && dotsArray.length < (numberOfDots + Math.round(numberOfDots / 2))) || (!isSmallScreen && dotsArray.length < (numberOfDots + Math.round(numberOfDots / 3)))) {
       cancelCanvasAnimation();
       dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
       animateDots();
