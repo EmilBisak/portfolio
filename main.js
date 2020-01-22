@@ -161,6 +161,8 @@ app.canvas = (function () {
   let isMouseOverTitle = false;
 
   let dotsArray = [];
+  let numberOfDots = Math.floor(window.innerWidth / 15);
+
   let animationRequestID;
 
   let fillColor = "0,0,0";
@@ -205,7 +207,7 @@ app.canvas = (function () {
   }
 
   function addNewPointOnClick(event) {
-    if ((isSmallScreen && dotsArray.length < 80) || (!isSmallScreen && dotsArray.length < 150)) {
+    if (dotsArray.length < (numberOfDots + Math.round(numberOfDots/3))) {
       cancelCanvasAnimation();
       dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
       animateDots();
@@ -354,8 +356,6 @@ app.canvas = (function () {
 
   function coloringTrianglesAnimation() {
     shouldStartColoringAnimation = !shouldStartColoringAnimation;
-    console.log({shouldStartColoringAnimation});
-    
 
     if (shouldStartColoringAnimation) {
       playIcon.style.display = "none";
@@ -583,7 +583,7 @@ app.canvas = (function () {
       // canvas.height = window.innerHeight;
       createHiDPICanvas(window.innerWidth, window.innerHeight);
 
-      let numberOfDots = Math.floor(window.innerWidth / 11);
+      numberOfDots = Math.floor(window.innerWidth / 18);
       numberOfDots = numberOfDots < 100 ? numberOfDots : 100;
       createDotsArray(numberOfDots);
     }
