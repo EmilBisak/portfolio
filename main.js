@@ -119,15 +119,15 @@ app.header = (function () {
   const headerNode = document.querySelector("header");
 
   function setHeaderHeight() {
-
+    
     if (window.innerWidth <= 996) {
       headerNode.style.height = `${window.innerHeight}px`;
     } else {
       headerNode.style.height = "100%";
     }
-
+    
   };
-
+  
   return {
     setHeaderHeight
   };
@@ -135,39 +135,53 @@ app.header = (function () {
 
 // canvas module
 app.canvas = (function () {
-
-
+  
+  
   let canvas = document.querySelector("canvas");
-
+  
   let headerTitle = document.querySelector(".header-content");
-
+  
   let colorFiller = document.querySelector(".header-content-holder .color-filler");
   let playIcon = document.querySelector(".header-content-holder .color-filler .play-animation");
   let pauseIcon = document.querySelector(".header-content-holder .color-filler .pause-animation");
   let playTitle = document.querySelector(".header-content-holder .color-filler .play-title");
   let pauseTitle = document.querySelector(".header-content-holder .color-filler .pause-title");
-
+  
   let context = canvas.getContext('2d');
-
+  
   let isSmallScreen = window.innerWidth <= 996;
-
+  
   const initialWindowHeight = window.innerHeight;
   const initialWindowWidth = window.innerWidth;
-
+  
   const mouse = {
     x: undefined,
     y: undefined,
   }
   let isMouseOverTitle = false;
-
+  
   let dotsArray = [];
   let numberOfDots = Math.floor(window.innerWidth / 15);
-
+  
   let animationRequestID;
-
+  
+  // FILLCOLOR VARIABLES
   let fillColor = "0,0,0";
-
-
+  
+  let red = 0;
+  let green = 0;
+  let blue = 0;
+  
+  let fillTrianglesCounter = 0;
+  
+  let coloringAnimation;
+  
+  let isCanvasFilled = false;
+  let shouldStartColoringAnimation = false;
+  
+  let shouldCallFillColor = true;
+  
+  
   window.addEventListener("resize", redrawCanvas);
   canvas.addEventListener("click", addNewPointOnClick);
   canvas.addEventListener("mouseover", mouseOverCanvas);
@@ -240,19 +254,9 @@ app.canvas = (function () {
     }
     return canvas;
   }
-
-  let red = 0;
-  let green = 0;
-  let blue = 0;
-
-  let fillTrianglesCounter = 0;
-
-  let coloringAnimation;
-
-  let isCanvasFilled = false;
-  let shouldStartColoringAnimation = false;
-
+  
   function fillTriangle() {
+    shouldCallFillColor = false;
 
     if (fillTrianglesCounter === 3) {
       red = 0;
@@ -348,6 +352,7 @@ app.canvas = (function () {
       fillTriangle();
     }, intervalTime);
     shouldStartColoringAnimation && fillTriangle();
+    shouldCallFillColor = true;
   }
 
   function stopColoringTrianglesAnimation() {
@@ -386,8 +391,8 @@ app.canvas = (function () {
     this.randomDotColorIndex = Math.floor(Math.random() * this.dotsColor.length);
     this.radians = Math.random() * Math.PI * 2;
     this.isDotAddedOnClick = isDotAddedOnClick;
-    this.dx = (Math.random() - 0.5);;
-    this.dy = (Math.random() - 0.5);;
+    this.dx = (Math.random() - 0.5);
+    this.dy = (Math.random() - 0.5);
 
     this.draw = function () {
       if (isSmallScreen) {
@@ -421,11 +426,11 @@ app.canvas = (function () {
         // this.x = x + Math.cos(this.radians) * circleWidth - mouse.x / 20;
         // this.y = y + Math.sin(this.radians) * circleHeight - mouse.y / 20;
       } else {
-        if (this.x + this.radius > innerWidth + 100 || this.x - this.radius < -100 /*0*/) {
+        if (this.x + this.radius > innerWidth + 100 || this.x - this.radius < -0 /*0*/) {
           this.dx = -this.dx;
         }
 
-        if (this.y + this.radius > innerHeight + 100 || this.y - this.radius < -100 /*0*/) {
+        if (this.y + this.radius > innerHeight + 100 || this.y - this.radius < -0 /*0*/) {
           this.dy = -this.dy;
         }
         this.x += this.dx;
@@ -453,7 +458,9 @@ app.canvas = (function () {
           context.lineWidth = distance;
 
           // SETTING LINE COLOR //
-          context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : isSmallScreen ? `rgba(255, 255, 255, ${distance})` : `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
+          // context.strokeStyle = this.isDotAddedOnClick ? `rgba(4, 194, 201, ${distance})` : isSmallScreen ? `rgba(255, 255, 255, ${distance})` : `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
+
+          context.strokeStyle = isSmallScreen ? `rgba(255, 255, 255, ${distance})` : `rgba(${this.color}, ${this.color}, ${this.color}, ${distance})`;
 
           // FILLING ELEMENTS //
           if (fillColor !== "0,0,0") {
@@ -587,6 +594,11 @@ app.canvas = (function () {
       numberOfDots = numberOfDots < 100 ? numberOfDots : 100;
       createDotsArray(numberOfDots);
     }
+
+    console.log('shouldCallFillColor', shouldCallFillColor)
+
+    shouldCallFillColor && fillTriangle();
+
   }
 
 
