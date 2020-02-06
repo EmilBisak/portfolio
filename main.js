@@ -426,11 +426,11 @@ app.canvas = (function () {
         // this.x = x + Math.cos(this.radians) * circleWidth - mouse.x / 20;
         // this.y = y + Math.sin(this.radians) * circleHeight - mouse.y / 20;
       } else {
-        if (this.x + this.radius > innerWidth + 100 || this.x - this.radius < -0 /*0*/) {
+        if (this.x + this.radius > innerWidth + 50 || this.x - this.radius < -50 /*0*/) {
           this.dx = -this.dx;
         }
 
-        if (this.y + this.radius > innerHeight + 100 || this.y - this.radius < -0 /*0*/) {
+        if (this.y + this.radius > innerHeight + 50 || this.y - this.radius < -50 /*0*/) {
           this.dy = -this.dy;
         }
         this.x += this.dx;
