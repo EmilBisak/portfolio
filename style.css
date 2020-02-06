@@ -258,8 +258,8 @@ section:nth-child(5) {
 canvas {
     /* background-color: #111;
     background-image: linear-gradient(to bottom, #000 0%, #222 100%); */
-    background: rgb(0,0,0);
-    background: linear-gradient(-180deg, rgba(10,10,10,1) 0%, rgb(20, 20, 20) 100%);
+    background: rgb(0, 0, 0);
+    background: linear-gradient(-180deg, rgba(10, 10, 10, 1) 0%, rgb(20, 20, 20) 100%);
     position: absolute;
     top: 0;
     left: 0;
@@ -291,7 +291,7 @@ header {
     overflow-x: hidden;
 }
 
-.header-content-holder .color-filler{
+.header-content-holder .color-filler {
     position: absolute;
     height: 25px;
     width: 25px;
@@ -303,7 +303,7 @@ header {
 }
 
 .header-content-holder .color-filler .play-title,
-.header-content-holder .color-filler .pause-title{
+.header-content-holder .color-filler .pause-title {
     color: #bbb;
     position: absolute;
     top: -30px;
@@ -314,7 +314,7 @@ header {
 }
 
 .header-content-holder .color-filler .play-animation svg,
-.header-content-holder .color-filler .pause-animation svg{
+.header-content-holder .color-filler .pause-animation svg {
     height: 25px;
     width: 25px;
     color: #bbb;
@@ -323,8 +323,9 @@ header {
     z-index: 100;
     position: relative;
 }
+
 .header-content-holder .color-filler .pause-animation,
-.header-content-holder .color-filler .pause-title{
+.header-content-holder .color-filler .pause-title {
     display: none;
 }
 
@@ -334,12 +335,12 @@ header {
 .header-content-holder .color-filler .pause-animation:visited svg,
 .header-content-holder .color-filler .pause-animation:hover svg,
 .header-content-holder .color-filler .pause-animation:active svg,
-.header-content-holder .color-filler .play-animation:visited ~ .play-title,
-.header-content-holder .color-filler .play-animation:hover ~ .play-title,
-.header-content-holder .color-filler .play-animation:active ~ .play-title,
-.header-content-holder .color-filler .pause-animation:visited ~ .pause-title,
-.header-content-holder .color-filler .pause-animation:hover ~ .pause-title,
-.header-content-holder .color-filler .pause-animation:active ~ .pause-title {
+.header-content-holder .color-filler .play-animation:visited~.play-title,
+.header-content-holder .color-filler .play-animation:hover~.play-title,
+.header-content-holder .color-filler .play-animation:active~.play-title,
+.header-content-holder .color-filler .pause-animation:visited~.pause-title,
+.header-content-holder .color-filler .pause-animation:hover~.pause-title,
+.header-content-holder .color-filler .pause-animation:active~.pause-title {
     color: #fff;
     transition: color .2s, opacity .2s;
     opacity: 1;
@@ -360,7 +361,14 @@ header .header-content {
     cursor: default;
     z-index: 2;
     user-select: none;
+    /* opacity: 0; */
+    /* transition: opacity 1s; */
 }
+
+/* header .header-content:hover { */
+/* opacity: 1; */
+/* transition: opacity 1s; */
+/* } */
 
 header .header-content .header-image {
     display: block;
@@ -604,15 +612,17 @@ header .header-content-holder .animated-arrow-2 {
 
 nav {
     width: 100%;
-    overflow: hidden;
+    height: 0px;
+    /* overflow: hidden; */
     position: absolute;
     top: 0;
-    left: 0;
-    z-index: 10;
-    padding: 30px 0 20px 0;
-    -webkit-transition: background 0.4s;
-    -o-transition: background 0.4s;
-    transition: background 0.4s;
+    /* left: 0; */
+    right: 0;
+    z-index: 1;
+    /* padding: 30px 0 20px 0; */
+    -webkit-transition: background 0.4s, height 0.4s;
+    -o-transition: background 0.4s, height 0.4s;
+    transition: background 0.4s, height 0.4s;
     display: none;
     user-select: none;
 }
@@ -625,7 +635,13 @@ nav .nav-content-wrapp {
 }
 
 nav .nav-content-wrapp .nav-list {
-    display: none;
+    /* display: none; */
+    overflow: hidden;
+    height: 0px;
+    padding-top: 20px;
+    -webkit-transition: height 0.4s;
+    -o-transition: height 0.4s;
+    transition: height 0.4s;
 }
 
 nav .nav-content-wrapp .nav-list li {
@@ -638,18 +654,14 @@ nav .nav-content-wrapp .nav-list li:last-of-type {
 }
 
 nav .nav-content-wrapp .nav-list li a {
+    display: inline-block;
     font-size: 24px;
     color: rgba(255, 255, 255, 1);
     /* color: rgba(255, 255, 255, 0); */
     font-family: Helvetica, Arial, sans-serif;
     text-decoration: none;
-    transition: color .8s;
 }
 
-nav:hover .nav-content-wrapp .nav-list li a {
-    color: rgba(255, 255, 255, 1);
-    transition: color .8s;
-}
 
 /* nav .nav-content-wrapp .nav-list li a::before {
     display: block;
@@ -697,9 +709,15 @@ nav .nav-content-wrapp .nav-list li a:hover:after {
 }
 
 nav .nav-content-wrapp .nav-list-show {
-    display: table;
-    float: none;
+    /* display: table; */
+    /* width: 100%; */
+    /* float: none; */
     margin: 0 auto;
+    padding-top: 20px;
+    height: 270px;
+    -webkit-transition: height 0.4s;
+    -o-transition: height 0.4s;
+    transition: height 0.4s;
 }
 
 nav .nav-content-wrapp #nav-button {
@@ -743,9 +761,6 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     background: none !important;
 }
 
-.nav-bg-color {
-    background-color: rgba(0, 0, 0, 0.8);
-}
 
 .dark-bg-color {
     background-color: rgba(0, 0, 0, 0.8);
@@ -763,15 +778,36 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     }
 }
 
-/* @media only screen and (min-width: 1400px) { */
+@media only screen and (max-width: 769px) {
+    .nav-bg-color {
+        background-color: rgba(0, 0, 0, 0.8);
+        height: 270px;
+    }
+
+}
+
 @media only screen and (min-width: 769px) {
-    nav {
-        padding: 30px 0 0 0;
+    /* nav { */
+    /* padding: 30px 0 0 0; */
+    /* } */
+
+    nav .nav-content-wrapp {
+        width: unset;
+        margin: 0;
+        max-width: 1100px;
+        overflow: unset;
+        position: absolute;
+        right: 5%;
     }
 
     nav .nav-content-wrapp .nav-list {
-        display: block;
+        /* display: block; */
         float: right;
+        height: 35px;
+        padding-top: 20px;
+        -webkit-transition: height 0.4s;
+        -o-transition: height 0.4s;
+        transition: height 0.4s;
     }
 
     nav .nav-content-wrapp .nav-list li {
@@ -796,6 +832,17 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
         background-color: rgba(0, 0, 0, 0);
     }
 }
+
+/* @media only screen and (min-width: 996px) {
+    nav .nav-content-wrapp {
+        width: unset;
+        margin: 0;
+        max-width: 1100px;
+        overflow: unset;
+        position: absolute;
+        right: 5%;
+    }
+} */
 
 
 /*** ABOUT SECTION ***/
@@ -2323,12 +2370,13 @@ footer .arrow-to-top:hover svg path {
 }
 
 .loading-holder .loading-title {
-    font-family: 'Cambay', sans-serif;
-    font-size: 36px;
+    font-family: 'Cambay', Helvetica, Arial, sans-serif;
+    font-size: 26px;
     color: #04C2C9;
     text-shadow: 0px 3px 10px #000;
     text-transform: uppercase;
     margin: 12px;
+    user-select: none;
 }
 
 .loading-holder .loading-percentage {
@@ -2345,7 +2393,7 @@ footer .arrow-to-top:hover svg path {
     background: #fff;
     padding: 3px;
     width: 100%;
-    border-radius: 3px;
+    border-radius: 20px;
     -webkit-box-shadow: 3px 3px 7px 0px #000;
     box-shadow: 3px 3px 7px 0px #000;
     text-shadow: 0px 2px 5px #000;
@@ -2356,7 +2404,7 @@ footer .arrow-to-top:hover svg path {
     height: 25px;
     width: 0%;
     position: relative;
-    border-radius: 3px;
+    border-radius: 20px;
     -webkit-box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
     border: 1px solid #888;
@@ -2378,6 +2426,12 @@ footer .arrow-to-top:hover svg path {
     position: relative;
     top: 50%;
     background: rgba(0, 0, 0, 0.03);
+}
+
+@media only screen and (min-width: 996px) {
+    .loading-holder {
+        width: 400px;
+    }
 }
 
 @-webkit-keyframes animate-loading {

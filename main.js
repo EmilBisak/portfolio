@@ -595,8 +595,6 @@ app.canvas = (function () {
       createDotsArray(numberOfDots);
     }
 
-    console.log('shouldCallFillColor', shouldCallFillColor)
-
     shouldCallFillColor && fillTriangle();
 
   }
