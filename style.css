@@ -2,12 +2,15 @@
     font-family: "RobotoInternal";
     src: url("./assets/fonts/Roboto-Bold.ttf");
     src: url("./assets/fonts/Roboto-Bold.ttf") format("truetype")
-    }
+}
+
+@font-face {
+    font-family: "CambayInternal";
+    src: url("./assets/fonts/Cambay-Bold.ttf");
+    src: url("./assets/fonts/Cambay-Bold.ttf") format("truetype")
+}
 
 /*** GLOBAL SECTION ***/
-
-/* @import url('https://fonts.googleapis.com/css?family=Cambay:700'); */
-
 
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -193,7 +196,7 @@ body .wrapper {
     position: absolute;
     top: 0;
     left: 0;
-    font-family: 'Cambay', sans-serif;
+    font-family: 'Cambay', CambayInternal, sans-serif;
     display: none;
 }
 
@@ -2388,113 +2391,16 @@ footer .arrow-to-top:hover svg path {
 }
 
 .loading-letters.first-letter {
-    color: #ccc;
-    animation: animate-loading-first-letter 2s 0.2s ease-in-out infinite;
+    color: #fff;
+    animation: fadeIn 1s, animate-loading-first-letter 2s 1s ease-in-out infinite;
 }
 
 .loading-letters.second-letter {
-    animation: animate-loading-second-letter 2s 0.2s ease-in-out infinite;
-}
-
-
-@-webkit-keyframes animate-loading-first-letter {
-    0%, 20% {
-        left: 0px;
-        transform: rotateZ(0deg);
-    }
-
-    20% {
-        left: 21px;
-        transform: rotateZ(0deg);
-    }
-
-    50% {
-        transform: rotateZ(-180deg);
-    }
-
-    75% {
-        transform: rotateZ(-180deg);
-    }
-    
-    80%, 100% {
-        left: 0px;
-    }
-}
-
-@keyframes animate-loading-first-letter {
-    0%, 20% {
-        left: 0px;
-        transform: rotateZ(0deg);
-    }
-
-    20% {
-        left: 21px;
-        transform: rotateZ(0deg);
-    }
-
-    50% {
-        transform: rotateZ(-180deg);
-    }
-
-    75% {
-        transform: rotateZ(-180deg);
-    }
-    
-    80%, 100% {
-        left: 0px;
-    }
-}
-
-@-webkit-keyframes animate-loading-second-letter {
-    0%, 20% {
-        right: 0px;
-        transform: rotateZ(0deg);
-    }
-
-    20% {
-        right: 21px;
-        transform: rotateZ(-0deg);
-    }
-
-    50% {
-        transform: rotateZ(-180deg);
-    }
-
-    75% {
-        transform: rotateZ(-0deg);
-    }
-    
-    80%, 100% {
-        right: 0px;
-    }
-}
-
-@keyframes animate-loading-second-letter {
-    0%, 20% {
-        right: 0px;
-        transform: rotateZ(0deg);
-    }
-
-    20% {
-        right: 21px;
-        transform: rotateZ(-0deg);
-    }
-
-    50% {
-        transform: rotateZ(-180deg);
-    }
-
-    75% {
-        transform: rotateZ(-0deg);
-    }
-    
-    80%, 100% {
-        right: 0px;
-    }
+    animation: fadeIn 1s, animate-loading-second-letter 2s 1s ease-in-out infinite;
 }
 
 .loading-holder .loading-title {
-    font-family: 'Cambay', Helvetica, Arial, sans-serif;
+    font-family: 'Cambay', CambayInternal, Helvetica, Arial, sans-serif;
     font-size: 26px;
     color: #04C2C9;
     text-shadow: 0px 3px 10px #000;
@@ -2504,7 +2410,7 @@ footer .arrow-to-top:hover svg path {
 }
 
 .loading-holder .loading-percentage {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "Roboto", RobotoInternal, Helvetica, Arial, sans-serif;
     color: #fff;
     font-weight: bold;
     position: absolute;
@@ -2555,6 +2461,114 @@ footer .arrow-to-top:hover svg path {
 @media only screen and (min-width: 996px) {
     .loading-holder {
         width: 400px;
+    }
+}
+
+@-webkit-keyframes animate-loading-first-letter {
+
+    0%,
+    20% {
+        left: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        left: 21px;
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-180deg);
+    }
+
+    80%,
+    100% {
+        left: 0px;
+    }
+}
+
+@keyframes animate-loading-first-letter {
+
+    0%,
+    20% {
+        left: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        left: 21px;
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-180deg);
+    }
+
+    80%,
+    100% {
+        left: 0px;
+    }
+}
+
+@-webkit-keyframes animate-loading-second-letter {
+
+    0%,
+    20% {
+        right: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        right: 21px;
+        transform: rotateZ(-0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-0deg);
+    }
+
+    80%,
+    100% {
+        right: 0px;
+    }
+}
+
+@keyframes animate-loading-second-letter {
+
+    0%,
+    20% {
+        right: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        right: 21px;
+        transform: rotateZ(-0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-0deg);
+    }
+
+    80%,
+    100% {
+        right: 0px;
     }
 }
 
