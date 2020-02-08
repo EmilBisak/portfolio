@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "RobotoInternal";
+    src: url("./assets/fonts/Roboto-Bold.ttf");
+    src: url("./assets/fonts/Roboto-Bold.ttf") format("truetype")
+    }
+
 /*** GLOBAL SECTION ***/
 
 /* @import url('https://fonts.googleapis.com/css?family=Cambay:700'); */
@@ -2367,6 +2373,124 @@ footer .arrow-to-top:hover svg path {
 
 .loading-holder .loading {
     width: 200px;
+}
+
+.loading-letters {
+    font-family: "Roboto", RobotoInternal, Helvetica, Arial, sans-serif;
+    font-size: 68px;
+    color: #04C2C9;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    user-select: none;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+}
+
+.loading-letters.first-letter {
+    color: #ccc;
+    animation: animate-loading-first-letter 2s 0.2s ease-in-out infinite;
+}
+
+.loading-letters.second-letter {
+    animation: animate-loading-second-letter 2s 0.2s ease-in-out infinite;
+}
+
+
+@-webkit-keyframes animate-loading-first-letter {
+    0%, 20% {
+        left: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        left: 21px;
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-180deg);
+    }
+    
+    80%, 100% {
+        left: 0px;
+    }
+}
+
+@keyframes animate-loading-first-letter {
+    0%, 20% {
+        left: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        left: 21px;
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-180deg);
+    }
+    
+    80%, 100% {
+        left: 0px;
+    }
+}
+
+@-webkit-keyframes animate-loading-second-letter {
+    0%, 20% {
+        right: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        right: 21px;
+        transform: rotateZ(-0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-0deg);
+    }
+    
+    80%, 100% {
+        right: 0px;
+    }
+}
+
+@keyframes animate-loading-second-letter {
+    0%, 20% {
+        right: 0px;
+        transform: rotateZ(0deg);
+    }
+
+    20% {
+        right: 21px;
+        transform: rotateZ(-0deg);
+    }
+
+    50% {
+        transform: rotateZ(-180deg);
+    }
+
+    75% {
+        transform: rotateZ(-0deg);
+    }
+    
+    80%, 100% {
+        right: 0px;
+    }
 }
 
 .loading-holder .loading-title {
