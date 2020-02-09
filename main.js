@@ -1,5 +1,4 @@
 "use strict";
-
 // whole application namespace
 const app = {};
 
@@ -971,7 +970,6 @@ app.loading = (function () {
 
       loading.style.display = "none";
       loadingCanvas.style.display = "none";
-      console.log('loading', loading)
 
       disableParallaxOnIE(header);
     }
@@ -1115,7 +1113,7 @@ app.loadingCanvas = (function () {
     $.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     $.isSmallScreen = window.innerWidth < 996;
     $.isMobileScreen = window.innerWidth <= 425;
-    $.min = $.isSmallScreen ? $.isMobileScreen ? $.width * 0.6 : $.width * 0.3 : $.width * 0.2;
+    $.min = $.isSmallScreen ? $.isMobileScreen ? Math.min($.height, $.width) * 0.5 : Math.min($.height, $.width) * 0.3 : Math.min($.height, $.width) * 0.2;
     $.particles = [];
     $.globalAngle = 0;
     $.globalRotation = 0;
