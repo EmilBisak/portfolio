@@ -82,12 +82,23 @@
         </div>
     </nav>
 
-    <div class="loading-holder">
-        <!-- <h1 class="loading-title">Loading...</h1> -->
+    <!-- <div class="loading-holder">
+        <h1 class="loading-title">Loading...</h1>
         <div class="loading-animation">
             <p class="loading-letters first-letter">E</p>
             <p class="loading-letters second-letter">B</p>
         </div>
+        <div class="progress-bar">
+            <div class="inside-bar">
+                <h1 class="loading-percentage"></h1>
+            </div>
+        </div>
+    </div> -->
+
+    <canvas class="loading-canvas"></canvas>
+    <div class="loading-holder">
+        <h2 class="loading-percentage">0%</h2>
+        <h1 class="loading-header">Emil Bisak</h1>
         <div class="progress-bar">
             <div class="inside-bar">
                 <h1 class="loading-percentage"></h1>
@@ -111,11 +122,11 @@
                 <div class="header-content">
                     <!-- <img class="header-image" src="assets/emilBisak.jpg" alt="Emil Bisak portret" /> -->
                     <div class="header-title">
-                        <h1>Emil Bisak</h1>
-                        <h2>Front End Web Developer</h2>
+                        <h1 class="fade-animation fade-in">Emil Bisak</h1>
+                        <h2 class="fade-animation fade-in">Front End Web Developer</h2>
                     </div>
                 </div>
-                <canvas></canvas>
+                <canvas class="header-canvas"></canvas>
                 <a href="#about" onclick="app.nav.onNavClick()" class="navigation-link arrow-to-down-wrapper">
                     <span class="arrow-to-down animated-arrow-2"></span>
                     <span class="arrow-to-down animated-arrow-1"></span>

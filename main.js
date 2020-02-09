@@ -119,15 +119,15 @@ app.header = (function () {
   const headerNode = document.querySelector("header");
 
   function setHeaderHeight() {
-    
+
     if (window.innerWidth <= 996) {
       headerNode.style.height = `${window.innerHeight}px`;
     } else {
       headerNode.style.height = "100%";
     }
-    
+
   };
-  
+
   return {
     setHeaderHeight
   };
@@ -135,54 +135,54 @@ app.header = (function () {
 
 // canvas module
 app.canvas = (function () {
-  
-  
-  let canvas = document.querySelector("canvas");
-  
+
+
+  let canvas = document.querySelector("canvas.header-canvas");
+
   let headerTitle = document.querySelector(".header-content");
-  
+
   let colorFiller = document.querySelector(".header-content-holder .color-filler");
   let playIcon = document.querySelector(".header-content-holder .color-filler .play-animation");
   let pauseIcon = document.querySelector(".header-content-holder .color-filler .pause-animation");
   let playTitle = document.querySelector(".header-content-holder .color-filler .play-title");
   let pauseTitle = document.querySelector(".header-content-holder .color-filler .pause-title");
-  
+
   let context = canvas.getContext('2d');
-  
+
   let isSmallScreen = window.innerWidth <= 996;
-  
+
   const initialWindowHeight = window.innerHeight;
   const initialWindowWidth = window.innerWidth;
-  
+
   const mouse = {
     x: undefined,
     y: undefined,
   }
   let isMouseOverTitle = false;
-  
+
   let dotsArray = [];
   let numberOfDots = Math.floor(window.innerWidth / 15);
-  
+
   let animationRequestID;
-  
+
   // FILLCOLOR VARIABLES
   let fillColor = "0,0,0";
-  
+
   let red = 0;
   let green = 0;
   let blue = 0;
-  
+
   let fillTrianglesCounter = 0;
-  
+
   let coloringAnimation;
-  
+
   let isCanvasFilled = false;
   let shouldStartColoringAnimation = false;
-  
+
   let shouldCallFillColor = true;
-  
-  
-  window.addEventListener("resize", redrawCanvas);
+
+
+  // window.addEventListener("resize", redrawCanvas);
   canvas.addEventListener("click", addNewPointOnClick);
   canvas.addEventListener("mouseover", mouseOverCanvas);
   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
@@ -254,7 +254,7 @@ app.canvas = (function () {
     }
     return canvas;
   }
-  
+
   function fillTriangle() {
     shouldCallFillColor = false;
 
@@ -537,15 +537,10 @@ app.canvas = (function () {
 
       let radius = 1;
       let x = Math.floor(Math.random() * (innerWidth / 8 - radius * 2) + innerWidth / offsetX + radius);
-      // let y = Math.floor(Math.random() * (innerHeight - radius * 2) + radius);
       let y = Math.random() * innerHeight - ((innerHeight + offset) - (innerHeight - offset)) + (innerHeight - offset);
 
 
       if (window.innerWidth <= 996) {
-        // let minY = innerHeight / 3 - 200;
-        // let maxY = innerHeight / 1.5 + 200;
-        // y = Math.random() * (maxY - minY) + minY;
-        // radius = 1.5;
         x = Math.floor(Math.random() * innerWidth);
         y = Math.floor(Math.random() * innerHeight);
       }
@@ -596,6 +591,7 @@ app.canvas = (function () {
     }
 
     shouldCallFillColor && fillTriangle();
+    // app.loadingCanvas.loadingCanvasInit();
 
   }
 
@@ -935,8 +931,9 @@ app.loading = (function () {
     xmlHTTP.onprogress = function (e) {
       thisImg.completedPercentage = parseInt((e.loaded / e.total) * 100);
 
-      loadingPercentageElement.innerHTML = thisImg.completedPercentage ? `${thisImg.completedPercentage}%` : "";
-      loadingPercentageElement.style.right = thisImg.completedPercentage < 10 ? "0px" : "6px";
+      loadingPercentageElement.innerHTML = `${thisImg.completedPercentage}%`;
+      // loadingPercentageElement.innerHTML = thisImg.completedPercentage ? `${thisImg.completedPercentage}%` : "";
+      // loadingPercentageElement.style.right = thisImg.completedPercentage < 10 ? "0px" : "6px";
 
       loadingBarElement.style.width = `${thisImg.completedPercentage}%`;
     };
@@ -959,6 +956,7 @@ app.loading = (function () {
       const wrapper = document.querySelector(".wrapper");
       const nav = document.querySelector("nav");
       const loading = document.querySelector(".loading-holder");
+      const loadingCanvas = document.querySelector(".loading-canvas");
       const projectBg = document.querySelectorAll(".projects-bg");
 
       body.style.background = "#fff";
@@ -972,6 +970,8 @@ app.loading = (function () {
       });
 
       loading.style.display = "none";
+      loadingCanvas.style.display = "none";
+      console.log('loading', loading)
 
       disableParallaxOnIE(header);
     }
@@ -1029,6 +1029,124 @@ app.loadingIFrames = (function () {
   };
 }());
 
+
+app.loadingCanvas = (function () {
+  var $ = {};
+
+  $.Particle = function (opt) {
+    this.radius = 7;
+    this.x = opt.x;
+    this.y = opt.y;
+    this.angle = opt.angle;
+    this.speed = opt.speed;
+    this.accel = opt.accel;
+    this.decay = 0.01;
+    this.life = 0.8;
+  };
+
+  $.Particle.prototype.step = function (i) {
+    this.speed += this.accel;
+    this.x += Math.cos(this.angle) * this.speed;
+    this.y += Math.sin(this.angle) * this.speed;
+    this.angle += $.isSmallScreen ? $.PI / 40 : $.PI / 300;
+    // this.angle += $.PI / 64;
+    this.accel *= 1.01;
+    this.life -= this.decay;
+
+    if (this.life <= 0) {
+      $.particles.splice(i, 1);
+    }
+  };
+
+  $.Particle.prototype.draw = function (i) {
+    // $.ctx.fillStyle = $.ctx.strokeStyle = 'hsla(' + ($.tick + (this.life * 120)) + ', 100%, 60%, ' + this.life + ')';
+    $.ctx.fillStyle = $.ctx.strokeStyle = 'hsla(' + ($.tick + (this.life * 120)) + ', 100%, 90%, ' + this.life + ')';
+    // $.ctx.fillStyle = $.ctx.strokeStyle = `rgba(4,194,201,${this.life})`;
+    $.ctx.beginPath();
+    if ($.particles[i - 1]) {
+      $.ctx.moveTo(this.x, this.y);
+      $.ctx.lineTo($.particles[i - 1].x, $.particles[i - 1].y);
+    }
+    $.ctx.stroke();
+
+    $.ctx.beginPath();
+    $.ctx.arc(this.x, this.y, Math.max(0.001, this.life * this.radius), 0, $.TWO_PI);
+    // $.ctx.fillRect(this.x, this.y, 5, 5);
+    $.ctx.fill();
+
+    var size = Math.random() * 1.25;
+    $.ctx.fillRect(~~(this.x + ((Math.random() - 0.5) * 35) * this.life), ~~(this.y + ((Math.random() - 0.5) * 35) * this.life), size, size);
+  }
+
+  $.step = function () {
+    $.particles.push(new $.Particle({
+      x: $.width / 2 + Math.cos($.tick / 20) * $.min / 2,
+      y: $.height / 2 + Math.sin($.tick / 20) * $.min / 2,
+      angle: $.globalRotation + $.globalAngle,
+      speed: 0,
+      accel: 0.01
+    }));
+
+    $.particles.forEach(function (elem, index) {
+      elem.step(index);
+    });
+
+    $.globalRotation += $.PI / 6;
+    $.globalAngle += $.PI / 6;
+  };
+
+  $.draw = function () {
+    $.ctx.clearRect(0, 0, $.width, $.height);
+
+    $.particles.forEach(function (elem, index) {
+      elem.draw(index);
+    });
+  };
+
+  $.loadingCanvasInit = function () {
+    $.canvas = document.querySelector("canvas.loading-canvas");
+    $.ctx = $.canvas.getContext('2d');
+    $.width = window.innerWidth;
+    $.height = window.innerHeight;
+    $.canvas.width = $.width * window.devicePixelRatio;
+    $.canvas.height = $.height * window.devicePixelRatio;
+    $.canvas.style.width = $.width + 'px';
+    $.canvas.style.height = $.height + 'px';
+    $.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    $.isSmallScreen = window.innerWidth < 996;
+    $.isMobileScreen = window.innerWidth <= 425;
+    $.min = $.isSmallScreen ? $.isMobileScreen ? $.width * 0.6 : $.width * 0.3 : $.width * 0.2;
+    $.particles = [];
+    $.globalAngle = 0;
+    $.globalRotation = 0;
+    $.tick = 0;
+    $.PI = Math.PI;
+    $.TWO_PI = $.PI * 2;
+    $.ctx.globalCompositeOperation = 'lighter';
+    document.body.appendChild($.canvas);
+    cancelAnimationFrame($.animationID);
+    $.loop();
+  };
+
+  $.loop = function () {
+    $.animationID = requestAnimationFrame($.loop);
+    $.step();
+    $.draw();
+    $.tick++;
+  };
+
+  const { loadingCanvasInit } = $
+
+  return { loadingCanvasInit }
+
+}());
+
+function redrawCanvases() {
+  app.canvas.redrawCanvas();
+  app.loadingCanvas.loadingCanvasInit();
+}
+
+
 function init() {
 
   document.onkeydown = function (e) {
@@ -1043,8 +1161,10 @@ function init() {
   };
 
   document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
+  window.onresize = redrawCanvases;
 
   app.loadingIFrames.shouldLoadIFrame();
+  app.loadingCanvas.loadingCanvasInit();
   app.nav.onNavClick();
   app.header.setHeaderHeight();
   app.canvas.redrawCanvas();
