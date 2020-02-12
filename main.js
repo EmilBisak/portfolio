@@ -145,6 +145,9 @@ app.canvas = (function () {
   let pauseIcon = document.querySelector(".header-content-holder .color-filler .pause-animation");
   let playTitle = document.querySelector(".header-content-holder .color-filler .play-title");
   let pauseTitle = document.querySelector(".header-content-holder .color-filler .pause-title");
+  let colorAnimButton = document.querySelector(".header-content-holder .color-animation-button");
+
+  let dotsNotification = document.querySelector(".header-content-holder .dots-notification");
 
   let context = canvas.getContext('2d');
 
@@ -187,7 +190,8 @@ app.canvas = (function () {
   canvas.addEventListener("mouseleave", mouseLeaveCanvas);
   headerTitle.addEventListener("mouseleave", mouseLeaveTitle);
   headerTitle.addEventListener("mouseover", mouseOverTitle);
-  colorFiller.addEventListener("click", coloringTrianglesAnimation);
+  // colorFiller.addEventListener("click", coloringTrianglesAnimation);
+  colorAnimButton.addEventListener("click", fillTriangle);
 
 
   function mouseOverCanvas() {
@@ -224,7 +228,14 @@ app.canvas = (function () {
       cancelCanvasAnimation();
       dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
       animateDots();
+      canvas.style.cursor = "pointer";
+      dotsNotification.style.opacity = 0;
     } else {
+      dotsNotification.style.opacity = 1;
+      setTimeout(() => {
+        dotsNotification.style.opacity = 0;
+      }, 2500);
+      canvas.style.cursor = "default";
       return
     }
   }
@@ -255,6 +266,7 @@ app.canvas = (function () {
   }
 
   function fillTriangle() {
+    let splashBucket = document.querySelector(".header-content-holder .color-animation-button svg");
     shouldCallFillColor = false;
 
     if (fillTrianglesCounter === 3) {
@@ -264,27 +276,12 @@ app.canvas = (function () {
       fillTrianglesCounter = 0;
     }
 
-
     if (!isCanvasFilled) {
 
       if ((red === 0 || red === 5) && (green === 0 || green === 5) && (blue === 0 || blue === 5)) {
         fillTrianglesCounter++;
+        if(splashBucket){splashBucket.style.color = "rgb(4,232,231)"};
 
-
-        // while (red < 4) {
-        //   (function (red) {
-        //     setTimeout(() => {
-        //       // fillColor = `${red},${green},${blue}`
-        //     }, 8 * red)
-        //   })(red++)
-        // }
-        // while (green < 221) {
-        //   (function (green) {
-        //     setTimeout(() => {
-        //       // fillColor = `${red},${green},${blue}`
-        //     }, 8 * green)
-        //   })(green++)
-        // }
         while (blue < 231) {
           (function (blue) {
             setTimeout(() => {
@@ -292,10 +289,12 @@ app.canvas = (function () {
             }, 8 * blue)
           })(blue++)
         }
-
+        
         isCanvasFilled = true;
       } else {
         fillTrianglesCounter++;
+        if(splashBucket){splashBucket.style.color = "rgb(229,229,229)"};
+        
         for (let i = red, j = green, p = blue; i >= 0, p > 0, j > 0; i-- , j-- , p--) {
           setTimeout(() => {
             if (i < 2) i = 0;
@@ -320,6 +319,7 @@ app.canvas = (function () {
     } else {
       isCanvasFilled = false;
       fillTrianglesCounter++;
+      if(splashBucket){splashBucket.style.color = "rgb(0,2,2)"};
 
       while (red < 4) {
         (function (red) {
@@ -355,7 +355,7 @@ app.canvas = (function () {
   }
 
   function stopColoringTrianglesAnimation() {
-    clearInterval(coloringAnimation)
+    clearInterval(coloringAnimation);
   }
 
   function coloringTrianglesAnimation() {
@@ -634,6 +634,7 @@ app.scroll = (function () {
   const headerArrowDownSecond = document.querySelector('header .animated-arrow-2');
 
 
+  const sectionTitle = document.querySelector('.about-section-title');
   const authorName = document.querySelector('.about-name');
   const authorImage = document.querySelector('.image-holder');
 
@@ -756,20 +757,16 @@ app.scroll = (function () {
         authorName.classList.add("fade-in");
         authorName.classList.remove("fade-out");
 
-        authorImage.setAttribute(
-          "style",
-          `opacity: 1; `
-        );
+        sectionTitle.style.opacity = 1;
+        authorImage.style.opacity = 1;
       } else {
         let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
 
         authorName.classList.remove("fade-in");
         authorName.classList.add("fade-out");
 
-        authorImage.setAttribute(
-          "style",
-          `opacity: ${authorNameOpacity}; `
-        );
+        sectionTitle.style.opacity = authorNameOpacity;
+        authorImage.style.opacity = authorNameOpacity;
       }
     }
 

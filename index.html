@@ -37,7 +37,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Cambay:700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -109,7 +109,7 @@
     <div class="wrapper">
         <header id="home">
             <div class="header-content-holder">
-                <div class="color-filler">
+                <!-- <div class="color-filler">
                     <div class="play-animation">
                         <span class="iconify" data-icon="fa-solid:play" data-inline="false"></span>
                     </div>
@@ -118,7 +118,11 @@
                         <span class="iconify" data-icon="fa-solid:pause" data-inline="false"></span>
                     </div>
                     <p class="pause-title">Stop animation on this color</p>
+                </div> -->
+                <div class="color-animation-button">
+                    <span class="iconify" data-icon="foundation-paint-bucket" data-inline="false"></span>
                 </div>
+
                 <div class="header-content">
                     <!-- <img class="header-image" src="assets/emilBisak.jpg" alt="Emil Bisak portret" /> -->
                     <div class="header-title">
@@ -131,12 +135,13 @@
                     <span class="arrow-to-down animated-arrow-2"></span>
                     <span class="arrow-to-down animated-arrow-1"></span>
                 </a>
+                <div class="dots-notification">You have reached the limit <br/>for the number of dots</div>
             </div>
         </header>
 
         <section id="about" class="white-bg">
             <div class="section-content narrower">
-                <h2>Who Am I?</h2>
+                <h2 class="about-section-title">Who Am I?</h2>
                 <div class="about-content">
                     <div class="image-holder fade-animation">
                         <span class="image-top-borders"></span>
