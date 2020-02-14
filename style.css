@@ -1002,6 +1002,23 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     line-height: 1.5;
 }
 
+.about-content .curriculum-vitae {
+    margin-bottom: 20px;
+}
+
+.about-content .curriculum-vitae a {
+    font-weight: bold;
+    color: #551A9A;
+    text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
+    font-family: RobotoInternal, "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.about-content .curriculum-vitae:visited a,
+.about-content .curriculum-vitae:hover a,
+.about-content .curriculum-vitae:active a {
+    color: #0000ee;
+}
+
 .projects-bg {
     background-color: #958f91;
     /* background-image: url(assets/background.jpg); */

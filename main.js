@@ -582,7 +582,7 @@ app.canvas = (function () {
 
       // canvas.width = window.innerWidth;
       // canvas.height = window.innerHeight;
-      createHiDPICanvas(window.innerWidth, window.innerHeight);
+      createHiDPICanvas(window.innerWidth, (window.innerHeight - 2));
 
       numberOfDots = Math.floor(window.innerWidth / 18);
       numberOfDots = numberOfDots < 100 ? numberOfDots : 100;
