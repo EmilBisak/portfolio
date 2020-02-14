@@ -280,7 +280,7 @@ app.canvas = (function () {
 
       if ((red === 0 || red === 5) && (green === 0 || green === 5) && (blue === 0 || blue === 5)) {
         fillTrianglesCounter++;
-        if(splashBucket){splashBucket.style.color = "rgb(4,232,231)"};
+        if (splashBucket) { splashBucket.style.color = "rgb(4,232,231)" };
 
         while (blue < 231) {
           (function (blue) {
@@ -289,12 +289,12 @@ app.canvas = (function () {
             }, 8 * blue)
           })(blue++)
         }
-        
+
         isCanvasFilled = true;
       } else {
         fillTrianglesCounter++;
-        if(splashBucket){splashBucket.style.color = "rgb(229,229,229)"};
-        
+        if (splashBucket) { splashBucket.style.color = "rgb(229,229,229)" };
+
         for (let i = red, j = green, p = blue; i >= 0, p > 0, j > 0; i-- , j-- , p--) {
           setTimeout(() => {
             if (i < 2) i = 0;
@@ -319,7 +319,7 @@ app.canvas = (function () {
     } else {
       isCanvasFilled = false;
       fillTrianglesCounter++;
-      if(splashBucket){splashBucket.style.color = "rgb(0,2,2)"};
+      if (splashBucket) { splashBucket.style.color = "rgb(0,2,2)" };
 
       while (red < 4) {
         (function (red) {
@@ -653,6 +653,8 @@ app.scroll = (function () {
 
   const isSmallScreen = window.innerWidth <= 996;
 
+  let isFirefox = typeof InstallTrigger !== 'undefined';
+
 
   function debounce(func, wait, immediate) {
     let timeout;
@@ -836,9 +838,10 @@ app.scroll = (function () {
 
     const arrowToTopTriger = aboutAnchor.offsetTop + (aboutAnchor.offsetHeight / 2.5);
     const footerTriger = footer.offsetTop;
+    let isSmallScreen = window.innerWidth < 768;
 
     if (bottomOffset >= arrowToTopTriger) {
-      if (window.innerWidth < 768) {
+      if (isSmallScreen) {
         arrowToTop.setAttribute(
           "style",
           `
@@ -880,14 +883,42 @@ app.scroll = (function () {
     }
 
     if (bottomOffset >= footerTriger) {
-      arrowToTop.setAttribute(
-        "style",
-        "position:relative; "
-      );
-      arrowImg.setAttribute(
-        "style",
-        "left: 20px; top: 0;"
-      );
+      if (!isFirefox) {
+        arrowToTop.setAttribute(
+          "style",
+          "position:relative; "
+        );
+        arrowImg.setAttribute(
+          "style",
+          "left: 20px; top: 0;"
+        );
+      } else {
+        if (isSmallScreen) {
+          arrowToTop.setAttribute(
+            "style",
+            `
+          position: fixed;
+          right: 50%;
+          bottom: 200px;
+          transform: translateX(50%);
+            `
+          );
+        } else {
+          arrowToTop.setAttribute(
+            "style",
+            `
+            position: fixed;
+            right: 50%;
+            bottom: 10px;
+            transform: translateX(50%);
+              `
+          );
+        }
+        arrowImg.setAttribute(
+          "style",
+          "left: 20px; top: 0;"
+        );
+      }
     }
   }
 
