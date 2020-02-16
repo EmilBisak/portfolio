@@ -1034,7 +1034,7 @@ app.loadingIFrames = (function () {
 
         portfolioSection.classList.add("iframes-not-loaded");
 
-        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.jpg" alt="project image" >`;
+        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.jpg" alt="${projectImgName} project image" >`;
 
       } else {
         const iFrameName = laptopElements[index].getAttribute("data-app-name");
@@ -1043,7 +1043,7 @@ app.loadingIFrames = (function () {
 
         laptopElements[index].innerHTML = `
           <img src="./assets/computer.jpg" alt="laptop image" >
-          <iframe src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
+          <iframe title="${iFrameName}" src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
 
       }
 
