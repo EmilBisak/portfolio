@@ -594,7 +594,7 @@ header .header-content-holder .animated-arrow-2 {
         display: none;
     }
 
-    header .header-content h2 {
+    header .header-content h1 .subtitle {
         font-size: 30px;
         /* text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3); */
         text-shadow: 0 0 15px rgba(10, 10, 10, 1), 0 0 10px rgba(10, 10, 10, 1), 0 0 5px rgba(10, 10, 10, 1), 0 0 4px rgba(10, 10, 10, 1), 0 0 3px rgba(10, 10, 10, 1);
@@ -615,7 +615,7 @@ header .header-content-holder .animated-arrow-2 {
         font-size: 12vw;
     }
 
-    header .header-content h2 {
+    header .header-content h1 .subtitle {
         font-size: 6vw;
     }
 }
