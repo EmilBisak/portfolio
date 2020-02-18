@@ -1022,6 +1022,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     border-radius: 2px;
     font-weight: bold;
     color: #2196f3;
+    box-shadow: 0 -6px 4px -2px rgba(0, 0, 0, 0.3);
 }
 
 .about-content .curriculum-vitae:visited a,
@@ -1030,6 +1031,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
     color: #fff;
     background: #2196f3;
+    box-shadow: 0 -6px 6px -2px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -1772,11 +1774,22 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
 .project-hex .color1 {
     background: #2196f3;
+    box-shadow: 0 -4px 4px -2px rgba(0, 0, 0, 0.3);
+}
+
+.project-hex:hover .color1,
+.project-hex:active .color1 {
+    background: #03a9f4;
+    box-shadow: 0 -4px 6px -2px rgba(0, 0, 0, 0.3);
 }
 
 .project-hex .color1 svg {
     width: 25px;
     top: -5px;
+}
+
+.project-hex .color1:hover svg {
+    opacity: 1;
 }
 
 .project-hex p {
@@ -1785,14 +1798,6 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     z-index: 5;
     color: #fff;
     font-weight: bold;
-}
-
-.project-hex:hover .color1 {
-    background: #03a9f4
-}
-
-.project-hex .color1:hover svg {
-    opacity: 1;
 }
 
 .project-hex:last-of-type p {
