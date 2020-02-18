@@ -150,6 +150,13 @@ table {
 a {
     text-decoration: none;
     outline: none;
+    color: #0000ff;
+}
+
+a:visited,
+a:hover,
+a:active {
+    color: #0000bb;
 }
 
 p {
@@ -994,7 +1001,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     width: 100%;
     font-size: 20px;
     overflow: hidden;
-    margin: 40px 20px 80px;
+    margin: 40px 20px 60px;
 }
 
 .about-text p {
@@ -1003,21 +1010,28 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 }
 
 .about-content .curriculum-vitae {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    font-family: RobotoInternal, "Roboto", Helvetica, Arial, sans-serif;
 }
 
 .about-content .curriculum-vitae a {
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    background: #fff;
+    padding: 10px;
+    border: 2px solid #2196f3;
+    border-radius: 2px;
     font-weight: bold;
-    color: #551A9A;
-    text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.2);
-    font-family: RobotoInternal, "Roboto", Helvetica, Arial, sans-serif;
+    color: #2196f3;
 }
 
 .about-content .curriculum-vitae:visited a,
 .about-content .curriculum-vitae:hover a,
 .about-content .curriculum-vitae:active a {
-    color: #0000ee;
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    color: #fff;
+    background: #2196f3;
 }
+
 
 .projects-bg {
     background-color: #958f91;
