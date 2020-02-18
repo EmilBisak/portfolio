@@ -118,13 +118,7 @@ app.header = (function () {
   const headerNode = document.querySelector("header");
 
   function setHeaderHeight() {
-
-    if (window.innerWidth <= 996) {
-      headerNode.style.height = `${window.innerHeight}px`;
-    } else {
-      headerNode.style.height = "100%";
-    }
-
+    headerNode.style.height = `${window.innerHeight - 1}px`;
   };
 
   return {
