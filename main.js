@@ -630,8 +630,11 @@ app.scroll = (function () {
 
   const sectionTitle = document.querySelector('.about-section-title');
   const authorName = document.querySelector('.about-name');
+  // const authorName = document.querySelectorAll('.about-name');
   const authorImage = document.querySelector('.image-holder');
+  // const authorImage = document.querySelectorAll('.image-holder');
   const aboutText = document.querySelector('.about-text');
+  const aboutTextParagraphs = document.querySelectorAll('.about-text p');
   const cvButton = document.querySelector('.curriculum-vitae');
 
   const educationElement = document.querySelector('.education-holder');
@@ -639,15 +642,23 @@ app.scroll = (function () {
 
   const skillsElements = document.querySelectorAll('#skillset .inner-hex');
   const skillset = document.querySelector('#skillset');
-  
+
   const portfolioSection = document.querySelector('#portfolio');
-  const projectsElements = document.querySelectorAll('.project');
+  // const projectsElements = document.querySelectorAll('.project');
+  const projectsElements = document.querySelectorAll('.project-details');
+  const laptopElements = document.querySelectorAll('.laptop');
 
   const aboutAnchor = document.querySelector('#about');
   const arrowToTop = document.querySelector('.arrow-to-top');
 
+  const contact = document.querySelector('#contact');
+  const contactHexagons = document.querySelectorAll('.contact-wrapper');
+
   const footer = document.querySelector('footer');
 
+  const sectionTitles = document.querySelectorAll('.animated-section-title');
+
+  const dividerElement = document.querySelectorAll('.divider');
 
   const isSmallScreen = window.innerWidth <= 996;
 
@@ -747,45 +758,46 @@ app.scroll = (function () {
   function animateAboutSectionElements(bottomOffset) {
 
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
-    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
-    const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 10);
+    const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight * 2);
 
-    if (bottomOffset <= skillsetTriger) {
+    if (bottomOffset <= educationElementTriger) {
+      // animateSelectedNodesCustomAnimations(bottomOffset, authorName, 3, false)
+      // animateSelectedNodesCustomAnimations(bottomOffset, authorImage, 1, false, "flip-in-left")
+      
       // Animate author image and author name
       if (bottomOffset >= authorNameTriger) {
-
+        
         authorName.classList.add("fade-in");
         authorName.classList.remove("fade-out");
-
+        
         sectionTitle.style.opacity = 1;
         authorImage.style.opacity = 1;
       } else {
         let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
-
+        
         authorName.classList.remove("fade-in");
         authorName.classList.add("fade-out");
-
+        
         sectionTitle.style.opacity = authorNameOpacity;
         authorImage.style.opacity = authorNameOpacity;
       }
-
+      
       // Animate about text
-      if (bottomOffset >= (authorNameTriger + aboutText.offsetHeight * 1.3)) {
-        aboutText.classList.add("fade-in");
-        aboutText.classList.remove("fade-out");
-      } else {
-        aboutText.classList.remove("fade-in");
-        aboutText.classList.add("fade-out");
-      }
-
+      animateSelectedNodesCustomAnimations(bottomOffset, aboutTextParagraphs, 1.5)
+      
+      
       // Animate curriculum vitae button
       if (bottomOffset >= (authorNameTriger + aboutText.offsetHeight * 2.2)) {
-        cvButton.classList.add("fade-in");
+        cvButton.classList.add("pop-in");
         cvButton.classList.remove("fade-out");
       } else {
-        cvButton.classList.remove("fade-in");
+        cvButton.classList.remove("pop-in");
         cvButton.classList.add("fade-out");
       }
+
+      // Animate divider
+      animateSelectedNodesCustomAnimations(bottomOffset, dividerElement, 3);
+      
     }
 
     // Stoping and resuming canvas animation
@@ -799,53 +811,46 @@ app.scroll = (function () {
     }
   }
 
-  function animateCoursesAndProjects(bottomOffset) {
 
-    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
+  // Animate courses
+  function animateCourses(bottomOffset) {
 
-    // Animate courses
-    if (bottomOffset <= skillsetTriger) {
-      animateSelectedNodes(bottomOffset, coursesElements, 1.2);
+    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight * 1.8);
+    const aboutSectionTriger = authorName.offsetTop + (authorName.offsetHeight * 3);
+
+    if ((bottomOffset <= skillsetTriger) && (bottomOffset > aboutSectionTriger)) {
+      animateSelectedNodesFadeLeftAndRight(bottomOffset, coursesElements, 0.4);
     }
-    
-    // Animate projects
-    animateSelectedNodes(bottomOffset, projectsElements, 0.6);
   }
 
 
+  // Animate projects
+  function animateProjects(bottomOffset) {
 
-  function animateSelectedNodes(bottomOffset, selectedElementsArray, offset) {
+    const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10 - 300);
 
-    for (let i = 0; i < selectedElementsArray.length; i++) {
-
-      let selectedElementsTriger = selectedElementsArray[i].offsetTop + (selectedElementsArray[i].offsetHeight * offset);
-      let leftOrRightAnimation = i % 2 === 0 ? "left" : "right";
-
-      if (bottomOffset >= selectedElementsTriger) {
-        selectedElementsArray[i].classList.add(`fade-in-${leftOrRightAnimation}`);
-        selectedElementsArray[i].classList.remove(`fade-out-${leftOrRightAnimation}`);
-      } else {
-        selectedElementsArray[i].classList.remove(`fade-in-${leftOrRightAnimation}`);
-        selectedElementsArray[i].classList.add(`fade-out-${leftOrRightAnimation}`);
-      }
-
+    if (bottomOffset > portfolioSectionTriger) {
+      animateSelectedNodesFadeLeftAndRight(bottomOffset, projectsElements, 0.6);
+      animateSelectedNodesCustomAnimations(bottomOffset, laptopElements, 0.6, true, "pop-in");
     }
-
   }
 
-
-
-
+  // Animate skillset
   function animateSkillset(bottomOffset) {
 
-    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 3.6);
-    const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10);
+    const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 1.6);
+    const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 1.7);
 
     if (bottomOffset <= portfolioSectionTriger) {
-      if (bottomOffset >= skillsetTriger) {
-
+      if (bottomOffset >= educationElementTriger) {
 
         for (let i = 0; i < skillsElements.length; i++) {
+
+          skillsElements[i].setAttribute(
+            "style",
+            `-webkit-animation-delay: 0.${i}s;
+             animation-delay: 0.${i}s; `
+          );
 
           let skillsElementsTriger = skillsElements[i].offsetTop + (skillsElements[i].offsetHeight * 1.6);
           if (bottomOffset >= skillsElementsTriger) {
@@ -880,6 +885,34 @@ app.scroll = (function () {
     // }
   }
 
+  // Animate contact hexagons
+  function animateContactHexagons(bottomOffset) {
+
+    const contactTriger = contact.offsetTop + (contact.offsetHeight / 10 - 200);
+
+    if (bottomOffset >= contactTriger) {
+
+      for (let i = 0; i < contactHexagons.length; i++) {
+
+        let contactHexagonsTriger = contactHexagons[i].offsetTop + (contactHexagons[i].offsetHeight * 1);
+
+        contactHexagons[i].setAttribute(
+          "style",
+          `-webkit-animation-delay: 0.${5+i}s;
+         animation-delay: 0.${5+i}s; `
+        );
+
+        if (bottomOffset >= contactHexagonsTriger) {
+          contactHexagons[i].classList.add(`flip-in-left`);
+          contactHexagons[i].classList.remove(`fade-out`);
+        } else {
+          contactHexagons[i].classList.remove(`flip-in-left`);
+          contactHexagons[i].classList.add(`fade-out`);
+        }
+
+      }
+    }
+  }
 
   function animateArrowToTop(bottomOffset) {
 
@@ -972,6 +1005,62 @@ app.scroll = (function () {
   }
 
 
+  function animateSelectedNodesFadeLeftAndRight(bottomOffset, selectedElementsArray, offset = 1) {
+
+    for (let i = 0; i < selectedElementsArray.length; i++) {
+
+      let selectedElementsTriger = selectedElementsArray[i].offsetTop + (selectedElementsArray[i].offsetHeight * offset);
+      let leftOrRightAnimation = i % 2 === 0 ? "left" : "right";
+
+      if (bottomOffset >= selectedElementsTriger) {
+        selectedElementsArray[i].classList.add(`fade-in-${leftOrRightAnimation}`);
+        selectedElementsArray[i].classList.remove(`fade-out-${leftOrRightAnimation}`);
+      } else {
+        selectedElementsArray[i].classList.remove(`fade-in-${leftOrRightAnimation}`);
+        selectedElementsArray[i].classList.add(`fade-out-${leftOrRightAnimation}`);
+      }
+
+    }
+
+  }
+
+  function animateSelectedNodesCustomAnimations(bottomOffset, selectedElementsArray, offset = 1, shoulDelay = true, animationIn = "fade-in", animationOut = "fade-out") {
+
+    for (let i = 0; i < selectedElementsArray.length; i++) {
+
+
+      const selectedElementsTriger = selectedElementsArray[i].offsetTop + (selectedElementsArray[i].offsetHeight * offset);
+
+      selectedElementsArray[i].classList.add("fade-animation");
+
+      let dataDelay = selectedElementsArray[i].getAttribute("data-delay") ? selectedElementsArray[i].getAttribute("data-delay") : `0.${i * 2}`;
+
+      if (shoulDelay) {
+
+        selectedElementsArray[i].setAttribute(
+          "style",
+          `-webkit-animation-delay: ${dataDelay}s;
+            animation-delay: ${dataDelay}s;`
+        );
+      }
+
+
+      if (bottomOffset >= selectedElementsTriger) {
+        selectedElementsArray[i].classList.add(`${animationIn}`);
+        selectedElementsArray[i].classList.remove(`${animationOut}`);
+      } else {
+        selectedElementsArray[i].setAttribute(
+          "style",
+          `-webkit-animation-delay: ${0}s;
+            animation-delay: ${0}s; `
+        );
+        selectedElementsArray[i].classList.remove(`${animationIn}`);
+        selectedElementsArray[i].classList.add(`${animationOut}`);
+      }
+    }
+  }
+
+
   function animatePageElements() {
 
     const bottomOffset = window.scrollY + window.innerHeight;
@@ -979,11 +1068,14 @@ app.scroll = (function () {
     if (!isSmallScreen) {
       animateHeaderTitle(bottomOffset);
       animateAboutSectionElements(bottomOffset);
+      animateCourses(bottomOffset);
+      animateProjects(bottomOffset);
+      animateSelectedNodesCustomAnimations(bottomOffset, sectionTitles, 3)
     }
-
+    
     animateHeaderArrow();
-    animateCoursesAndProjects(bottomOffset);
     animateSkillset(bottomOffset);
+    animateContactHexagons(bottomOffset);
     animateArrowToTop(bottomOffset);
 
   };
@@ -1077,7 +1169,7 @@ app.loadingIFrames = (function () {
   const portfolioSection = document.querySelector(".portfolio");
   const laptopElements = document.querySelectorAll(".laptop");
 
-  function shouldLoadIFrame() {
+  function shouldLoadIFrame(disableRenderingIframesOnLargeScreens) {
     for (let index = 0; index < laptopElements.length; index++) {
       if (window.innerWidth <= 768) {
         const projectImgName = laptopElements[index].getAttribute("data-image");
@@ -1085,6 +1177,13 @@ app.loadingIFrames = (function () {
         portfolioSection.classList.add("iframes-not-loaded");
 
         laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.jpg" alt="${projectImgName} project image" >`;
+
+      } else if (disableRenderingIframesOnLargeScreens) {
+        const projectImgName = laptopElements[index].getAttribute("data-image");
+
+        laptopElements[index].innerHTML = `
+        <img src="./assets/computer.jpg" alt="laptop image" >
+        <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/${projectImgName}_comp.png" alt="${projectImgName} project image" >`;
 
       } else {
         const iFrameName = laptopElements[index].getAttribute("data-app-name");
@@ -1239,7 +1338,9 @@ function init() {
   document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
   window.onresize = redrawCanvases;
 
-  app.loadingIFrames.shouldLoadIFrame();
+  const disableRenderingIframesOnLargeScreens = true;
+
+  app.loadingIFrames.shouldLoadIFrame(disableRenderingIframesOnLargeScreens);
   app.loadingCanvas.loadingCanvasInit();
   app.nav.onNavClick();
   app.header.setHeaderHeight();
