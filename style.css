@@ -1080,7 +1080,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     font-family: RobotoInternal, "Roboto", Helvetica, Arial, sans-serif;
 }
 
-.about-content .curriculum-vitae a  span{
+.about-content .curriculum-vitae a span{
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     -o-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
@@ -1088,8 +1088,8 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     border: 2px solid #2196f3;
     border-radius: 2px;
     font-weight: bold;
-    color: #2196f3;
-    background: #fff;
+    color: #fff;
+    background: #2196f3;
     -webkit-box-shadow: 0 -6px 4px -2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 -5px 4px -2px rgba(0, 0, 0, 0.3);
 }
@@ -1100,8 +1100,8 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     -o-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
-    color: #fff;
-    background: #2196f3;
+    color: #2196f3;
+    background: #fff;
     -webkit-box-shadow: 0 -6px 6px -2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 -6px 6px -2px rgba(0, 0, 0, 0.3);
 }
