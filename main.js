@@ -621,7 +621,7 @@ app.canvas = (function () {
 app.scroll = (function () {
 
   const headerTitleH1 = document.querySelector('.header-title h1');
-  const headerTitleH2 = document.querySelector('.header-title h2');
+  const headerSubtitleH1 = document.querySelector('.header-title h1.subtitle');
 
   const headerArrowDownWrapper = document.querySelector('header .arrow-to-down-wrapper');
   const headerArrowDownFirst = document.querySelector('header .animated-arrow-1');
@@ -631,13 +631,17 @@ app.scroll = (function () {
   const sectionTitle = document.querySelector('.about-section-title');
   const authorName = document.querySelector('.about-name');
   const authorImage = document.querySelector('.image-holder');
+  const aboutText = document.querySelector('.about-text');
+  const cvButton = document.querySelector('.curriculum-vitae');
 
   const educationElement = document.querySelector('.education-holder');
+  const coursesElements = document.querySelectorAll('.courses');
 
   const skillsElements = document.querySelectorAll('#skillset .inner-hex');
   const skillset = document.querySelector('#skillset');
-
+  
   const portfolioSection = document.querySelector('#portfolio');
+  const projectsElements = document.querySelectorAll('.project');
 
   const aboutAnchor = document.querySelector('#about');
   const arrowToTop = document.querySelector('.arrow-to-top');
@@ -725,13 +729,13 @@ app.scroll = (function () {
       let titleOpacity = (headerTitleTriger / window.scrollY) / 20 - subtrahend;
 
       headerTitleH1.classList.remove("fade-in");
-      headerTitleH2.classList.remove("fade-in");
+      headerSubtitleH1.classList.remove("fade-in");
 
       headerTitleH1.setAttribute(
         "style",
         `opacity: ${titleOpacity}; `
       );
-      headerTitleH2.setAttribute(
+      headerSubtitleH1.setAttribute(
         "style",
         `opacity: ${titleOpacity}; `
       );
@@ -740,14 +744,14 @@ app.scroll = (function () {
 
 
   let isAnimationRunning = false;
-  function animateAuthorImage(bottomOffset) {
+  function animateAboutSectionElements(bottomOffset) {
 
     const authorNameTriger = authorName.offsetTop + (authorName.offsetHeight);
     const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
     const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight / 10);
 
-
     if (bottomOffset <= skillsetTriger) {
+      // Animate author image and author name
       if (bottomOffset >= authorNameTriger) {
 
         authorName.classList.add("fade-in");
@@ -764,16 +768,67 @@ app.scroll = (function () {
         sectionTitle.style.opacity = authorNameOpacity;
         authorImage.style.opacity = authorNameOpacity;
       }
+
+      // Animate about text
+      if (bottomOffset >= (authorNameTriger + aboutText.offsetHeight * 1.3)) {
+        aboutText.classList.add("fade-in");
+        aboutText.classList.remove("fade-out");
+      } else {
+        aboutText.classList.remove("fade-in");
+        aboutText.classList.add("fade-out");
+      }
+
+      // Animate curriculum vitae button
+      if (bottomOffset >= (authorNameTriger + aboutText.offsetHeight * 2.2)) {
+        cvButton.classList.add("fade-in");
+        cvButton.classList.remove("fade-out");
+      } else {
+        cvButton.classList.remove("fade-in");
+        cvButton.classList.add("fade-out");
+      }
     }
 
     // Stoping and resuming canvas animation
     if (bottomOffset >= educationElementTriger) {
-
+      
       isAnimationRunning && app.canvas.cancelCanvasAnimation();
       isAnimationRunning = false;
     } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
       !isAnimationRunning && app.canvas.redrawCanvas();
       isAnimationRunning = true;
+    }
+  }
+
+  function animateCoursesAndProjects(bottomOffset) {
+
+    const skillsetTriger = skillset.offsetTop + (skillset.offsetHeight / 2.5);
+
+    // Animate courses
+    if (bottomOffset <= skillsetTriger) {
+      animateSelectedNodes(bottomOffset, coursesElements, 1.2);
+    }
+    
+    // Animate projects
+    animateSelectedNodes(bottomOffset, projectsElements, 0.6);
+  }
+
+
+
+  function animateSelectedNodes(bottomOffset, selectedElementsArray, offset) {
+
+    for (let i = 0; i < selectedElementsArray.length; i++) {
+
+      let selectedElementsTriger = selectedElementsArray[i].offsetTop + (selectedElementsArray[i].offsetHeight * offset);
+      let leftOrRightAnimation = i % 2 === 0 ? "left" : "right";
+
+      if (bottomOffset >= selectedElementsTriger) {
+        selectedElementsArray[i].classList.add(`fade-in-${leftOrRightAnimation}`);
+        selectedElementsArray[i].classList.remove(`fade-out-${leftOrRightAnimation}`);
+      } else {
+        selectedElementsArray[i].classList.remove(`fade-in-${leftOrRightAnimation}`);
+        selectedElementsArray[i].classList.add(`fade-out-${leftOrRightAnimation}`);
+      }
+
     }
 
   }
@@ -923,10 +978,11 @@ app.scroll = (function () {
 
     if (!isSmallScreen) {
       animateHeaderTitle(bottomOffset);
-      animateAuthorImage(bottomOffset);
+      animateAboutSectionElements(bottomOffset);
     }
 
     animateHeaderArrow();
+    animateCoursesAndProjects(bottomOffset);
     animateSkillset(bottomOffset);
     animateArrowToTop(bottomOffset);
 

@@ -168,7 +168,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1.4em;
+    font-size: 1.3em;
     color: #555;
 }
 
@@ -221,13 +221,13 @@ section .section-content {
     width: 90%;
     max-width: 1100px;
     margin: 0 auto;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 section .section-content .section-text {
     width: 100%;
     font-size: 20px;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 40px 0 80px;
 }
 
@@ -487,7 +487,7 @@ header .header-content h1 {
     animation-duration: 2s;
 }
 
-header .header-content h1 .subtitle {
+header .header-content h1.subtitle {
     display: block;
     text-align: center;
     font-size: 32px;
@@ -595,7 +595,7 @@ header .header-content-holder .animated-arrow-2 {
         display: none;
     }
 
-    header .header-content h1 .subtitle {
+    header .header-content h1.subtitle {
         font-size: 30px;
         /* text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3); */
         text-shadow: 0 0 15px rgba(10, 10, 10, 1), 0 0 10px rgba(10, 10, 10, 1), 0 0 5px rgba(10, 10, 10, 1), 0 0 4px rgba(10, 10, 10, 1), 0 0 3px rgba(10, 10, 10, 1);
@@ -616,7 +616,7 @@ header .header-content-holder .animated-arrow-2 {
         font-size: 12vw;
     }
 
-    header .header-content h1 .subtitle {
+    header .header-content h1.subtitle {
         font-size: 6vw;
     }
 }
@@ -1038,8 +1038,8 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     -webkit-transform: rotate(60deg);
     -ms-transform: rotate(60deg);
     transform: rotate(60deg);
-    left: -60px;
-    bottom: 55px;
+    left: -61px;
+    bottom: 35px;
     border-top: 2px solid rgb(175, 175, 175);
 }
 
@@ -1048,7 +1048,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     -ms-transform: rotate(-60deg);
     transform: rotate(-60deg);
     right: -60px;
-    bottom: 55px;
+    bottom: 35px;
     border-top: 2px solid rgb(175, 175, 175);
 }
 
@@ -1056,7 +1056,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     display: inline-block;
     width: 200px;
     height: 200px;
-    margin: 40px auto;
+    margin: 40px auto 20px;
     border-top: 2px solid rgb(143, 143, 143);
     border-bottom: 2px solid rgb(175, 175, 175);
 }
@@ -1067,7 +1067,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     width: 100%;
     font-size: 20px;
     overflow: hidden;
-    margin: 40px 20px 60px;
+    margin: 20px 20px 60px;
 }
 
 .about-text p {
@@ -1091,7 +1091,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     font-weight: bold;
     color: #2196f3;
     -webkit-box-shadow: 0 -6px 4px -2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 -6px 4px -2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 -5px 4px -2px rgba(0, 0, 0, 0.3);
 }
 
 .about-content .curriculum-vitae:visited a,
@@ -2149,6 +2149,10 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
 /*** CONTACT SECTION ***/
 
+#contact .section-content {
+    overflow: hidden;
+}
+
 .contact-title {
     color: #fff;
 }
@@ -3039,8 +3043,8 @@ footer .arrow-to-top:hover svg path {
 @-webkit-keyframes fadeInDown {
     from {
         opacity: 0;
-        -webkit-transform: translatey(-50px);
-        transform: translatey(-50px);
+        -webkit-transform: translatey(350px);
+        transform: translatey(350px);
     }
 
     to {
@@ -3053,10 +3057,66 @@ footer .arrow-to-top:hover svg path {
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        -webkit-transform: translatey(-50px);
-        transform: translatey(-50px);
+        -webkit-transform: translatey(350px);
+        transform: translatey(350px);
     }
 
+    to {
+        opacity: 1;
+        -webkit-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+
+@-webkit-keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        -webkit-transform: translatey(0);
+        transform: translatey(0);
+    }
+    
+    to {
+        opacity: 0;
+        -webkit-transform: translatey(350px);
+        transform: translatey(350px);
+    }
+}
+
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        -webkit-transform: translatey(0);
+        transform: translatey(0);
+    }
+    
+    to {
+        opacity: 0;
+        -webkit-transform: translatey(350px);
+        transform: translatey(350px);
+    }
+}
+
+@-webkit-keyframes fadeInTop {
+    from {
+        opacity: 0;
+        -webkit-transform: translatey(-150px);
+        transform: translatey(-150px);
+    }
+    
+    to {
+        opacity: 1;
+        -webkit-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+
+@keyframes fadeInTop {
+    from {
+        opacity: 0;
+        -webkit-transform: translatey(-150px);
+        transform: translatey(-150px);
+    }
+    
     to {
         opacity: 1;
         -webkit-transform: translatey(0);
@@ -3073,8 +3133,8 @@ footer .arrow-to-top:hover svg path {
 
     to {
         opacity: 0;
-        -webkit-transform: translatey(-50px);
-        transform: translatey(-50px);
+        -webkit-transform: translatey(-150px);
+        transform: translatey(-150px);
     }
 }
 
@@ -3087,16 +3147,16 @@ footer .arrow-to-top:hover svg path {
 
     to {
         opacity: 0;
-        -webkit-transform: translatey(-50px);
-        transform: translatey(-50px);
+        -webkit-transform: translatey(-150px);
+        transform: translatey(-150px);
     }
 }
 
 @-webkit-keyframes fadeInLeft {
     from {
         opacity: 0;
-        -webkit-transform: translateX(-180px);
-        transform: translateX(-180px);
+        -webkit-transform: translateX(-480px);
+        transform: translateX(-480px);
     }
 
     to {
@@ -3109,8 +3169,36 @@ footer .arrow-to-top:hover svg path {
 @keyframes fadeInLeft {
     from {
         opacity: 0;
-        -webkit-transform: translateX(-180px);
-        transform: translateX(-180px);
+        -webkit-transform: translateX(-480px);
+        transform: translateX(-480px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes fadeInRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(480px);
+        transform: translateX(480px);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(480px);
+        transform: translateX(480px);
     }
 
     to {
@@ -3129,8 +3217,8 @@ footer .arrow-to-top:hover svg path {
 
     to {
         opacity: 0;
-        -webkit-transform: translateX(-180px);
-        transform: translateX(-180px);
+        -webkit-transform: translateX(-480px);
+        transform: translateX(-480px);
     }
 }
 
@@ -3143,16 +3231,43 @@ footer .arrow-to-top:hover svg path {
 
     to {
         opacity: 0;
-        -webkit-transform: translateX(-180px);
-        transform: translateX(-180px);
+        -webkit-transform: translateX(-480px);
+        transform: translateX(-480px);
+    }
+}
+@-webkit-keyframes fadeOutRight {
+    from {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translateX(480px);
+        transform: translateX(480px);
+    }
+}
+
+@keyframes fadeOutRight {
+    from {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translateX(480px);
+        transform: translateX(480px);
     }
 }
 
 .fade-animation {
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
+    -webkit-animation-duration: .7s;
+    animation-duration: .7s;
 }
 
 .fade-in {
@@ -3170,6 +3285,16 @@ footer .arrow-to-top:hover svg path {
     animation-name: fadeInDown;
 }
 
+.fade-out-down {
+    -webkit-animation-name: fadeOutDown;
+    animation-name: fadeOutDown;
+}
+
+.fade-in-top {
+    -webkit-animation-name: fadeInTop;
+    animation-name: fadeInTop;
+}
+
 .fade-out-top {
     -webkit-animation-name: fadeOutTop;
     animation-name: fadeOutTop;
@@ -3180,7 +3305,17 @@ footer .arrow-to-top:hover svg path {
     animation-name: fadeInLeft;
 }
 
+.fade-in-right {
+    -webkit-animation-name: fadeInRight;
+    animation-name: fadeInRight;
+}
+
 .fade-out-left {
     -webkit-animation-name: fadeOutLeft;
     animation-name: fadeOutLeft;
+}
+
+.fade-out-right {
+    -webkit-animation-name: fadeOutRight;
+    animation-name: fadeOutRight;
 }
