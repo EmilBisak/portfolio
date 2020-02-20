@@ -1680,7 +1680,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 @media only screen and (max-width: 540px) {
     #skillset .section-text {
         min-height: 620px;
-        margin: 0 auto;
+        margin: 30px auto 0;
         display: table;
         max-width: 240px;
     }
