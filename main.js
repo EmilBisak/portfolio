@@ -653,8 +653,6 @@ app.scroll = (function () {
   const projectHexagonButtons = document.querySelectorAll('.project-details .hex-holder .hexagon-wrapper');
   const laptopElements = document.querySelectorAll('.laptop');
 
-  console.log('projectHexagonButtons', projectHexagonButtons)
-
   const aboutAnchor = document.querySelector('#about');
   const arrowToTop = document.querySelector('.arrow-to-top');
 
@@ -835,7 +833,7 @@ app.scroll = (function () {
     const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10 - 300);
 
     if (bottomOffset > portfolioSectionTriger) {
-      animateSelectedNodesFadeLeftAndRight(bottomOffset, projectsTitleElements, 1.2, projectsInfoElements);
+      animateSelectedNodesFadeLeftAndRight(bottomOffset, projectsTitleElements, 1.2);
       animateSelectedNodesFadeLeftAndRightWithDelay(bottomOffset, projectsInfoElements, 1.2, ".3");
       animateSelectedNodesFadeLeftAndRightWithDelay(bottomOffset, projectsTechnologiesTitleElements, 1.2, ".5");
       animateSelectedNodesFadeLeftAndRightWithDelay(bottomOffset, projectsTechnologiesElements, 1.2, ".7");
