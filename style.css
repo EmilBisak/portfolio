@@ -1085,10 +1085,10 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     -o-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
     padding: 10px;
-    border: 2px solid #1893f6;
+    border: 2px solid #1969f9;
     border-radius: 2px;
     font-weight: bold;
-    color: #1893f6;
+    color: #1969f9;
     background: #fff;
     -webkit-box-shadow: 0 -6px 4px -2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 -5px 4px -2px rgba(0, 0, 0, 0.3);
@@ -1101,7 +1101,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     -o-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
     color: #fff;
-    background: #1893f6;
+    background: #1969f9;
     -webkit-box-shadow: 0 -6px 6px -2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 -6px 6px -2px rgba(0, 0, 0, 0.3);
 }
@@ -1850,7 +1850,7 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 }
 
 .project-hex .color1 {
-    background: #1893f6;
+    background: #1969f9;
     -webkit-box-shadow: 0 -4px 4px -2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 -4px 4px -2px rgba(0, 0, 0, 0.3);
 }
