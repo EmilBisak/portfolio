@@ -585,6 +585,12 @@ header .header-content-holder .animated-arrow-2 {
     opacity: 1
 }
 
+@media only screen and (max-width: 996px) {
+    header .header-title h1 {
+        opacity: 1 !important;
+    }
+}
+
 @media only screen and (max-width: 768px) {
 
     header .header-content h1 {
@@ -1080,7 +1086,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     font-family: RobotoInternal, "Roboto", Helvetica, Arial, sans-serif;
 }
 
-.about-content .curriculum-vitae a  span{
+.about-content .curriculum-vitae a span {
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     -o-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
@@ -1119,6 +1125,13 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     background-size: cover;
 }
 
+
+@media only screen and (max-width: 996px) {
+    .about-section-title,
+    .about-content .image-holder {
+        opacity: 1 !important;
+    }
+}
 
 @media only screen and (max-width: 500px) {
     .projects-bg {
@@ -1766,6 +1779,10 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     flex-direction: row-reverse;
 }
 
+.project.end .project-hex {
+    left: -10px;
+}
+
 .project-holder:last-of-type .project.end {
     border-bottom: 1px solid rgb(255, 255, 255);
 }
@@ -1784,9 +1801,17 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
     display: block;
     width: 100px;
     height: 3px;
-    background-color: #04C2C9;
+    background-color: rgba(4, 194, 201, 0);
     margin: 7px 0;
     margin-bottom: 10px;
+}
+
+.project h3.fade-in-left::after,
+.project h3.fade-in-right::after {
+    transition-property: background-color;
+    transition-duration: .5s;
+    transition-delay: .45s;
+    background-color: rgba(4, 194, 201, 1);
 }
 
 .project h4 {
@@ -1846,7 +1871,6 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     width: 50px;
     height: 50px;
     z-index: 3;
-    left: -10px;
 }
 
 .project-hex .color1 {
@@ -1893,8 +1917,10 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    position: relative;
-    left: 20px;
+}
+
+.project.start .hex-holder .hexagon-wrapper:last-of-type {
+    margin-right: 0;
 }
 
 .project.end .hex-holder {
@@ -2007,6 +2033,10 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
 
     .project h3::after {
         margin: 7px 0;
+    }
+
+    .project-hex {
+        left: -10px;
     }
 }
 
@@ -2212,6 +2242,11 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    visibility: hidden;
+}
+
+.contact-wrapper.flip-in-left {
+    visibility: visible;
 }
 
 .contact-wrapper p {
@@ -2242,6 +2277,12 @@ iframe[src="https://emilbisak.github.io/BitBook/#/"] {
         display: block;
     }
 
+}
+
+@media only screen and (max-width: 996px) {
+    .contact-wrapper {
+        visibility: visible;
+    }
 }
 
 @media only screen and (max-width: 900px) {
@@ -3049,6 +3090,26 @@ footer .arrow-to-top:hover svg path {
     }
 }
 
+@-webkit-keyframes fadeOutSmallScreen {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutSmallScreen {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 @-webkit-keyframes fadeInDown {
     from {
         opacity: 0;
@@ -3342,6 +3403,7 @@ footer .arrow-to-top:hover svg path {
 }
 
 @-webkit-keyframes popIn {
+
     /* 0% {
         transform: scale(0);
     }
@@ -3469,4 +3531,17 @@ footer .arrow-to-top:hover svg path {
 .pop-in {
     -webkit-animation: popIn 0.75s both;
     animation: popIn 0.75s both;
+}
+
+
+@media only screen and (max-width: 996px) {
+
+    *.fade-out,
+    *.fade-out-left,
+    *.fade-out-right,
+    *.fade-out-down,
+    *.fade-out-top {
+        -webkit-animation-name: fadeOutSmallScreen;
+        animation-name: fadeOutSmallScreen;
+    }
 }

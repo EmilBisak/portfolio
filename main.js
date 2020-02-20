@@ -646,7 +646,14 @@ app.scroll = (function () {
   const portfolioSection = document.querySelector('#portfolio');
   // const projectsElements = document.querySelectorAll('.project');
   const projectsElements = document.querySelectorAll('.project-details');
+  const projectsTitleElements = document.querySelectorAll('.project-details h3');
+  const projectsInfoElements = document.querySelectorAll('.project-info');
+  const projectsTechnologiesTitleElements = document.querySelectorAll('.technologies-title');
+  const projectsTechnologiesElements = document.querySelectorAll('.technologies');
+  const projectHexagonButtons = document.querySelectorAll('.project-details .hex-holder .hexagon-wrapper');
   const laptopElements = document.querySelectorAll('.laptop');
+
+  console.log('projectHexagonButtons', projectHexagonButtons)
 
   const aboutAnchor = document.querySelector('#about');
   const arrowToTop = document.querySelector('.arrow-to-top');
@@ -761,31 +768,29 @@ app.scroll = (function () {
     const educationElementTriger = educationElement.offsetTop + (educationElement.offsetHeight * 2);
 
     if (bottomOffset <= educationElementTriger) {
-      // animateSelectedNodesCustomAnimations(bottomOffset, authorName, 3, false)
-      // animateSelectedNodesCustomAnimations(bottomOffset, authorImage, 1, false, "flip-in-left")
-      
+
       // Animate author image and author name
       if (bottomOffset >= authorNameTriger) {
-        
+
         authorName.classList.add("fade-in");
         authorName.classList.remove("fade-out");
-        
+
         sectionTitle.style.opacity = 1;
         authorImage.style.opacity = 1;
       } else {
         let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
-        
+
         authorName.classList.remove("fade-in");
         authorName.classList.add("fade-out");
-        
+
         sectionTitle.style.opacity = authorNameOpacity;
         authorImage.style.opacity = authorNameOpacity;
       }
-      
+
       // Animate about text
       animateSelectedNodesCustomAnimations(bottomOffset, aboutTextParagraphs, 1.5)
-      
-      
+
+
       // Animate curriculum vitae button
       if (bottomOffset >= (authorNameTriger + aboutText.offsetHeight * 2.2)) {
         cvButton.classList.add("pop-in");
@@ -797,12 +802,12 @@ app.scroll = (function () {
 
       // Animate divider
       animateSelectedNodesCustomAnimations(bottomOffset, dividerElement, 3);
-      
+
     }
 
     // Stoping and resuming canvas animation
     if (bottomOffset >= educationElementTriger) {
-      
+
       isAnimationRunning && app.canvas.cancelCanvasAnimation();
       isAnimationRunning = false;
     } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
@@ -830,7 +835,11 @@ app.scroll = (function () {
     const portfolioSectionTriger = portfolioSection.offsetTop + (portfolioSection.offsetHeight / 10 - 300);
 
     if (bottomOffset > portfolioSectionTriger) {
-      animateSelectedNodesFadeLeftAndRight(bottomOffset, projectsElements, 0.6);
+      animateSelectedNodesFadeLeftAndRight(bottomOffset, projectsTitleElements, 1.2, projectsInfoElements);
+      animateSelectedNodesFadeLeftAndRightWithDelay(bottomOffset, projectsInfoElements, 1.2, ".3");
+      animateSelectedNodesFadeLeftAndRightWithDelay(bottomOffset, projectsTechnologiesTitleElements, 1.2, ".5");
+      animateSelectedNodesFadeLeftAndRightWithDelay(bottomOffset, projectsTechnologiesElements, 1.2, ".7");
+      animateSelectedNodesCustomAnimations(bottomOffset, projectHexagonButtons, 1, true, "flip-in-left");
       animateSelectedNodesCustomAnimations(bottomOffset, laptopElements, 0.6, true, "pop-in");
     }
   }
@@ -898,8 +907,8 @@ app.scroll = (function () {
 
         contactHexagons[i].setAttribute(
           "style",
-          `-webkit-animation-delay: 0.${5+i}s;
-         animation-delay: 0.${5+i}s; `
+          `-webkit-animation-delay: 0.${5 + i}s;
+         animation-delay: 0.${5 + i}s; `
         );
 
         if (bottomOffset >= contactHexagonsTriger) {
@@ -1012,6 +1021,36 @@ app.scroll = (function () {
       let selectedElementsTriger = selectedElementsArray[i].offsetTop + (selectedElementsArray[i].offsetHeight * offset);
       let leftOrRightAnimation = i % 2 === 0 ? "left" : "right";
 
+      selectedElementsArray[i].classList.add("fade-animation");
+
+      if (bottomOffset >= selectedElementsTriger) {
+        selectedElementsArray[i].classList.add(`fade-in-${leftOrRightAnimation}`);
+        selectedElementsArray[i].classList.remove(`fade-out-${leftOrRightAnimation}`);
+      } else {
+        selectedElementsArray[i].classList.remove(`fade-in-${leftOrRightAnimation}`);
+        selectedElementsArray[i].classList.add(`fade-out-${leftOrRightAnimation}`);
+      }
+
+    }
+
+  }
+
+
+  function animateSelectedNodesFadeLeftAndRightWithDelay(bottomOffset, selectedElementsArray, offset = 1, delay = "0.3") {
+
+    for (let i = 0; i < selectedElementsArray.length; i++) {
+
+      let selectedElementsTriger = selectedElementsArray[i].offsetTop + (selectedElementsArray[i].offsetHeight * offset);
+      let leftOrRightAnimation = i % 2 === 0 ? "left" : "right";
+
+      selectedElementsArray[i].classList.add("fade-animation");
+
+      selectedElementsArray[i].setAttribute(
+        "style",
+        `-webkit-animation-delay: ${delay}s;
+          animation-delay: ${delay}s;`
+      );
+
       if (bottomOffset >= selectedElementsTriger) {
         selectedElementsArray[i].classList.add(`fade-in-${leftOrRightAnimation}`);
         selectedElementsArray[i].classList.remove(`fade-out-${leftOrRightAnimation}`);
@@ -1061,21 +1100,21 @@ app.scroll = (function () {
   }
 
 
-  function animatePageElements() {
+  function animatePageElements(renderedIsLargeScreen) {
 
     const bottomOffset = window.scrollY + window.innerHeight;
 
-    if (!isSmallScreen) {
+    if (renderedIsLargeScreen) {
       animateHeaderTitle(bottomOffset);
       animateAboutSectionElements(bottomOffset);
       animateCourses(bottomOffset);
       animateProjects(bottomOffset);
       animateSelectedNodesCustomAnimations(bottomOffset, sectionTitles, 3)
+      animateContactHexagons(bottomOffset);
     }
-    
+
     animateHeaderArrow();
     animateSkillset(bottomOffset);
-    animateContactHexagons(bottomOffset);
     animateArrowToTop(bottomOffset);
 
   };
@@ -1319,6 +1358,7 @@ app.loadingCanvas = (function () {
 function redrawCanvases() {
   app.canvas.redrawCanvas();
   app.loadingCanvas.loadingCanvasInit();
+  app.scroll.animatePageElements(window.innerWidth > 996);
 }
 
 
@@ -1335,7 +1375,7 @@ function init() {
     }
   };
 
-  document.onscroll = app.scroll.debounce(app.scroll.animatePageElements, 15);
+  document.onscroll = app.scroll.debounce(() => { app.scroll.animatePageElements(window.innerWidth > 996); }, 15);
   window.onresize = redrawCanvases;
 
   const disableRenderingIframesOnLargeScreens = true;
