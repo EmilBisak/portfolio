@@ -64,17 +64,21 @@
         "@context": "http://schema.org",
         "@type": "Person",
         "name": "Emil Bisak",
-        "birthDate": "27.03.1990.",
+        "birthDate": "1990-03-27",
         "url": "https://emilbisak.com/",
-        "logo": "https://emilbisak.com//assets/emil-logo.png",
+        "image": "https://emilbisak.com/assets/emil_bisak.jpg",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+381-64-2049-122",
             "email": "bisak.emil@gmail.com",
             "contactType": "Customer service"
         },
-        "postalCode": "26000",
-        "addressCountry": "RS",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Pancevo",
+            "addressRegion": "RS",
+            "postalCode": "26000",
+          },
         "sameAs": [
             "https://www.facebook.com/emil.bisak/",
             "https://www.linkedin.com/in/emil-bisak/",
@@ -117,7 +121,8 @@
             <ul class="nav-list">
                 <li><a aria-label="Home link" title="Home link" href="#home" class="active navigation-link"
                         onclick="app.nav.toggleNav()">Home</a></li>
-                <li><a aria-label="About link" title="About link" href="#about" class="navigation-link" onclick="app.nav.toggleNav()">Who Am
+                <li><a aria-label="About link" title="About link" href="#about" class="navigation-link"
+                        onclick="app.nav.toggleNav()">Who Am
                         I</a></li>
                 <li><a aria-label="Skillset link" title="Skillset link" href="#skillset" class="navigation-link"
                         onclick="app.nav.toggleNav()">Skillset</a></li>
@@ -184,7 +189,8 @@
                     </div>
                 </div>
                 <canvas class="header-canvas"></canvas>
-                <a aria-label="About link" title="About link" href="#about" onclick="app.nav.onNavClick()" class="navigation-link arrow-to-down-wrapper">
+                <a aria-label="About link" title="About link" href="#about" onclick="app.nav.onNavClick()"
+                    class="navigation-link arrow-to-down-wrapper">
                     <span class="arrow-to-down animated-arrow-2"></span>
                     <span class="arrow-to-down animated-arrow-1"></span>
                 </a>
@@ -204,14 +210,18 @@
                     <h3 class="about-name fade-animation">Emil Bisak</h3>
                     <div class="about-text">
                         <p>A highly motivated and passionate Front End Web Developer based in Pancevo, Serbia.</p>
-                        <p>I’m committed to writing clean, maintainable and reliable code while following best coding practices. Always striving to improve and create the best positive experience for myself and those surrounding me.</p>
+                        <p>I’m committed to writing clean, maintainable and reliable code while following best coding
+                            practices. Always striving to improve and create the best positive experience for myself and
+                            those surrounding me.</p>
                         <p>Web development is my passion.</p>
-                        <p>I'm currently working as a Front End Developer at <a aria-label="Unimaze software website" title="Unimaze software website"
-                                href="https://umz2.unimaze.com/" target="_blank" rel="noopener">Unimaze Software</a>.
+                        <p>I'm currently working as a Front End Developer at <a aria-label="Unimaze software website"
+                                title="Unimaze software website" href="https://umz2.unimaze.com/" target="_blank"
+                                rel="noopener">Unimaze Software</a>.
                         </p>
                     </div>
-                    <h4 class="curriculum-vitae fade-animation"><a aria-label="Preview full CV" title="Preview full CV" href="emil-bisak-cv.pdf" target="_blank"
-                            rel="noopener"><span>Curriculum Vitae</span></a></h4>
+                    <h4 class="curriculum-vitae fade-animation"><a aria-label="Preview full CV" title="Preview full CV"
+                            href="emil-bisak-cv.pdf" target="_blank" rel="noopener"><span>Curriculum Vitae</span></a>
+                    </h4>
                 </div>
             </div>
             <div class="divider" data-delay=".1">
@@ -224,8 +234,8 @@
                 <h2 class="animated-section-title">Education and courses</h2>
                 <div class="section-text education-holder">
                     <div class="courses fade-animation">
-                        <a aria-label="React week website" title="React week website" href="https://reactweek.dev/" target="_blank" rel="noopener"
-                            class="courses-header">
+                        <a aria-label="React week website" title="React week website" href="https://reactweek.dev/"
+                            target="_blank" rel="noopener" class="courses-header">
                             <div class="circles">
                                 <div></div>
                                 <div></div>
@@ -241,8 +251,8 @@
                         <p>- A week-long program dedicated to React and its ecosystem for experienced developers</p>
                     </div>
                     <div class="courses fade-animation">
-                        <a aria-label="Škola koda website" title="Škola koda website" href="https://skolakoda.org" target="_blank" rel="noopener"
-                            class="courses-header">
+                        <a aria-label="Škola koda website" title="Škola koda website" href="https://skolakoda.org"
+                            target="_blank" rel="noopener" class="courses-header">
                             <img src="./assets/skola_koda.jpg" alt="Skola koda logo">
                             <div class="courses-title">
                                 <h3>Škola Koda</h3>
@@ -254,7 +264,8 @@
                             mostly on learning React and Redux and learning the basics of the React Native.</p>
                     </div>
                     <div class="courses fade-animation">
-                        <a aria-label="Belgrade institute of technology website" title="Belgrade institute of technology website" href="https://www.bgit.rs/en/"
+                        <a aria-label="Belgrade institute of technology website"
+                            title="Belgrade institute of technology website" href="https://www.bgit.rs/en/"
                             target="_blank" rel="noopener" class="courses-header">
                             <img src="./assets/bit.png" alt="Belgrade institute of technology logo">
                             <div class="courses-title">
@@ -267,8 +278,8 @@
                             are followed up by practical work on a computer to illustrate theoretical components.</p>
                     </div>
                     <div class="courses fade-animation">
-                        <a aria-label="Krojačeva škola website" title="Krojačeva škola website" href="https://www.krojacevaskola.com" target="_blank"
-                            rel="noopener" class="courses-header">
+                        <a aria-label="Krojačeva škola website" title="Krojačeva škola website"
+                            href="https://www.krojacevaskola.com" target="_blank" rel="noopener" class="courses-header">
                             <img src="./assets/krojaceva.png" alt="Krojaceva skola logo">
                             <div class="courses-title">
                                 <h3>Krojačeva Škola</h3>
@@ -384,8 +395,8 @@
 
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="BitBook project code" title="BitBook project code" href="https://github.com/EmilBisak/BitBook"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="BitBook project code" title="BitBook project code"
+                                        href="https://github.com/EmilBisak/BitBook" target="_blank" rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
@@ -393,8 +404,8 @@
                                     </a>
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="BitBook project demo" title="BitBook project demo" href="https://emilbisak.github.io/BitBook/#/"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="BitBook project demo" title="BitBook project demo"
+                                        href="https://emilbisak.github.io/BitBook/#/" target="_blank" rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
@@ -404,10 +415,13 @@
                             </div>
                         </div>
 
-                        <div data-delay=".18" class="laptop bitbook" data-image="bitbook_responsive" data-app-name="BitBook">
+                        <div data-delay=".18" class="laptop bitbook" data-image="bitbook_responsive"
+                            data-app-name="BitBook">
                             <img src="./assets/computer.jpg" alt="computer image">
                             <!-- <iframe title="BitBook" src="https://emilbisak.github.io/BitBook/#/"></iframe> -->
-                            <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/bitbook_responsive_comp.png" alt="bitbook responsive project image">
+                            <img class="project-computer-image"
+                                src="./assets/websitesImages/computerSizeImages/bitbook_responsive_comp.png"
+                                alt="bitbook responsive project image">
                         </div>
                     </div>
 
@@ -425,8 +439,8 @@
 
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="Shop project code" title="Shop project code" href="https://github.com/EmilBisak/Shop"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="Shop project code" title="Shop project code"
+                                        href="https://github.com/EmilBisak/Shop" target="_blank" rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
@@ -434,8 +448,8 @@
                                     </a>
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="Shop project demo" title="Shop project demo" href="https://emilbisak.github.io/Shop/"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="Shop project demo" title="Shop project demo"
+                                        href="https://emilbisak.github.io/Shop/" target="_blank" rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
@@ -448,7 +462,9 @@
                         <div data-delay=".18" class="laptop" data-image="shop_responsive" data-app-name="Shop">
                             <img src="./assets/computer.jpg" alt="computer image">
                             <!-- <iframe title="Shop" src="https://emilbisak.github.io/Shop/"></iframe> -->
-                            <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/shop_responsive_comp.png" alt="shop responsive project image">
+                            <img class="project-computer-image"
+                                src="./assets/websitesImages/computerSizeImages/shop_responsive_comp.png"
+                                alt="shop responsive project image">
                         </div>
                     </div>
                 </div>
@@ -468,8 +484,8 @@
 
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="Pokemon project code" title="Pokemon project code" href="https://github.com/EmilBisak/pokemon_app"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="Pokemon project code" title="Pokemon project code"
+                                        href="https://github.com/EmilBisak/pokemon_app" target="_blank" rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
@@ -477,8 +493,9 @@
                                     </a>
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="Pokemon project demo" title="Pokemon project demo" href="https://emilbisak.github.io/pokemon_app/#/"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="Pokemon project demo" title="Pokemon project demo"
+                                        href="https://emilbisak.github.io/pokemon_app/#/" target="_blank"
+                                        rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
@@ -488,10 +505,13 @@
                             </div>
 
                         </div>
-                        <div data-delay=".18" class="laptop" data-image="pokemons_responsive" data-app-name="pokemon_app">
+                        <div data-delay=".18" class="laptop" data-image="pokemons_responsive"
+                            data-app-name="pokemon_app">
                             <img src="./assets/computer.jpg" alt="computer image">
                             <!-- <iframe title="Pokemon application" src="https://emilbisak.github.io/pokemon_app/#/"></iframe> -->
-                            <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/pokemons_responsive_comp.png" alt="pokemons responsive project image">
+                            <img class="project-computer-image"
+                                src="./assets/websitesImages/computerSizeImages/pokemons_responsive_comp.png"
+                                alt="pokemons responsive project image">
                         </div>
 
                     </div>
@@ -509,8 +529,8 @@
 
                             <div class="hex-holder">
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="MemoryGame project code" title="MemoryGame project code" href="https://github.com/EmilBisak/MemoryGame"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="MemoryGame project code" title="MemoryGame project code"
+                                        href="https://github.com/EmilBisak/MemoryGame" target="_blank" rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
                                             <p>code</p>
@@ -518,8 +538,8 @@
                                     </a>
                                 </div>
                                 <div class="project-hex hexagon-wrapper show-skills">
-                                    <a aria-label="MemoryGame project demo" title="MemoryGame project demo" href="https://emilbisak.github.io/MemoryGame/"
-                                        target="_blank" rel="noopener">
+                                    <a aria-label="MemoryGame project demo" title="MemoryGame project demo"
+                                        href="https://emilbisak.github.io/MemoryGame/" target="_blank" rel="noopener">
                                         <div class="hexagon color1">
                                             <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
                                             <p>demo</p>
@@ -532,7 +552,9 @@
                         <div data-delay=".18" class="laptop" data-image="memory_responsive" data-app-name="MemoryGame">
                             <img src="./assets/computer.jpg" alt="computer image">
                             <!-- <iframe title="Memory game" src="https://emilbisak.github.io/MemoryGame/"></iframe> -->
-                            <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/memory_responsive_comp.png" alt="memory responsive project image">
+                            <img class="project-computer-image"
+                                src="./assets/websitesImages/computerSizeImages/memory_responsive_comp.png"
+                                alt="memory responsive project image">
                         </div>
                     </div>
                 </div>
@@ -543,7 +565,8 @@
                             <h3>Movie Database</h3>
                             <div class="project-info">
                                 <h4>Info</h4>
-                                <p>Movie Database uses <a aria-label="movie-database-api link" title="movie-database-api link"
+                                <p>Movie Database uses <a aria-label="movie-database-api link"
+                                        title="movie-database-api link"
                                         href="https://github.com/skolakoda/baza-filmova-api">movie-database-api</a> for
                                     data.</p>
                                 <p>User is able to log in, see existing movies, delete movies, add movies and post
@@ -576,10 +599,13 @@
                             </div>
 
                         </div>
-                        <div data-delay=".18" class="laptop" data-image="movies_responsive" data-app-name="movie-database">
+                        <div data-delay=".18" class="laptop" data-image="movies_responsive"
+                            data-app-name="movie-database">
                             <img src="./assets/computer.jpg" alt="computer image">
                             <!-- <iframe title="Movie database" src="https://emilbisak.github.io/movie-database/#/"></iframe> -->
-                            <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/movies_responsive_comp.png" alt="movies responsive project image">
+                            <img class="project-computer-image"
+                                src="./assets/websitesImages/computerSizeImages/movies_responsive_comp.png"
+                                alt="movies responsive project image">
                         </div>
 
                     </div>
@@ -589,8 +615,8 @@
                             <h3>React CRUD App</h3>
                             <div class="project-info">
                                 <h4>Info</h4>
-                                <p>React CRUD App uses fakeapi - <a aria-label="reqres.in website" title="reqres.in website"
-                                        href="https://reqres.in/">reqres.in</a> for
+                                <p>React CRUD App uses fakeapi - <a aria-label="reqres.in website"
+                                        title="reqres.in website" href="https://reqres.in/">reqres.in</a> for
                                     data.</p>
                                 <p>We are able to log in and log out.</p>
                                 <p>When we are logged in we are able to create, read, update, and delete users (CRUD)
@@ -623,10 +649,13 @@
                             </div>
 
                         </div>
-                        <div data-delay=".18" class="laptop" data-image="crud_responsive" data-app-name="react_crud_app">
+                        <div data-delay=".18" class="laptop" data-image="crud_responsive"
+                            data-app-name="react_crud_app">
                             <img src="./assets/computer.jpg" alt="computer image">
                             <!-- <iframe title="React crud application" src="https://emilbisak.github.io/react_crud_app/"></iframe> -->
-                            <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/crud_responsive_comp.png" alt="crud responsive project image">
+                            <img class="project-computer-image"
+                                src="./assets/websitesImages/computerSizeImages/crud_responsive_comp.png"
+                                alt="crud responsive project image">
                         </div>
 
                     </div>
@@ -645,7 +674,8 @@
                 <div class="contact-item">
                     <div class="contact-wrapper fade-animation">
                         <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Email: bisak.emil@gmail.com" title="Email: bisak.emil@gmail.com" href="mailto:bisak.emil@gmail.com">
+                            <a aria-label="Email: bisak.emil@gmail.com" title="Email: bisak.emil@gmail.com"
+                                href="mailto:bisak.emil@gmail.com">
                                 <div class="hexagon color1">
                                     <span class="iconify" data-icon="whh-webmail" data-inline="false"></span>
                                     <h4>Gmail</h4>
@@ -657,8 +687,8 @@
 
                     <div class="contact-wrapper contact-linkedin fade-animation">
                         <div class="contact-hex hexagon-wrapper ">
-                            <a aria-label="LinkedIn profile" title="LinkedIn profile" href="https://linkedin.com/in/emil-bisak" target="_blank"
-                                rel="noopener">
+                            <a aria-label="LinkedIn profile" title="LinkedIn profile"
+                                href="https://linkedin.com/in/emil-bisak" target="_blank" rel="noopener">
                                 <div class="hexagon color1">
                                     <span class="iconify" data-icon="jam-linkedin-circle" data-inline="false"></span>
                                     <h4>LinkedIn</h4>
@@ -670,7 +700,8 @@
 
                     <div class="contact-wrapper contact-phone fade-animation">
                         <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Phone number: +381642049122" title="Phone number: +381642049122" href="tel:+381642049122">
+                            <a aria-label="Phone number: +381642049122" title="Phone number: +381642049122"
+                                href="tel:+381642049122">
                                 <div class="hexagon color1">
                                     <span class="iconify" data-icon="el-phone-alt" data-inline="false"></span>
                                     <h4>Phone</h4>
@@ -682,8 +713,8 @@
 
                     <div class="contact-wrapper contact-github fade-animation">
                         <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Github profile" title="Github profile" href="https://github.com/emilbisak" target="_blank"
-                                rel="noopener">
+                            <a aria-label="Github profile" title="Github profile" href="https://github.com/emilbisak"
+                                target="_blank" rel="noopener">
                                 <div class="hexagon color1">
                                     <span class="iconify" data-icon="fa-brands:github" data-inline="false"></span>
                                     <h4>GitHub</h4>
@@ -695,7 +726,8 @@
 
                     <div class="contact-wrapper contact-skype fade-animation">
                         <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Skype profile" title="Skype profile" href="skype:emil.bisak?action" target="_blank" rel="noopener">
+                            <a aria-label="Skype profile" title="Skype profile" href="skype:emil.bisak?action"
+                                target="_blank" rel="noopener">
                                 <div class="hexagon color1">
                                     <span class="iconify" data-icon="entypo-social:skype-with-circle"
                                         data-inline="false"></span>
@@ -716,16 +748,18 @@
                 <ul>
                     <li><a aria-label="Home link" title="Home link" href="#home" onclick="app.nav.onNavClick()"
                             class="navigation-link">Home</a></li>
-                    <li><a aria-label="About link" title="About link" href="#about" onclick="app.nav.onNavClick()" class="navigation-link">Who
+                    <li><a aria-label="About link" title="About link" href="#about" onclick="app.nav.onNavClick()"
+                            class="navigation-link">Who
                             am I</a></li>
-                    <li><a aria-label="Skillset link" title="Skillset link" href="#skillset" onclick="app.nav.onNavClick()"
-                            class="navigation-link">Skillset</a></li>
-                    <li><a aria-label="Portfolio link" title="Portfolio link" href="#portfolio" onclick="app.nav.onNavClick()"
-                            class="navigation-link">Portfolio</a></li>
+                    <li><a aria-label="Skillset link" title="Skillset link" href="#skillset"
+                            onclick="app.nav.onNavClick()" class="navigation-link">Skillset</a></li>
+                    <li><a aria-label="Portfolio link" title="Portfolio link" href="#portfolio"
+                            onclick="app.nav.onNavClick()" class="navigation-link">Portfolio</a></li>
                     <li><a aria-label="Contact link" title="Contact link" href="#contact" onclick="app.nav.onNavClick()"
                             class="navigation-link">Contact</a></li>
                 </ul>
-                <a aria-label="Author name" title="Author name" href="#about" onclick="app.nav.onNavClick()" class="navigation-link author-name">
+                <a aria-label="Author name" title="Author name" href="#about" onclick="app.nav.onNavClick()"
+                    class="navigation-link author-name">
                     <span class="copyright">
                         &copy; Copyright
                     </span>E<span class="hide-letters">mil </span>B<span class="hide-letters">isak</span>
@@ -733,7 +767,8 @@
                 </a>
             </div>
             <div class="arrow-to-top">
-                <a aria-label="Arrow to page top" title="Arrow to top" href="#home" onclick="app.nav.onNavClick()" class="navigation-link">
+                <a aria-label="Arrow to page top" title="Arrow to top" href="#home" onclick="app.nav.onNavClick()"
+                    class="navigation-link">
                     <span class="iconify" data-icon="dashicons:arrow-up-alt2" data-inline="false"></span>
                 </a>
             </div>
