@@ -1208,19 +1208,26 @@ app.loadingIFrames = (function () {
 
   function shouldLoadIFrame(disableRenderingIframesOnLargeScreens) {
     for (let index = 0; index < laptopElements.length; index++) {
+      const projectName = laptopElements[index].getAttribute("data-app-name");
       if (window.innerWidth <= 768) {
         const projectImgName = laptopElements[index].getAttribute("data-image");
 
         portfolioSection.classList.add("iframes-not-loaded");
 
-        laptopElements[index].innerHTML = `<img src="./assets/websitesImages/${projectImgName}.jpg" alt="${projectImgName} project image" >`;
+        laptopElements[index].innerHTML = `
+        <a href="https://emilbisak.github.io/${projectName}/#/" title="${projectName}" target="_blank" rel="noopener">
+          <img src="./assets/websitesImages/${projectImgName}.jpg" alt="${projectImgName} project image" >
+        </a>`;
 
       } else if (disableRenderingIframesOnLargeScreens) {
         const projectImgName = laptopElements[index].getAttribute("data-image");
 
         laptopElements[index].innerHTML = `
-        <img src="./assets/computer.jpg" alt="laptop image" >
-        <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/${projectImgName}_comp.png" alt="${projectImgName} project image" >`;
+        <a href="https://emilbisak.github.io/${projectName}/#/" title="${projectName}" target="_blank" rel="noopener">
+          <img src="./assets/computer.jpg" alt="laptop image" >
+          <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/${projectImgName}_comp.png" alt="${projectImgName} project image" >
+        </a>`;
+        
 
       } else {
         const iFrameName = laptopElements[index].getAttribute("data-app-name");
@@ -1232,7 +1239,6 @@ app.loadingIFrames = (function () {
           <iframe title="${iFrameName}" src="https://emilbisak.github.io/${iFrameName}/#/"></iframe>`;
 
       }
-
     }
   }
 
