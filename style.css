@@ -795,7 +795,7 @@ nav .nav-content-wrapp .nav-list li a {
     text-decoration: none;
 }
 
-
+/* OLD NAVIGATION HOVER ANIMATION */
 /* nav .nav-content-wrapp .nav-list li a::before {
     display: block;
     content: '';
@@ -818,7 +818,7 @@ nav .nav-content-wrapp .nav-list li a:hover:before {
     transform: scaleX(1.5);
 } */
 
-nav .nav-content-wrapp .nav-list li a::after {
+/* nav .nav-content-wrapp .nav-list li a::after {
     display: block;
     content: '';
     border-bottom: solid 3px #04C2C9;
@@ -832,13 +832,60 @@ nav .nav-content-wrapp .nav-list li a::after {
     transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
     cursor: pointer;
     margin-top: 3px;
-}
+} */
 
 /* nav .nav-content-wrapp .nav-list li a.active:after, */
-nav .nav-content-wrapp .nav-list li a:hover:after {
+/* nav .nav-content-wrapp .nav-list li a:hover:after {
     -webkit-transform: scaleX(1);
     -ms-transform: scaleX(1);
     transform: scaleX(1);
+} */
+/* OLD NAVIGATION HOVER ANIMATION END */
+
+nav .nav-content-wrapp .nav-list li a.underline {
+    position: relative;
+}
+
+nav .nav-content-wrapp .nav-list li a.underline:hover:before {
+    right: 0;
+    left: auto;
+    width: 0;
+}
+
+nav .nav-content-wrapp .nav-list li a.underline:hover:after,
+nav .nav-content-wrapp .nav-list li a.active.underline:after {
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+
+nav .nav-content-wrapp .nav-list li a.underline:before {
+    position: absolute;
+    height: 1px;
+    background: #04C2C9;
+    bottom: 0;
+    -webkit-transition: all .5s cubic-bezier(1, 0, .29, 1);
+    transition: all .5s cubic-bezier(1, 0, .29, 1);
+    left: 0;
+    width: 100%;
+}
+
+nav .nav-content-wrapp .nav-list li a.underline:after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    background: #04C2C9;
+    bottom: 0;
+    -webkit-transition: all .5s cubic-bezier(1, 0, .29, 1) .3s;
+    transition: all .5s cubic-bezier(1, 0, .29, 1) .3s;
+    right: 0;
+    width: 0;
+    bottom: -3px;
+}
+
+nav .nav-content-wrapp .nav-list li a.underline.hover:after {
+    -webkit-transition: all .4s cubic-bezier(1, 0, .29, 1);
+    transition: all .4s cubic-bezier(1, 0, .29, 1);
 }
 
 nav .nav-content-wrapp .nav-list-show {
@@ -897,11 +944,6 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 .dark-bg-color {
     background-color: rgba(0, 0, 0, 0.8);
-}
-
-.active {
-    font-weight: 600;
-    color: #fff;
 }
 
 
@@ -1127,6 +1169,7 @@ nav .nav-content-wrapp #nav-button .box-shadow-none {
 
 
 @media only screen and (max-width: 996px) {
+
     .about-section-title,
     .about-content .image-holder {
         opacity: 1 !important;
