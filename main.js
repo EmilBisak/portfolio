@@ -584,8 +584,6 @@ app.canvas = (function () {
     }
 
     shouldCallFillColor && fillTriangle();
-    // app.loadingCanvas.loadingCanvasInit();
-
   }
 
 
@@ -620,6 +618,9 @@ app.canvas = (function () {
 // scroll module
 app.scroll = (function () {
 
+  const navigationElement = document.querySelector('nav');
+  const navLinks = document.querySelectorAll('.navigation-link');
+
   const headerTitleH1 = document.querySelector('.header-title h1');
   const headerSubtitleH1 = document.querySelector('.header-title h1.subtitle');
 
@@ -628,11 +629,9 @@ app.scroll = (function () {
   const headerArrowDownSecond = document.querySelector('header .animated-arrow-2');
 
 
-  const sectionTitle = document.querySelector('.about-section-title');
+  const aboutSectionTitle = document.querySelector('.about-section-title');
   const authorName = document.querySelector('.about-name');
-  // const authorName = document.querySelectorAll('.about-name');
   const authorImage = document.querySelector('.image-holder');
-  // const authorImage = document.querySelectorAll('.image-holder');
   const aboutText = document.querySelector('.about-text');
   const aboutTextParagraphs = document.querySelectorAll('.about-text p');
   const cvButton = document.querySelector('.curriculum-vitae');
@@ -644,8 +643,6 @@ app.scroll = (function () {
   const skillset = document.querySelector('#skillset');
 
   const portfolioSection = document.querySelector('#portfolio');
-  // const projectsElements = document.querySelectorAll('.project');
-  const projectsElements = document.querySelectorAll('.project-details');
   const projectsTitleElements = document.querySelectorAll('.project-details h3');
   const projectsInfoElements = document.querySelectorAll('.project-info');
   const projectsTechnologiesTitleElements = document.querySelectorAll('.technologies-title');
@@ -661,11 +658,11 @@ app.scroll = (function () {
 
   const footer = document.querySelector('footer');
 
-  const sectionTitles = document.querySelectorAll('.animated-section-title');
+  const pageSections = document.querySelectorAll('.page-section');
+
+  const animatedSectionTitles = document.querySelectorAll('.animated-section-title');
 
   const dividerElement = document.querySelectorAll('.divider');
-
-  const isSmallScreen = window.innerWidth <= 996;
 
   let isFirefox = typeof InstallTrigger !== 'undefined';
 
@@ -773,7 +770,7 @@ app.scroll = (function () {
         authorName.classList.add("fade-in");
         authorName.classList.remove("fade-out");
 
-        sectionTitle.style.opacity = 1;
+        aboutSectionTitle.style.opacity = 1;
         authorImage.style.opacity = 1;
       } else {
         let authorNameOpacity = -(authorNameTriger / window.scrollY) / 2.5 + 2;
@@ -781,7 +778,7 @@ app.scroll = (function () {
         authorName.classList.remove("fade-in");
         authorName.classList.add("fade-out");
 
-        sectionTitle.style.opacity = authorNameOpacity;
+        aboutSectionTitle.style.opacity = authorNameOpacity;
         authorImage.style.opacity = authorNameOpacity;
       }
 
@@ -1098,6 +1095,38 @@ app.scroll = (function () {
   }
 
 
+  function activateCurrentNavLinkAndNavigation(bottomOffset) {
+    const indexArray = [];
+    let indexOfActiveNavLink = 0;
+    let offset = 1;
+
+    navLinks.forEach(navLink => {
+      navLink.classList.remove("active");
+    });
+
+    pageSections.forEach((section, i) => {
+      offset = i !== 4 ? 8 : 1.3;
+
+      const setNavToFixedPositionTriger = (window.innerHeight * 2 - 3);
+      const sectionTriger = section.offsetTop + (section.offsetHeight / offset);
+
+      if (bottomOffset >= setNavToFixedPositionTriger) {
+        navigationElement.classList.add("fixed-navigation");
+      } else {
+        navigationElement.classList.remove("fixed-navigation");
+      }
+
+      if (bottomOffset >= sectionTriger) {
+        navLinks[i].classList.remove("active");
+        indexArray.push(i)
+      }
+    });
+
+    indexOfActiveNavLink = indexArray[indexArray.length - 1];
+    navLinks[indexOfActiveNavLink].classList.add("active");
+  }
+
+
   function animatePageElements(renderedIsLargeScreen) {
 
     const bottomOffset = window.scrollY + window.innerHeight;
@@ -1107,14 +1136,14 @@ app.scroll = (function () {
       animateAboutSectionElements(bottomOffset);
       animateCourses(bottomOffset);
       animateProjects(bottomOffset);
-      animateSelectedNodesCustomAnimations(bottomOffset, sectionTitles, 3)
+      animateSelectedNodesCustomAnimations(bottomOffset, animatedSectionTitles, 3)
       animateContactHexagons(bottomOffset);
     }
 
     animateHeaderArrow();
     animateSkillset(bottomOffset);
     animateArrowToTop(bottomOffset);
-
+    activateCurrentNavLinkAndNavigation(bottomOffset);
   };
 
   return {
@@ -1227,7 +1256,7 @@ app.loadingIFrames = (function () {
           <img src="./assets/computer.jpg" alt="laptop image" >
           <img class="project-computer-image" src="./assets/websitesImages/computerSizeImages/${projectImgName}_comp.png" alt="${projectImgName} project image" >
         </a>`;
-        
+
 
       } else {
         const iFrameName = laptopElements[index].getAttribute("data-app-name");
