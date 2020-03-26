@@ -432,10 +432,10 @@ app.canvas = (function () {
 
 
       dotsArray.forEach(dot => {
-        if (this.x - dot.x <= 120 &&
-          this.x - dot.x > -120 &&
-          this.y - dot.y <= 120 &&
-          this.y - dot.y > -120) {
+        if (this.x - dot.x <= 150 &&
+          this.x - dot.x > -150 &&
+          this.y - dot.y <= 150 &&
+          this.y - dot.y > -150) {
 
           // DRAWING LINES BETWEEN DOTS //
           context.beginPath();
@@ -1110,8 +1110,15 @@ app.scroll = (function () {
       const setNavToFixedPositionTriger = (window.innerHeight * 2 - 3);
       const sectionTriger = section.offsetTop + (section.offsetHeight / offset);
 
+      if (window.scrollY > 50 ) {
+        navigationElement.classList.add("hide-navigation");
+      }else {
+        navigationElement.classList.remove("hide-navigation");
+      }
+
       if (bottomOffset >= setNavToFixedPositionTriger) {
         navigationElement.classList.add("fixed-navigation");
+        navigationElement.classList.remove("hide-navigation");
       } else {
         navigationElement.classList.remove("fixed-navigation");
       }

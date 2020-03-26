@@ -489,8 +489,8 @@ header .header-content h1 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-animation-delay: 1.5s;
-    animation-delay: 1.5s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
     -webkit-animation-duration: 2s;
     animation-duration: 2s;
 }
@@ -510,8 +510,8 @@ header .header-content h1.subtitle {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-animation-delay: 1.5s;
-    animation-delay: 1.5s;
+    -webkit-animation-delay: 1.25s;
+    animation-delay: 1.25s;
     -webkit-animation-duration: 2s;
     animation-duration: 2s;
 }
@@ -548,8 +548,8 @@ header .header-content-holder .arrow-to-down-wrapper {
     width: 50px;
     height: 50px;
     z-index: 2;
-    -webkit-animation: fadeInHeaderArrow 3s 2s forwards;
-    animation: fadeInHeaderArrow 3s 2s forwards;
+    -webkit-animation: fadeInHeaderArrow 2.5s 1.5s forwards;
+    animation: fadeInHeaderArrow 2.5s 1.5s forwards;
     opacity: 0;
     cursor: default;
 }
@@ -753,14 +753,14 @@ nav {
     height: 0px;
     /* overflow: hidden; */
     position: absolute;
-    top: 0;
+    top: 0px;
     /* left: 0; */
     right: 0;
     z-index: 1;
     /* padding: 30px 0 20px 0; */
-    -webkit-transition: background 0.4s, height 0.4s;
-    -o-transition: background 0.4s, height 0.4s;
-    transition: background 0.4s, height 0.4s;
+    -webkit-transition: background 0.4s, height 0.4s, top 0.3s;
+    -o-transition: background 0.4s, height 0.4s, top 0.3s;
+    transition: background 0.4s, height 0.4s, top 0.3s;
     display: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -768,11 +768,19 @@ nav {
     user-select: none;
 }
 
+nav.hide-navigation {
+    top: -50px;
+    right: 0;
+    -webkit-transition: background 0.4s, height 0.9s, top 0.3s;
+    -o-transition: background 0.4s, height 0.9s, top 0.3s;
+    transition: background 0.4s, height 0.9s, top 0.3s;
+}
+
 nav.fixed-navigation {
     position: fixed;
-    -webkit-transition: background 0.4s, height 0.4s;
-    -o-transition: background 0.4s, height 0.4s;
-    transition: background 0.4s, height 0.4s;
+    -webkit-transition: background 0.4s, height 0.4s, top 0.3s;
+    -o-transition: background 0.4s, height 0.4s, top 0.3s;
+    transition: background 0.4s, height 0.4s, top 0.3s;
     background: rgba(0, 0, 0, 0.8);
 }
 
@@ -781,11 +789,17 @@ nav.fixed-navigation:not(.nav-bg-color) {
 }
 
 @media only screen and (min-width: 769px) {
-    nav.fixed-navigation {
+    /* nav.fixed-navigation {
         height: 50px;
         -webkit-transition: background 0.4s, height 0.12s;
         -o-transition: background 0.4s, height 0.12s;
         transition: background 0.4s, height 0.12s;
+    } */
+    nav.fixed-navigation {
+        height: 50px;
+        -webkit-transition: background 0.4s, top 0.3s;
+        -o-transition: background 0.4s, top 0.3s;
+        transition: background 0.4s, top 0.3s;
     }
 }
 
@@ -801,9 +815,9 @@ nav .nav-content-wrapp .nav-list {
     overflow: hidden;
     height: 0px;
     padding-top: 40px;
-    -webkit-transition: height 0.4s;
-    -o-transition: height 0.4s;
-    transition: height 0.4s;
+    -webkit-transition: height 0.3s;
+    -o-transition: height 0.3s;
+    transition: height 0.3s;
 }
 
 nav .nav-content-wrapp .nav-list li {
