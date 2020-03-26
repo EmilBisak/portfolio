@@ -214,13 +214,14 @@ app.canvas = (function () {
 
   function updateMousePosition(event) {
     mouse.x = event.x;
-    mouse.y = event.y;
+    mouse.y = window.scrollY > 0 ? (window.scrollY + event.y) : event.y;
   }
 
   function addNewPointOnClick(event) {
     if ((isSmallScreen && dotsArray.length < (numberOfDots + Math.round(numberOfDots / 2))) || (!isSmallScreen && dotsArray.length < (numberOfDots + Math.round(numberOfDots / 3)))) {
       cancelCanvasAnimation();
-      dotsArray.push(new Point(event.x, event.y, 1, 0.5, 80, true))
+      let positionY = window.scrollY > 0 ? (window.scrollY + event.y) : event.y;
+      dotsArray.push(new Point(event.x, positionY, 1, 0.5, 80, true))
       animateDots();
       canvas.style.cursor = "pointer";
       dotsNotification.style.opacity = 0;
@@ -233,7 +234,6 @@ app.canvas = (function () {
       return
     }
   }
-
 
   let PIXEL_RATIO = (function () {
     let dpr = window.devicePixelRatio || 1,
@@ -644,6 +644,7 @@ app.scroll = (function () {
 
   const portfolioSection = document.querySelector('#portfolio');
   const projectsTitleElements = document.querySelectorAll('.project-details h3');
+  const projectElements = document.querySelectorAll('.project');
   const projectsInfoElements = document.querySelectorAll('.project-info');
   const projectsTechnologiesTitleElements = document.querySelectorAll('.technologies-title');
   const projectsTechnologiesElements = document.querySelectorAll('.technologies');
@@ -1387,6 +1388,11 @@ app.loadingCanvas = (function () {
   return { loadingCanvasInit }
 
 }());
+
+function handleArrowToTopClick() {
+  app.nav.onNavClick();
+  app.canvas.redrawCanvas();
+}
 
 function redrawCanvases() {
   app.canvas.redrawCanvas();
