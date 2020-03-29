@@ -9,6 +9,7 @@ app.nav = (function () {
   const $navigationElements = {
     nav: document.getElementsByTagName('nav')[0],
     menu: document.getElementsByClassName('nav-list')[0],
+    pageOverlapElement: document.getElementsByClassName('navigation-page-overlap')[0],
     buttonLines: {
       first: document.getElementById('nav-button').children[0],
       middle: document.getElementById('nav-button').children[1],
@@ -47,7 +48,7 @@ app.nav = (function () {
     $navigationElements.buttonLines.middle.style.background = "#fff";
     $navigationElements.buttonLines.last.className = "";
   }
-
+  
   function transformNavigationMenuLooks() {
     if (isNavigationShown()) {
       transformNavStyleForOpenedNav();
@@ -55,15 +56,17 @@ app.nav = (function () {
       transformNavStyleForClosedNav();
     }
   };
-
+  
   function transformNavStyleForOpenedNav() {
     $navigationElements.nav.classList.add("nav-bg-color");
     $navigationElements.menu.classList.add("nav-list-show");
+    $navigationElements.pageOverlapElement.style.display = "block";
   };
-
+  
   function transformNavStyleForClosedNav() {
     $navigationElements.nav.classList.remove("nav-bg-color");
     $navigationElements.menu.classList.remove("nav-list-show");
+    $navigationElements.pageOverlapElement.style.display = "none";
   };
 
   function navigateSmooth(location) {
