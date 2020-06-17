@@ -48,7 +48,7 @@ app.nav = (function () {
     $navigationElements.buttonLines.middle.style.background = "#fff";
     $navigationElements.buttonLines.last.className = "";
   }
-  
+
   function transformNavigationMenuLooks() {
     if (isNavigationShown()) {
       transformNavStyleForOpenedNav();
@@ -56,13 +56,13 @@ app.nav = (function () {
       transformNavStyleForClosedNav();
     }
   };
-  
+
   function transformNavStyleForOpenedNav() {
     $navigationElements.nav.classList.add("nav-bg-color");
     $navigationElements.menu.classList.add("nav-list-show");
     $navigationElements.pageOverlapElement.style.display = "block";
   };
-  
+
   function transformNavStyleForClosedNav() {
     $navigationElements.nav.classList.remove("nav-bg-color");
     $navigationElements.menu.classList.remove("nav-list-show");
@@ -292,7 +292,7 @@ app.canvas = (function () {
         fillTrianglesCounter++;
         if (splashBucket) { splashBucket.style.color = "rgb(229,229,229)" };
 
-        for (let i = red, j = green, p = blue; i >= 0, p > 0, j > 0; i-- , j-- , p--) {
+        for (let i = red, j = green, p = blue; i >= 0, p > 0, j > 0; i--, j--, p--) {
           setTimeout(() => {
             if (i < 2) i = 0;
             if (j == 1) j = 0;
@@ -586,7 +586,20 @@ app.canvas = (function () {
       createDotsArray(numberOfDots);
     }
 
-    shouldCallFillColor && fillTriangle();
+    // CHANGING COLOR INTERVAL
+    let counter = 0;
+    
+    let addCounter = setInterval(() => {
+      counter++
+      if (counter <= 2) { 
+        !isSmallScreen && fillTriangle();
+      }else {
+        clearInterval(addCounter);
+      }
+    }, 4000);
+    // END CHANGING COLOR INTERVAL
+
+    // shouldCallFillColor && fillTriangle();
   }
 
 
@@ -1110,13 +1123,13 @@ app.scroll = (function () {
 
     pageSections.forEach((section, i) => {
       offset = i !== 4 ? 8 : 1.3;
-
+      
       const setNavToFixedPositionTriger = (window.innerHeight * 2 - 3);
-      const sectionTriger = section.offsetTop + (section.offsetHeight / offset);
+      const sectionTriger = section.offsetTop + (section.offsetHeight / offset) +100;
 
-      if (window.scrollY > 50 ) {
+      if (window.scrollY > 50) {
         navigationElement.classList.add("hide-navigation");
-      }else {
+      } else {
         navigationElement.classList.remove("hide-navigation");
       }
 
