@@ -165,21 +165,24 @@ app.canvas = (function () {
   let animationRequestID;
 
   // FILLCOLOR VARIABLES
-  let fillColor = "0,0,0";
+  // let fillColor = "0,0,0";
+  let fillColor = "4,232,231";
 
-  let red = 0;
-  let green = 0;
-  let blue = 0;
+  // let red = 0;
+  let red = 4;
+  // let green = 0;
+  let green = 232;
+  // let blue = 0;
+  let blue = 232;
 
   let fillTrianglesCounter = 0;
 
   let coloringAnimation;
 
-  let isCanvasFilled = false;
+  let isCanvasFilled = true;
   let shouldStartColoringAnimation = false;
 
   let shouldCallFillColor = true;
-
 
   // window.addEventListener("resize", redrawCanvas);
   canvas.addEventListener("click", addNewPointOnClick);
@@ -265,16 +268,16 @@ app.canvas = (function () {
   function fillTriangle() {
     let splashBucket = document.querySelector(".header-content-holder .color-animation-button svg");
     shouldCallFillColor = false;
-
+    
     if (fillTrianglesCounter === 3) {
       red = 0;
       green = 0;
       blue = 0;
       fillTrianglesCounter = 0;
     }
-
+    
     if (!isCanvasFilled) {
-
+      
       if ((red === 0 || red === 5) && (green === 0 || green === 5) && (blue === 0 || blue === 5)) {
         fillTrianglesCounter++;
         if (splashBucket) { splashBucket.style.color = "rgb(4,232,231)" };
@@ -282,7 +285,7 @@ app.canvas = (function () {
         while (blue < 231) {
           (function (blue) {
             setTimeout(() => {
-              fillColor = `${blue},${blue},${blue}`
+              fillColor = `${blue},${blue},${blue}`;
             }, 8 * blue)
           })(blue++)
         }
@@ -303,7 +306,7 @@ app.canvas = (function () {
               blue = 0;
               fillTrianglesCounter = 0;
             }
-            fillColor = `${i},${j},${p}`
+            fillColor = `${i},${j},${p}`;
 
           }, Math.abs(i) * 7);
           isCanvasFilled = false;
@@ -321,22 +324,22 @@ app.canvas = (function () {
       while (red < 4) {
         (function (red) {
           setTimeout(() => {
-            fillColor = `${red},${green},${blue}`
-          }, 10 * red)
+            fillColor = `${red},${green},${blue}`;
+          }, 50 * red)
         })(red++)
       }
       while (green < 232) {
         (function (green) {
           setTimeout(() => {
-            fillColor = `${red},${green},${blue}`
-          }, 10 * green)
+            fillColor = `${red},${green},${blue}`;
+          }, 5 * green)
         })(green++)
       }
       while (blue < 232) {
         (function (blue) {
           setTimeout(() => {
-            fillColor = `${red},${green},${blue}`
-          }, 10 * blue)
+            fillColor = `${red},${green},${blue}`;
+          }, 5 * blue)
         })(blue++)
       }
 
@@ -586,17 +589,17 @@ app.canvas = (function () {
       createDotsArray(numberOfDots);
     }
 
-    // CHANGING COLOR INTERVAL
+    // INITIAL CHANGING COLOR INTERVAL
     let counter = 0;
-    
+
     let addCounter = setInterval(() => {
       counter++
-      if (counter <= 2) { 
+      if (counter <= 1) {
         !isSmallScreen && fillTriangle();
-      }else {
+      } else {
         clearInterval(addCounter);
       }
-    }, 4000);
+    }, 1);
     // END CHANGING COLOR INTERVAL
 
     // shouldCallFillColor && fillTriangle();
@@ -818,14 +821,14 @@ app.scroll = (function () {
     }
 
     // Stoping and resuming canvas animation
-    if (bottomOffset >= educationElementTriger) {
+    // if (bottomOffset >= educationElementTriger) {
 
-      isAnimationRunning && app.canvas.cancelCanvasAnimation();
-      isAnimationRunning = false;
-    } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
-      !isAnimationRunning && app.canvas.redrawCanvas();
-      isAnimationRunning = true;
-    }
+    //   isAnimationRunning && app.canvas.cancelCanvasAnimation();
+    //   isAnimationRunning = false;
+    // } else if (bottomOffset < educationElementTriger && bottomOffset >= authorNameTriger) {
+    //   !isAnimationRunning && app.canvas.redrawCanvas();
+    //   isAnimationRunning = true;
+    // }
   }
 
 
@@ -1123,9 +1126,9 @@ app.scroll = (function () {
 
     pageSections.forEach((section, i) => {
       offset = i !== 4 ? 8 : 1.3;
-      
+
       const setNavToFixedPositionTriger = (window.innerHeight * 2 - 3);
-      const sectionTriger = section.offsetTop + (section.offsetHeight / offset) +100;
+      const sectionTriger = section.offsetTop + (section.offsetHeight / offset) + 100;
 
       if (window.scrollY > 50) {
         navigationElement.classList.add("hide-navigation");
@@ -1414,7 +1417,7 @@ app.loadingCanvas = (function () {
 
 function handleArrowToTopClick() {
   app.nav.onNavClick();
-  app.canvas.redrawCanvas();
+  // app.canvas.redrawCanvas();
 }
 
 function redrawCanvases() {
@@ -1438,7 +1441,7 @@ function init() {
   };
 
   document.onscroll = app.scroll.debounce(() => { app.scroll.animatePageElements(window.innerWidth > 996); }, 15);
-  window.onresize = redrawCanvases;
+  window.onresize = app.scroll.debounce(() => { redrawCanvases(); }, 300);
 
   const disableRenderingIframesOnLargeScreens = true;
 
