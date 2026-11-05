@@ -2,787 +2,573 @@
 <html lang="en">
 
 <head>
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="a47ckIDZj-jw3-Ys-q5B4pGNmyTk51SRGaWa2WV6x8A" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bing Validation-->
+    <!-- Site verification -->
+    <meta name="google-site-verification" content="a47ckIDZj-jw3-Ys-q5B4pGNmyTk51SRGaWa2WV6x8A" />
     <meta name="msvalidate.01" content="14C4E0D42335729306F6AFE81D5F5425" />
 
-    <!-- Config meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- Google -->
+    <title>Emil Bisak | Senior Frontend Engineer</title>
     <meta name="description"
-        content="My name is Emil Bisak, I'm Front End Web Developer from Serbia. I use JavaScript, React, Redux, Jquery, Bootstrap, AJAX, SASS, CSS3, HTML5...">
+        content="Emil Bisak is a Senior Frontend Engineer from Serbia with 7+ years of experience building scalable React and TypeScript applications across SaaS and iGaming products.">
     <meta name="keywords"
-        content="Emil, Bisak, EmilBisak, Emil Bisak, emilbisak, developer, web development, front end, web, frontend, frontend serbia, react developer serbia, react developer, javascript developer, react serbia, javascript serbia, front end developer serbia, frontend developer serbia">
-
+        content="Emil Bisak, senior frontend engineer, frontend developer serbia, react developer, typescript developer, next.js, react serbia, javascript developer">
     <meta name="author" content="Emil Bisak">
-    <meta name="copyright" content="Emil Bisak" />
-    <meta name="application-name" content="EmilBisakPersonalWebsite" />
+    <meta name="theme-color" content="#070b10">
+    <link rel="canonical" href="https://emilbisak.com/">
 
-    <!-- Facebook -->
+    <!-- Open Graph -->
     <meta property="og:site_name" content="Emil Bisak" />
-    <meta property="og:title" content="Emil Bisak - Front End Developer - Serbia" />
+    <meta property="og:title" content="Emil Bisak | Senior Frontend Engineer" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://emilbisak.com/assets/emil_bisak.jpg" />
+    <meta property="og:image" content="https://emilbisak.com/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Emil Bisak, Senior Frontend Engineer. React, TypeScript, real-time and data-heavy UIs." />
     <meta property="og:url" content="https://emilbisak.com" />
     <meta property="og:description"
-        content="My name is Emil Bisak, I'm Front End Web Developer from Serbia. I use JavaScript, React, Redux, Jquery, Bootstrap, AJAX, SASS, CSS3, HTML5..." />
+        content="Senior Frontend Engineer building scalable React + TypeScript applications across SaaS and iGaming products." />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Emil Bisak - Front End Developer - Serbia" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Emil Bisak | Senior Frontend Engineer" />
     <meta name="twitter:description"
-        content="My name is Emil Bisak, I'm Front End Web Developer from Serbia. I use JavaScript, React, Redux, Jquery, Bootstrap, AJAX, SASS, CSS3, HTML5..." />
-    <meta name="twitter:image" content="https://emilbisak.com/assets/emil_bisak.jpg" />
-    <meta name="twitter:url" content="https://emilbisak.com">
+        content="Senior Frontend Engineer building scalable React + TypeScript applications across SaaS and iGaming products." />
+    <meta name="twitter:image" content="https://emilbisak.com/assets/og-image.png" />
 
-    <title>Emil Bisak - Front End Web Developer</title>
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" sizes="48x48">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
 
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Cambay:700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
 
-    <!-- CSS link -->
-    <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.classList.add("js");</script>
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!--[if IE]><link rel="shortcut icon" href="https://emilbisak.com//assets/emil-logo.png"><![endif]-->
-    <link rel="shortcut icon" href="https://emilbisak.com//assets/emil-logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-    <script src="https://code.iconify.design/1/1.0.0-rc7/iconify.min.js"></script>
-
-    <script type="application/ld+json">{
-        "@context": "http://schema.org",
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
         "@type": "Person",
         "name": "Emil Bisak",
         "url": "https://emilbisak.com/",
         "image": "https://emilbisak.com/assets/emil_bisak.jpg",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+381-64-2049-122",
-            "email": "bisak.emil@gmail.com"
-        },
+        "jobTitle": "Senior Frontend Engineer",
+        "email": "bisak.emil@gmail.com",
+        "telephone": "+381-64-2049-122",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Pancevo",
-            "addressRegion": "RS",
-            "postalCode": "26000"
-          },
-          "jobTitle": "Front end developer",
+            "addressCountry": "RS"
+        },
         "sameAs": [
-            "https://www.facebook.com/emil.bisak/",
-            "https://www.linkedin.com/in/emil-bisak/"
+            "https://www.linkedin.com/in/emil-bisak/",
+            "https://github.com/EmilBisak"
         ]
-        }
-        </script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154571595-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-154571595-1');
+    }
     </script>
 </head>
 
-<body onmouseover="" id="top" class="custom_scroll_bar">
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+<body>
+    <!-- SVG icon sprite -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-github" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm0 .5 9 6 9-6" />
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M5 3.5h3.2l1.6 4.3-2.1 1.3a11 11 0 0 0 5.2 5.2l1.3-2.1 4.3 1.6V17a2.5 2.5 0 0 1-2.7 2.5A15.5 15.5 0 0 1 2.5 6.2 2.5 2.5 0 0 1 5 3.5Z" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M7 17 17 7M8 7h9v9" />
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" />
+        </symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M9 9h10.5v10.5H9zM15 9V4.5H4.5V15H9" />
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+        </symbol>
+    </svg>
 
-        ga('create', 'UA-154571595-1', 'auto');
-        ga('require', 'linkid', 'linkid.js');
-        ga('send', 'pageview');
-    </script>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMVQWSR" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <nav>
-        <div class="nav-content-wrapp">
-            <ul class="nav-list">
-                <li><a aria-label="Home link" title="Home link" href="#home"
-                        class="active navigation-link underline hover" onclick="app.nav.toggleNav()">Home</a></li>
-                <li><a aria-label="About link" title="About link" href="#about" class="navigation-link underline hover"
-                        onclick="app.nav.toggleNav()">Who Am
-                        I</a></li>
-                <li><a aria-label="Skillset link" title="Skillset link" href="#skillset"
-                        class="navigation-link underline hover" onclick="app.nav.toggleNav()">Skillset</a></li>
-                <li><a aria-label="Portfolio link" title="Portfolio link" href="#portfolio"
-                        class="navigation-link underline hover" onclick="app.nav.toggleNav()">Portfolio</a></li>
-                <li><a aria-label="Contact link" title="Contact link" href="#contact"
-                        class="navigation-link underline hover" onclick="app.nav.toggleNav()">Contact</a></li>
-            </ul>
-
-            <a aria-label="Menu button" title="Menu button" id="nav-button" onclick="app.nav.toggleNav()" href="#">
-                <span></span>
-                <span></span>
-                <span></span>
+    <header class="site-header" data-header>
+        <nav class="nav container" aria-label="Primary">
+            <a href="#top" class="logo" aria-label="Emil Bisak, back to top">
+                <img class="logo-mark" src="assets/favicon.svg" alt="" width="36" height="36">
+                <span class="logo-text">emilbisak<span class="accent">.com</span></span>
             </a>
-        </div>
-        <div class="navigation-page-overlap" onclick="app.nav.toggleNav()"></div>
-    </nav>
 
-    <!-- <div class="loading-holder">
-        <h3 class="loading-title">Loading...</h3>
-        <div class="loading-animation">
-            <p class="loading-letters first-letter">E</p>
-            <p class="loading-letters second-letter">B</p>
-        </div>
-        <div class="progress-bar">
-            <div class="inside-bar">
-                <h3 class="loading-percentage"></h3>
-            </div>
-        </div>
-    </div> -->
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" data-nav-toggle>
+                <span class="sr-only">Toggle menu</span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
 
-    <canvas class="loading-canvas"></canvas>
-    <div class="loading-holder">
-        <h3 class="loading-percentage">0%</h3>
-        <h2 class="loading-header">Emil Bisak</h2>
-        <div class="progress-bar">
-            <div class="inside-bar">
-                <h3 class="loading-percentage"></h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="wrapper">
-        <header id="home" class="page-section">
-            <div class="header-content-holder">
-                <!-- <div class="color-filler">
-                    <div class="play-animation">
-                        <span class="iconify" data-icon="fa-solid:play" data-inline="false"></span>
-                    </div>
-                    <p class="play-title">Start coloring animation</p>
-                    <div class="pause-animation">
-                        <span class="iconify" data-icon="fa-solid:pause" data-inline="false"></span>
-                    </div>
-                    <p class="pause-title">Stop animation on this color</p>
-                </div> -->
-                <div class="color-animation-button">
-                    <span class="iconify" data-icon="foundation-paint-bucket" data-inline="false"></span>
-                </div>
-
-                <div class="header-content">
-                    <!-- <img class="header-image" src="assets/emilBisak.jpg" alt="Emil Bisak portret" /> -->
-                    <div class="header-title">
-                        <h1 class="fade-animation fade-in section-title">Emil Bisak</h1>
-                        <h1 class="fade-animation fade-in subtitle">Front End Web Developer</h1>
-                    </div>
-                </div>
-                <canvas class="header-canvas"></canvas>
-                <a aria-label="About link" title="About link" href="#about" onclick="app.nav.onNavClick()"
-                    class="navigation-link arrow-to-down-wrapper">
-                    <span class="arrow-to-down animated-arrow-2"></span>
-                    <span class="arrow-to-down animated-arrow-1"></span>
+            <div class="nav-menu" id="nav-menu" data-nav-menu>
+                <ul class="nav-links">
+                    <li><a href="#about" data-nav-link>About</a></li>
+                    <li><a href="#experience" data-nav-link>Experience</a></li>
+                    <li><a href="#stack" data-nav-link>Stack</a></li>
+                    <li><a href="#work" data-nav-link>Work</a></li>
+                    <li><a href="#contact" data-nav-link>Contact</a></li>
+                </ul>
+                <a href="emilbisak_cv.pdf" class="btn btn-sm btn-ghost" target="_blank" rel="noopener">
+                    Resume
+                    <svg class="icon"><use href="#i-arrow" /></svg>
                 </a>
-                <div class="dots-notification">You have reached the limit <br />for the number of dots</div>
             </div>
-        </header>
+        </nav>
+    </header>
 
-        <section id="about" class="white-bg page-section">
-            <div class="section-content narrower">
-                <h2 class="about-section-title section-title">Who Am I?</h2>
-                <div class="about-content">
-                    <div class="image-holder">
-                        <span class="image-top-borders"></span>
-                        <img class="about-image" src="assets/emil_bisak.jpg" alt="Emil Bisak portret" />
-                        <span class="image-bottom-borders"></span>
+    <main id="main">
+        <!-- HERO -->
+        <section class="hero" id="top">
+            <div class="hero-bg" aria-hidden="true">
+                <div class="grid-lines"></div>
+                <div class="glow glow-1"></div>
+                <div class="glow glow-2"></div>
+            </div>
+
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <p class="status reveal">
+                        <span class="status-dot"></span>
+                        Open to new roles and projects
+                    </p>
+                    <h1 class="hero-title reveal">
+                        Hi, I'm Emil.<br>
+                        I build <span class="gradient-text">fast, scalable</span> interfaces for the web.
+                    </h1>
+                    <p class="hero-lead reveal">
+                        Senior Frontend Engineer with <strong>7+ years</strong> of experience crafting
+                        React &amp; TypeScript applications across SaaS and iGaming products, from
+                        real-time back-office tools to AI-powered invoicing.
+                    </p>
+                    <p class="dim-line reveal"><span>2019 · · · today</span></p>
+                    <div class="hero-actions reveal">
+                        <a href="#contact" class="btn btn-primary">Let's work together</a>
+                        <a href="emilbisak_cv.pdf" class="btn btn-ghost" target="_blank" rel="noopener">
+                            <svg class="icon"><use href="#i-download" /></svg>
+                            Download CV
+                        </a>
                     </div>
-                    <h3 class="about-name fade-animation">Emil Bisak</h3>
-                    <div class="about-text">
-                        <p>A highly motivated and passionate Front End Web Developer based in Pancevo, Serbia.</p>
-                        <p>I’m committed to writing clean, maintainable and reliable code while following best coding
-                            practices. Always striving to improve and create the best positive experience for myself and
-                            those surrounding me.</p>
-                        <p>Web development is my passion.</p>
-                        <p>I'm currently working as a Front End Developer at <a aria-label="Unimaze software website"
-                                title="Unimaze software website" href="https://www.unimaze.com/" target="_blank"
-                                rel="noopener">Unimaze Software</a>.
+                    <ul class="hero-social reveal" aria-label="Social links">
+                        <li><a href="https://github.com/EmilBisak" target="_blank" rel="noopener" aria-label="GitHub"><svg
+                                    class="icon"><use href="#i-github" /></svg></a></li>
+                        <li><a href="https://www.linkedin.com/in/emil-bisak/" target="_blank" rel="noopener"
+                                aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin" /></svg></a></li>
+                        <li><a href="mailto:bisak.emil@gmail.com" aria-label="Email"><svg class="icon"><use href="#i-mail" /></svg></a></li>
+                        <li class="hero-location"><svg class="icon"><use href="#i-pin" /></svg> Pančevo, Serbia · Remote (CET)</li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual reveal" aria-hidden="true">
+                    <div class="editor">
+                        <div class="editor-bar">
+                            <span class="editor-fig">fig. 01</span>
+                            <span class="editor-file">LiveTable.tsx</span>
+                        </div>
+<pre class="editor-code"><code><span class="t-k">export function</span> <span class="t-f">LiveTable</span>({ <span class="t-v">feed</span> }: <span class="t-t">Props</span>) {
+  <span class="t-k">const</span> { <span class="t-v">data</span> } = <span class="t-f">useGetRowsQuery</span>();
+  <span class="t-k">const</span> <span class="t-v">rows</span> = <span class="t-f">useSocket</span>(<span class="t-v">feed</span>, <span class="t-v">data</span>);
+
+  <span class="t-k">return</span> (
+    &lt;<span class="t-t">Table</span>
+      <span class="t-a">rows</span>={<span class="t-v">rows</span>}
+      <span class="t-a">filters</span>={<span class="t-s">"smart"</span>}
+      <span class="t-a">virtualized</span>
+    /&gt;
+  );
+}</code><span class="caret"></span></pre>
+                    </div>
+                    <div class="float-card float-card-1">
+                        <span class="float-label">tsconfig</span>
+                        <span class="float-value">"strict": <small>true</small></span>
+                    </div>
+                    <div class="float-card float-card-2">
+                        <span class="pulse"></span>
+                        <span>WebSocket · live</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <dl class="stats reveal">
+                    <div class="stat">
+                        <dt>Years of experience</dt>
+                        <dd>7+</dd>
+                    </div>
+                    <div class="stat">
+                        <dt>Product domains</dt>
+                        <dd>SaaS · iGaming</dd>
+                    </div>
+                    <div class="stat">
+                        <dt>Core stack</dt>
+                        <dd>React · TS</dd>
+                    </div>
+                    <div class="stat">
+                        <dt>Teams across</dt>
+                        <dd>Serbia · Iceland</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section" id="about">
+            <div class="container about">
+                <div class="about-photo reveal">
+                    <div class="photo-frame">
+                        <img src="assets/emil_bisak_portrait.jpg" alt="Portrait of Emil Bisak" width="700" height="700"
+                            loading="lazy">
+                    </div>
+                </div>
+                <div class="about-copy">
+                    <p class="eyebrow reveal">[01] About</p>
+                    <h2 class="section-title reveal">Engineering interfaces that stay fast as they grow.</h2>
+                    <div class="reveal">
+                        <p>
+                            I'm a senior frontend engineer with a strong focus on reusable architecture,
+                            performance optimization and data-heavy interfaces. I enjoy the hard parts of the
+                            frontend: real-time workflows, complex state and component systems that the whole
+                            team can build on.
+                        </p>
+                        <p>
+                            I've spent years collaborating with product, design, backend and QA teams across
+                            Serbia and Iceland, and I care about clean, maintainable code, thoughtful code reviews
+                            and helping new teammates get up to speed.
                         </p>
                     </div>
-                    <h4 class="curriculum-vitae fade-animation"><a aria-label="Preview full CV" title="Preview full CV"
-                            href="emilbisak_cv.pdf" target="_blank" rel="noopener"><span>Curriculum Vitae</span></a>
-                    </h4>
-                </div>
-            </div>
-            <div class="divider" data-delay=".1">
-                <div class="inner-hex hexagon-wrapper">
-                    <div class="hexagon">
-                    </div>
-                </div>
-            </div>
-            <div class="section-content">
-                <h2 class="animated-section-title">Education and courses</h2>
-                <div class="section-text education-holder">
-                    <div class="courses fade-animation fade-out-left">
-                        <a aria-label="React week website" title="React week website" href="https://reactweek.dev/"
-                            target="_blank" rel="noopener" class="courses-header">
-                            <div class="circles">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <span></span>
-                            </div>
-                            <div class="courses-title">
-                                <h3>ReactWeek</h3>
-                                <h5>React Advanced Course</h5>
-                                <p>October 2019</p>
-                            </div>
-                        </a>
-                        <p>- A week-long program dedicated to React and its ecosystem for experienced developers</p>
-                    </div>
-                    <div class="courses fade-animation fade-out-right">
-                        <a aria-label="Škola koda website" title="Škola koda website" href="https://skolakoda.org"
-                            target="_blank" rel="noopener" class="courses-header">
-                            <img src="./assets/skola_koda.jpg" alt="Skola koda logo">
-                            <div class="courses-title">
-                                <h3>Škola Koda</h3>
-                                <h5>React, Redux & React Native</h5>
-                                <p>October 2018 - January 2019</p>
-                            </div>
-                        </a>
-                        <p>- This is an advanced course and is intended for people who know javascript well. It is based
-                            mostly on learning React and Redux and learning the basics of the React Native.</p>
-                    </div>
-                    <div class="courses fade-animation fade-out-left">
-                        <a aria-label="Belgrade institute of technology website"
-                            title="Belgrade institute of technology website" href="https://www.bgit.rs/en/"
-                            target="_blank" rel="noopener" class="courses-header">
-                            <img src="./assets/bit.png" alt="Belgrade institute of technology logo">
-                            <div class="courses-title">
-                                <h3>Belgrade Institute of Technology</h3>
-                                <h5>Front End Bootcamp</h5>
-                                <p>April 2018 - June 2018</p>
-                            </div>
-                        </a>
-                        <p>- Program is designed to be highly practical which means that lectures are usually short and
-                            are followed up by practical work on a computer to illustrate theoretical components.</p>
-                    </div>
-                    <div class="courses fade-animation fade-out-right">
-                        <a aria-label="Krojačeva škola website" title="Krojačeva škola website"
-                            href="https://www.krojacevaskola.com" target="_blank" rel="noopener" class="courses-header">
-                            <img src="./assets/krojaceva.png" alt="Krojaceva skola logo">
-                            <div class="courses-title">
-                                <h3>Krojačeva Škola</h3>
-                                <h5>Front End Course</h5>
-                                <p>December 2017 - March 2018</p>
-                            </div>
-                        </a>
-                        <p>- The course is designed to teach front end technologies with focus on UI and learning how to
-                            develop eye for details.</p>
-                    </div>
+
+                    <ul class="strengths reveal">
+                        <li>Performance optimization</li>
+                        <li>Reusable component architecture</li>
+                        <li>Real-time &amp; data-heavy UIs</li>
+                        <li>Clean, maintainable code</li>
+                        <li>Cross-functional collaboration</li>
+                        <li>Mentoring &amp; code reviews</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="skillset" class="projects-bg page-section">
-            <div class="section-content narrower">
-                <h2 class="animated-section-title section-title">Skillset</h2>
-                <div class="section-text">
+        <!-- EXPERIENCE -->
+        <section class="section section-alt" id="experience">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow reveal">[02] Experience</p>
+                    <h2 class="section-title reveal">Where I've been building.</h2>
+                </div>
 
+                <ol class="timeline">
+                    <li class="job reveal">
+                        <div class="job-meta">
+                            <span class="job-date">Oct 2025 - Present</span>
+                            <span class="badge badge-live">Current</span>
+                        </div>
+                        <div class="job-card">
+                            <h3 class="job-title">Senior Frontend Engineer <span class="job-company">@ Freelance</span></h3>
+                            <p class="job-summary">React + TypeScript admin panel for an iGaming platform, supporting
+                                back-office and operational workflows.</p>
+                            <ul class="job-points">
+                                <li>Develop and maintain admin panel features across back-office and operational
+                                    modules, including the <a href="#work">real-time tooling</a>.</li>
+                                <li>Work with product, design, backend and QA to ship stable, user-friendly internal
+                                    tools.</li>
+                                <li>Keep code quality up through code reviews, testing and modern frontend practices.</li>
+                            </ul>
+                            <ul class="tags">
+                                <li>React</li><li>TypeScript</li><li>WebSocket</li><li>RTK Query</li><li>Vite</li>
+                            </ul>
+                        </div>
+                    </li>
 
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="fa-brands:react" data-inline="false"></span>
-                            <h4>React</h4>
+                    <li class="job reveal">
+                        <div class="job-meta">
+                            <span class="job-date">May 2019 - Mar 2025</span>
+                            <span class="badge">~6 years</span>
                         </div>
-                    </div>
+                        <div class="job-card">
+                            <h3 class="job-title">Frontend Developer <span class="job-company">@ <a
+                                        href="https://www.unimaze.com/" target="_blank" rel="noopener">Unimaze
+                                        Software</a></span></h3>
+                            <p class="job-summary">React + TypeScript SaaS e-invoicing platform used in financial and
+                                accounting workflows.</p>
+                            <ul class="job-points">
+                                <li>Shipped features across the product for nearly six years, built on modular,
+                                    reusable UI components.</li>
+                                <li>Worked on the <strong>AI-powered invoice reader</strong>, the move from Redux to
+                                    <strong>RTK Query</strong> and XSLT / Adaptive Cards document generation.
+                                    <a href="#work">More in Selected work</a>.</li>
+                                <li>Worked with distributed teams in Serbia and Iceland in Agile sprints, handling code
+                                    reviews, debugging, onboarding and mentoring.</li>
+                            </ul>
+                            <ul class="tags">
+                                <li>React</li><li>TypeScript</li><li>Redux</li><li>RTK Query</li><li>XSLT</li><li>Adaptive
+                                    Cards</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
 
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="fa-brands:js" data-inline="false"></span>
-                            <h4>JavaScript</h4>
-                        </div>
-                    </div>
+        <!-- STACK -->
+        <section class="section" id="stack">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow reveal">[03] Tech stack</p>
+                    <h2 class="section-title reveal">Tools I reach for.</h2>
+                </div>
 
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="fa-brands:sass" data-inline="false"></span>
-                            <h4>Sass</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="fa-brands:css3-alt" data-inline="false"></span>
-                            <h4>CSS3</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="fa-brands:github" data-inline="false"></span>
-                            <h4>GitHub</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="simple-icons:redux" data-inline="false"></span>
-                            <h4>Redux</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="simple-icons:typescript" data-inline="false"></span>
-                            <h4>TypeScript</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="mdi-bootstrap" data-inline="false"></span>
-                            <h4>Bootstrap</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="fa-brands:html5" data-inline="false"></span>
-                            <h4>HTML5</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="fa-brands:npm" data-inline="false"></span>
-                            <h4>npm</h4>
-                        </div>
-                    </div>
-                    <div class="inner-hex hexagon-wrapper">
-                        <div class="hexagon color1">
-                            <span class="iconify" data-icon="mdi-jquery" data-inline="false"></span>
-                            <h4>Jquery</h4>
-                        </div>
-                    </div>
-
-
+                <div class="stack-grid">
+                    <article class="stack-card stack-card-wide reveal">
+                        <h3>Core</h3>
+                        <ul class="chips chips-lg">
+                            <li>React</li><li>TypeScript</li><li>Next.js</li><li>JavaScript (ES6+)</li><li>HTML5</li><li>CSS3</li>
+                        </ul>
+                    </article>
+                    <article class="stack-card reveal">
+                        <h3>State &amp; data</h3>
+                        <ul class="chips">
+                            <li>Redux</li><li>RTK Query</li><li>Context API</li><li>REST APIs</li><li>WebSocket</li>
+                        </ul>
+                    </article>
+                    <article class="stack-card reveal">
+                        <h3>Styling &amp; UI</h3>
+                        <ul class="chips">
+                            <li>Responsive design</li><li>Sass</li><li>Ant Design</li><li>Material UI</li><li>Bootstrap</li>
+                        </ul>
+                    </article>
+                    <article class="stack-card reveal">
+                        <h3>Build &amp; tooling</h3>
+                        <ul class="chips">
+                            <li>Vite</li><li>Webpack</li><li>npm</li><li>Git</li><li>Bitbucket</li>
+                        </ul>
+                    </article>
+                    <article class="stack-card reveal">
+                        <h3>Quality</h3>
+                        <ul class="chips">
+                            <li>Jest</li><li>Cross-browser testing</li><li>Code reviews</li>
+                        </ul>
+                    </article>
+                    <article class="stack-card reveal">
+                        <h3>Documents &amp; formats</h3>
+                        <ul class="chips">
+                            <li>JSON</li><li>XML</li><li>XSL / XSLT</li><li>Adaptive Cards</li>
+                        </ul>
+                    </article>
+                    <article class="stack-card reveal">
+                        <h3>Collaboration</h3>
+                        <ul class="chips">
+                            <li>Agile / Scrum</li><li>Jira</li><li>Figma</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="white-bg page-section">
-            <div class="section-content portfolio">
-                <h2 class="animated-section-title section-title">Portfolio</h2>
-                <div class="project-holder">
-
-                    <div class="project start">
-                        <div class="project-details">
-                            <h3 class="fade-animation fade-out-left">Bitbook</h3>
-                            <div class="project-info fade-animation fade-out-left">
-                                <h4>Info</h4>
-                                <p> BitBook is Facebook inspired social network app. </p>
-                                <p>Users are able to register and log in.</p>
-                                <p>They are also able to post image, video or text post, and comment other users posts.
-                                </p>
-                                <p>Users can also edit their profiles, and see list of other BitBook users.</p>
-                            </div>
-                            <h4 class="technologies-title fade-animation fade-out-left">Technologies</h4>
-                            <p class="technologies fade-animation fade-out-left"> React, Materialize</p>
-
-                            <div class="hex-holder">
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="BitBook project code" title="BitBook project code"
-                                        href="https://github.com/EmilBisak/BitBook" target="_blank" rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
-                                            <p>code</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="BitBook project demo" title="BitBook project demo"
-                                        href="https://emilbisak.github.io/BitBook/#/" target="_blank" rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
-                                            <p>demo</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div data-delay=".18" class="laptop bitbook fade-animation fade-out"
-                            data-image="bitbook_responsive" data-app-name="BitBook">
-                            <img src="./assets/computer.jpg" alt="computer image">
-                            <!-- <iframe title="BitBook" src="https://emilbisak.github.io/BitBook/#/"></iframe> -->
-                            <img class="project-computer-image"
-                                src="./assets/websitesImages/computerSizeImages/bitbook_responsive_comp.png"
-                                alt="bitbook responsive project image">
-                        </div>
+        <!-- WORK -->
+        <section class="section section-alt" id="work">
+            <div class="container">
+                <div class="section-head section-head-row">
+                    <div>
+                        <p class="eyebrow reveal">[04] Selected work</p>
+                        <h2 class="section-title reveal">Things I've built in production.</h2>
                     </div>
-
-                    <div class="project end">
-                        <div class="project-details">
-                            <h3 class="fade-animation fade-out-right">Shop</h3>
-                            <div class="project-info fade-animation fade-out-right">
-                                <h4>Info</h4>
-                                <p>Shop is made pixel perfect, PSD to HTML.</p>
-                                <p>Site contain home, shop, contact page.</p>
-                                <p>Users can search products by name and filter them by category.</p>
-                            </div>
-                            <h4 class="technologies-title fade-animation fade-out-right">Technologies</h4>
-                            <p class="technologies fade-animation fade-out-right">JavaScript, Jquery, Bootstrap, Json,
-                                CSS, HTML</p>
-
-                            <div class="hex-holder">
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="Shop project code" title="Shop project code"
-                                        href="https://github.com/EmilBisak/Shop" target="_blank" rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
-                                            <p>code</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="Shop project demo" title="Shop project demo"
-                                        href="https://emilbisak.github.io/Shop/" target="_blank" rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
-                                            <p>demo</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div data-delay=".18" class="laptop fade-animation fade-out" data-image="shop_responsive"
-                            data-app-name="Shop">
-                            <img src="./assets/computer.jpg" alt="computer image">
-                            <!-- <iframe title="Shop" src="https://emilbisak.github.io/Shop/"></iframe> -->
-                            <img class="project-computer-image"
-                                src="./assets/websitesImages/computerSizeImages/shop_responsive_comp.png"
-                                alt="shop responsive project image">
-                        </div>
-                    </div>
-                </div>
-                <div class="project-holder">
-                    <div class="project start">
-                        <div class="project-details">
-                            <h3 class="fade-animation fade-out-left">Pokemon App</h3>
-                            <div class="project-info fade-animation fade-out-left">
-                                <h4>Info</h4>
-                                <p>Pokemon app is Pokedex inspired app.</p>
-                                <p>App uses pokeapi for data.</p>
-                                <p>Users can search pokemons by name and filter them by color.</p>
-                                <p>They can also see details for each pokemon.</p>
-                            </div>
-                            <h4 class="technologies-title fade-animation fade-out-left">Technologies</h4>
-                            <p class="technologies fade-animation fade-out-left"> React, Redux, Redux Thunk, CSS</p>
-
-                            <div class="hex-holder">
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="Pokemon project code" title="Pokemon project code"
-                                        href="https://github.com/EmilBisak/pokemon_app" target="_blank" rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
-                                            <p>code</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="Pokemon project demo" title="Pokemon project demo"
-                                        href="https://emilbisak.github.io/pokemon_app/#/" target="_blank"
-                                        rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
-                                            <p>demo</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div data-delay=".18" class="laptop fade-animation fade-out" data-image="pokemons_responsive"
-                            data-app-name="pokemon_app">
-                            <img src="./assets/computer.jpg" alt="computer image">
-                            <!-- <iframe title="Pokemon application" src="https://emilbisak.github.io/pokemon_app/#/"></iframe> -->
-                            <img class="project-computer-image"
-                                src="./assets/websitesImages/computerSizeImages/pokemons_responsive_comp.png"
-                                alt="pokemons responsive project image">
-                        </div>
-
-                    </div>
-                    <div class="project end">
-                        <div class="project-details">
-                            <h3 class="fade-animation fade-out-right">Memory Game</h3>
-                            <div class="project-info fade-animation fade-out-right">
-                                <h4>Info</h4>
-                                <p>The Memory Game is Single Page App and it is made using Vanila JS.</p>
-                                <p>The game has 5 levels.</p>
-                                <p>User can change cards background.</p>
-                            </div>
-                            <h4 class="technologies-title fade-animation fade-out-right">Technologies</h4>
-                            <p class="technologies fade-animation fade-out-right"> JavaScript, CSS, HTML</p>
-
-                            <div class="hex-holder">
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="MemoryGame project code" title="MemoryGame project code"
-                                        href="https://github.com/EmilBisak/MemoryGame" target="_blank" rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
-                                            <p>code</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="MemoryGame project demo" title="MemoryGame project demo"
-                                        href="https://emilbisak.github.io/MemoryGame/" target="_blank" rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
-                                            <p>demo</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div data-delay=".18" class="laptop fade-animation fade-out" data-image="memory_responsive"
-                            data-app-name="MemoryGame">
-                            <img src="./assets/computer.jpg" alt="computer image">
-                            <!-- <iframe title="Memory game" src="https://emilbisak.github.io/MemoryGame/"></iframe> -->
-                            <img class="project-computer-image"
-                                src="./assets/websitesImages/computerSizeImages/memory_responsive_comp.png"
-                                alt="memory responsive project image">
-                        </div>
-                    </div>
+                    <p class="section-note reveal">Since 2019 my work has lived in private, client-owned codebases,
+                        so there are no screenshots or repos here. I'm happy to walk through any of it in a
+                        conversation.</p>
                 </div>
 
-                <div class="project-holder">
-                    <div class="project start">
-                        <div class="project-details">
-                            <h3 class="fade-animation fade-out-left">Movie Database</h3>
-                            <div class="project-info fade-animation fade-out-left">
-                                <h4>Info</h4>
-                                <p>Movie Database uses <a aria-label="movie-database-api link"
-                                        title="movie-database-api link"
-                                        href="https://github.com/skolakoda/baza-filmova-api">movie-database-api</a> for
-                                    data.</p>
-                                <p>User is able to log in, see existing movies, delete movies, add movies and post
-                                    comments to movies</p>
-                            </div>
-                            <h4 class="technologies-title fade-animation fade-out-left">Technologies</h4>
-                            <p class="technologies fade-animation fade-out-left"> React, JavaScript, CSS, HTML</p>
+                <div class="work-grid">
+                    <article class="work-card reveal">
+                        <p class="work-meta">Unimaze Software · SaaS e-invoicing</p>
+                        <h3>AI-powered invoice reader</h3>
+                        <p>Users upload an invoice and AI fills in the fields. The hard part was the workflow around
+                            it: automation people can still check and correct.</p>
+                        <ul class="job-points">
+                            <li>Built the invoice upload flow and the view of the data AI recognized.</li>
+                            <li>Let users review and manually correct any field before the invoice moves on to
+                                processing.</li>
+                            <li>Designed one clear flow that combines automatic extraction with manual checks for
+                                when recognition isn't accurate.</li>
+                        </ul>
+                        <ul class="tags"><li>React</li><li>TypeScript</li><li>AI feature UI</li></ul>
+                    </article>
 
-                            <div class="hex-holder">
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="Movie database project code" title="Movie database project code"
-                                        href="https://github.com/EmilBisak/movie-database" target="_blank"
-                                        rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
-                                            <p>code</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="Movie database project demo" title="Movie database project demo"
-                                        href="https://emilbisak.github.io/movie-database/#/" target="_blank"
-                                        rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
-                                            <p>demo</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
+                    <article class="work-card reveal">
+                        <p class="work-meta">Freelance · iGaming back office</p>
+                        <h3>Real-time admin panel</h3>
+                        <p>Back-office and operational tools where data changes constantly and nobody should have
+                            to hit refresh.</p>
+                        <ul class="job-points">
+                            <li>Tables, filters, forms and management features across several admin modules.</li>
+                            <li>Live updates over WebSockets for data that has to stay current in real time.</li>
+                            <li>Tuned rendering, state handling and responsiveness for data-heavy views with frequent
+                                updates.</li>
+                            <li>Extended the shared component system with reusable components and common patterns,
+                                so modules stay consistent and easier to maintain.</li>
+                        </ul>
+                        <ul class="tags"><li>React</li><li>TypeScript</li><li>WebSocket</li><li>RTK Query</li></ul>
+                    </article>
 
-                        </div>
-                        <div data-delay=".18" class="laptop fade-animation fade-out" data-image="movies_responsive"
-                            data-app-name="movie-database">
-                            <img src="./assets/computer.jpg" alt="computer image">
-                            <!-- <iframe title="Movie database" src="https://emilbisak.github.io/movie-database/#/"></iframe> -->
-                            <img class="project-computer-image"
-                                src="./assets/websitesImages/computerSizeImages/movies_responsive_comp.png"
-                                alt="movies responsive project image">
-                        </div>
+                    <article class="work-card reveal">
+                        <p class="work-meta">Unimaze Software · Frontend architecture</p>
+                        <h3>Redux to RTK Query migration</h3>
+                        <p>Make API communication and server data simpler and more consistent, without rewriting a
+                            running product.</p>
+                        <ul class="job-points">
+                            <li>Moved existing Redux flows to RTK Query step by step instead of in one big rewrite.
+                            </li>
+                            <li>Cut boilerplate and simplified data fetching and caching in the migrated parts.</li>
+                            <li>Modernized how the frontend talks to the APIs.</li>
+                        </ul>
+                        <ul class="tags"><li>Redux</li><li>RTK Query</li><li>REST APIs</li></ul>
+                    </article>
 
-                    </div>
-
-                    <div class="project end">
-                        <div class="project-details">
-                            <h3 class="fade-animation fade-out-right">React CRUD App</h3>
-                            <div class="project-info fade-animation fade-out-right">
-                                <h4>Info</h4>
-                                <p>React CRUD App uses fakeapi - <a aria-label="reqres.in website"
-                                        title="reqres.in website" href="https://reqres.in/">reqres.in</a> for
-                                    data.</p>
-                                <p>We are able to log in and log out.</p>
-                                <p>When we are logged in we are able to create, read, update, and delete users (CRUD)
-                                </p>
-                            </div>
-                            <h4 class="technologies-title fade-animation fade-out-right">Technologies</h4>
-                            <p class="technologies fade-animation fade-out-right"> React, Materialize</p>
-
-                            <div class="hex-holder">
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="React CRUD project code" title="React CRUD project code"
-                                        href="https://github.com/EmilBisak/react_crud_app" target="_blank"
-                                        rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="fa-solid:code" data-inline="false"></span>
-                                            <p>code</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="project-hex hexagon-wrapper show-skills fade-animation fade-out">
-                                    <a aria-label="React CRUD project demo" title="React CRUD project demo"
-                                        href="https://emilbisak.github.io/react_crud_app/" target="_blank"
-                                        rel="noopener">
-                                        <div class="hexagon color1">
-                                            <span class="iconify" data-icon="ic:computer" data-inline="false"></span>
-                                            <p>demo</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div data-delay=".18" class="laptop fade-animation fade-out" data-image="crud_responsive"
-                            data-app-name="react_crud_app">
-                            <img src="./assets/computer.jpg" alt="computer image">
-                            <!-- <iframe title="React crud application" src="https://emilbisak.github.io/react_crud_app/"></iframe> -->
-                            <img class="project-computer-image"
-                                src="./assets/websitesImages/computerSizeImages/crud_responsive_comp.png"
-                                alt="crud responsive project image">
-                        </div>
-
-                    </div>
+                    <article class="work-card reveal">
+                        <p class="work-meta">Unimaze Software · Documents &amp; email</p>
+                        <h3>Invoice rendering and email templates</h3>
+                        <p>Generate invoices and emails from application data instead of hand-building every format
+                            as its own frontend feature.</p>
+                        <ul class="job-points">
+                            <li>XSLT stylesheets that render invoices dynamically and produce structured documents
+                                from invoice data.</li>
+                            <li>An email template system on Microsoft Adaptive Cards for dynamic transactional
+                                emails.</li>
+                        </ul>
+                        <ul class="tags"><li>XSLT</li><li>XML</li><li>Adaptive Cards</li></ul>
+                    </article>
                 </div>
-
             </div>
         </section>
 
-
-        <section id="contact" class="projects-bg page-section">
-            <div class="section-content">
-                <h2 class="contact-title animated-section-title section-title">Contact Me</h2>
-                <p class="section-title-description contact-description animated-section-title" data-delay=".9">
-                    Don't hesitate, contact me if you think that we can make some cool things together!
-                </p>
-                <div class="contact-item">
-                    <div class="contact-wrapper fade-out fade-animation">
-                        <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Email: bisak.emil@gmail.com" title="Email: bisak.emil@gmail.com"
-                                href="mailto:bisak.emil@gmail.com">
-                                <div class="hexagon color1">
-                                    <span class="iconify" data-icon="whh-webmail" data-inline="false"></span>
-                                    <h4>Gmail</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <p>bisak.emil@gmail.com</p>
-                    </div>
-
-                    <div class="contact-wrapper fade-out contact-linkedin fade-animation">
-                        <div class="contact-hex hexagon-wrapper ">
-                            <a aria-label="LinkedIn profile" title="LinkedIn profile"
-                                href="https://linkedin.com/in/emil-bisak" target="_blank" rel="noopener">
-                                <div class="hexagon color1">
-                                    <span class="iconify" data-icon="jam-linkedin-circle" data-inline="false"></span>
-                                    <h4>LinkedIn</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <p><span>linkedin.com/in/</span>emil-bisak</p>
-                    </div>
-
-                    <div class="contact-wrapper fade-out contact-phone fade-animation">
-                        <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Phone number: +381642049122" title="Phone number: +381642049122"
-                                href="tel:+381642049122">
-                                <div class="hexagon color1">
-                                    <span class="iconify" data-icon="el-phone-alt" data-inline="false"></span>
-                                    <h4>Phone</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <p>+381642049122</p>
-                    </div>
-
-                    <div class="contact-wrapper fade-out contact-github fade-animation">
-                        <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Github profile" title="Github profile" href="https://github.com/emilbisak"
-                                target="_blank" rel="noopener">
-                                <div class="hexagon color1">
-                                    <span class="iconify" data-icon="fa-brands:github" data-inline="false"></span>
-                                    <h4>GitHub</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <p>github.com/emilbisak</p>
-                    </div>
-
-                    <div class="contact-wrapper fade-out contact-skype fade-animation">
-                        <div class="contact-hex hexagon-wrapper">
-                            <a aria-label="Skype profile" title="Skype profile" href="skype:emil.bisak?action"
-                                target="_blank" rel="noopener">
-                                <div class="hexagon color1">
-                                    <span class="iconify" data-icon="entypo-social:skype-with-circle"
-                                        data-inline="false"></span>
-                                    <h4>Skype</h4>
-                                </div>
-                            </a>
-                        </div>
-                        <p>emil.bisak</p>
-                    </div>
+        <!-- EDUCATION & LANGUAGES -->
+        <section class="section" id="education">
+            <div class="container edu-lang">
+                <div>
+                    <p class="eyebrow reveal">[05] Education</p>
+                    <h2 class="section-title reveal">Where I learned the craft.</h2>
+                    <p class="edu-note reveal">Largely self-taught. I learned frontend on my own and through intensive
+                        courses, then went straight into production work in 2019.</p>
+                    <ul class="edu-list">
+                        <li class="reveal">
+                            <span class="edu-date">Oct 2018 - Jan 2019</span>
+                            <div>
+                                <h3>Škola koda</h3>
+                                <p>React, Redux &amp; React Native</p>
+                            </div>
+                        </li>
+                        <li class="reveal">
+                            <span class="edu-date">Apr - Jun 2018</span>
+                            <div>
+                                <h3>BIT, Belgrade Institute of Technology</h3>
+                                <p>Intensive 10-week (400 h) bootcamp, JavaScript and React</p>
+                            </div>
+                        </li>
+                        <li class="reveal">
+                            <span class="edu-date">Dec 2017 - Mar 2018</span>
+                            <div>
+                                <h3>Krojačeva škola</h3>
+                                <p>8-week (160 h) frontend developer course</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
+                <div>
+                    <p class="eyebrow reveal">[06] Languages</p>
+                    <h2 class="section-title reveal">Languages I work in.</h2>
+                    <ul class="lang-list">
+                        <li class="reveal"><span>Serbian</span><span class="lang-level">Native</span><span class="meter"
+                                style="--v: 1"></span></li>
+                        <li class="reveal"><span>English</span><span class="lang-level">Professional</span><span
+                                class="meter" style="--v: .85"></span></li>
+                        <li class="reveal"><span>Slovak</span><span class="lang-level">Advanced</span><span
+                                class="meter" style="--v: .7"></span></li>
+                        <li class="reveal"><span>Hungarian</span><span class="lang-level">Beginner</span><span
+                                class="meter" style="--v: .25"></span></li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <footer class="dark-bg-color">
-            <div class="footer-content">
+        <!-- CONTACT -->
+        <section class="section contact" id="contact">
+            <div class="container">
+                <div class="contact-card reveal">
+                    <div class="contact-glow" aria-hidden="true"></div>
+                    <p class="eyebrow">[07] Contact</p>
+                    <h2 class="contact-title">Have a product that needs a <span class="gradient-text">great
+                            frontend</span>?</h2>
+                    <p class="contact-lead">Whether it's a freelance project or a full-time role, drop me a line and
+                        I'll get back to you soon.</p>
 
-                <ul>
-                    <li><a aria-label="Home link" title="Home link" href="#home" onclick="app.nav.onNavClick()"
-                            class="navigation-link">Home</a></li>
-                    <li><a aria-label="About link" title="About link" href="#about" onclick="app.nav.onNavClick()"
-                            class="navigation-link">Who
-                            am I</a></li>
-                    <li><a aria-label="Skillset link" title="Skillset link" href="#skillset"
-                            onclick="app.nav.onNavClick()" class="navigation-link">Skillset</a></li>
-                    <li><a aria-label="Portfolio link" title="Portfolio link" href="#portfolio"
-                            onclick="app.nav.onNavClick()" class="navigation-link">Portfolio</a></li>
-                    <li><a aria-label="Contact link" title="Contact link" href="#contact" onclick="app.nav.onNavClick()"
-                            class="navigation-link">Contact</a></li>
-                </ul>
-                <a aria-label="Author name" title="Author name" href="#about" onclick="app.nav.onNavClick()"
-                    class="navigation-link author-name">
-                    <span class="copyright">
-                        &copy; Copyright
-                    </span>E<span class="hide-letters">mil </span>B<span class="hide-letters">isak</span>
-                    <span class="currentYear"></span>
-                </a>
+                    <div class="contact-email">
+                        <a href="mailto:bisak.emil@gmail.com" class="btn btn-primary btn-lg">
+                            <svg class="icon"><use href="#i-mail" /></svg>
+                            bisak.emil@gmail.com
+                        </a>
+                        <button class="btn btn-ghost btn-lg" type="button" data-copy="bisak.emil@gmail.com">
+                            <svg class="icon"><use href="#i-copy" /></svg>
+                            <span data-copy-label>Copy email</span>
+                        </button>
+                    </div>
+
+                    <ul class="contact-links">
+                        <li><a href="https://www.linkedin.com/in/emil-bisak/" target="_blank" rel="noopener"><svg
+                                    class="icon"><use href="#i-linkedin" /></svg> linkedin.com/in/emil-bisak</a></li>
+                        <li><a href="https://github.com/EmilBisak" target="_blank" rel="noopener"><svg
+                                    class="icon"><use href="#i-github" /></svg> github.com/emilbisak</a></li>
+                        <li><a href="tel:+381642049122"><svg class="icon"><use href="#i-phone" /></svg> +381 64 204
+                                9122</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="arrow-to-top">
-                <a aria-label="Arrow to page top" title="Arrow to top" href="#home" onclick="handleArrowToTopClick()"
-                    class="navigation-link">
-                    <span class="iconify" data-icon="dashicons:arrow-up-alt2" data-inline="false"></span>
-                </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="title-block" aria-label="Drawing title block">
+                <div><span>Drawn by</span>Emil Bisak</div>
+                <div><span>Project</span>emilbisak.com</div>
+                <div><span>Rev</span><span class="tb-value" data-year></span></div>
+                <div><span>Scale</span>1:1</div>
             </div>
-        </footer>
-    </div>
+        </div>
+        <div class="container footer-inner">
+            <p>&copy; 2019 - <span data-year-copy></span> Emil Bisak. Built by hand with HTML, CSS &amp; JS.</p>
+            <a href="#top" class="footer-top">Back to top ↑</a>
+        </div>
+    </footer>
 
-
-    <script>
-        document.querySelector(".currentYear").innerHTML = `2019 - ${new Date().getFullYear()}`;
-    </script>
-    <script src="main.min.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
