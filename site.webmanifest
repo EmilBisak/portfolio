@@ -2,7 +2,7 @@
     "name": "Emil Bisak | Senior Frontend Engineer",
     "short_name": "Emil Bisak",
     "start_url": "/",
-    "display": "standalone",
+    "display": "browser",
     "background_color": "#070b10",
     "theme_color": "#070b10",
     "icons": [
